@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import SideNav from "./components/SideNav";
 import Adds from "./components/Adds";
@@ -11,27 +11,62 @@ const App = () => {
   const [allPost, setAllPost] = useState([]);
   const [comment, setComment] = useState("");
   const [allComment, setAllComment] = useState([]);
+  const [likes, setLikes] = useState();
+  useEffect(() => {
+    getPost();
+  }, []);
 
-  const addPost = (event) => {
+  const getPost = async () => {
+    try {
+      const posts = await fetch("http://localhost:4050/post");
+      const result = await posts.json();
+      setAllPost(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const addPost = async (event) => {
     event.preventDefault();
-    setAllPost((prev) => [
-      ...prev,
-      {
-        id: Date.now(),
-        title: post,
-        likes: 0,
-        dislikes: 0,
-        hearts: 0,
-        comments: [],
-      },
-    ]);
+    const response = {
+      title: post,
+      likes: 0,
+      dislikes: 0,
+      hearts: 0,
+      comments: [],
+    };
+    try {
+      await fetch("http://localhost:4050/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(response),
+      });
+      setAllPost((prev) => [
+        ...prev,
+        {
+          id: Date.now(),
+          title: post,
+          likes: 0,
+          dislikes: 0,
+          hearts: 0,
+          comments: [],
+        },
+      ]);
+    } catch (error) {
+      console.log(error);
+    }
   };
   const addComment = (id) => {
     console.log(allPost);
     console.log(id);
     allPost.map((post) => {
       if (post.id === id) {
-        post.comments = [...post.comments, { id: Date.now(), title: comment }];
+        post.comments = [
+          ...post.comments,
+          { id: Date.now(), comments: comment },
+        ];
         setAllComment((prev) => [
           ...prev,
           { id: Date.now(), comments: comment },
@@ -40,10 +75,16 @@ const App = () => {
     });
   };
   const addLikes = (id) => {
+    const like = likes + 1;
+    setLikes(like);
     console.log(allPost);
     console.log(id);
+    const response = {
+      likes: likes,
+    };
+
     allPost.map((post) => {
-      if (post.id === id) {
+      if (post._id === id) {
         post.likes = post.likes + 1;
         setAllComment((prev) => [
           ...prev,
@@ -109,7 +150,7 @@ const App = () => {
             </div>
             {allPost.map((post) => (
               <div
-                key={post.id}
+                key={post._id}
                 style={{ borderRadius: "0.25rem" }}
                 className="container bg-dark mt-3 mb-3 p-3"
               >
@@ -120,21 +161,21 @@ const App = () => {
                     height="15px"
                     src={ThumbsUp}
                     alt=""
-                    onClick={() => addLikes(post.id)}
+                    onClick={() => addLikes(post._id)}
                   />
                   <p>{post.dislikes}</p>
                   <img
                     height="15px"
                     src={ThumbsDown}
                     alt=""
-                    onClick={() => disLikes(post.id)}
+                    onClick={() => disLikes(post._id)}
                   />
                   <p>{post.hearts}</p>
                   <img
                     height="15px"
                     src={Heart}
                     alt=""
-                    onClick={() => hearts(post.id)}
+                    onClick={() => hearts(post._id)}
                   />
                 </div>
                 <div className="input-group mb-3 mt-3">
@@ -165,7 +206,7 @@ const App = () => {
                     className="container p-3 mb-2"
                     style={{ borderRadius: "0.25rem" }}
                   >
-                    {comment.title}
+                    {comment.comments}
                   </div>
                 ))}
               </div>
