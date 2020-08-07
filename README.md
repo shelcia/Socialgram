@@ -1,3 +1,9 @@
+deployement 
+
+frontend : https://fb-clone-frontend.netlify.app/
+backend : https://fb-clone-backend.herokuapp.com/
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
