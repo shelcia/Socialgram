@@ -15,7 +15,7 @@ const Feed = () => {
 
   const getPost = async () => {
     try {
-      const posts = await fetch("http://localhost:4050/post");
+      const posts = await fetch("https://fb-clone-backend.herokuapp.com/post");
       const result = await posts.json();
       setAllPost(result);
     } catch (error) {
@@ -32,7 +32,7 @@ const Feed = () => {
       comments: [],
     };
     try {
-      await fetch("http://localhost:4050/post", {
+      await fetch("https://fb-clone-backend.herokuapp.com/post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const Feed = () => {
       }
     });
     axios
-      .put(`http://localhost:4050/comments/${id}`, response)
+      .put(`https://fb-clone-backend.herokuapp.com/comments/${id}`, response)
       .then((res) => console.log(res.json()))
       .catch((error) => {
         console.log(error);
@@ -83,7 +83,7 @@ const Feed = () => {
       likes: value + 1,
     };
     axios
-      .put(`http://localhost:4050/likes/${id}`, response)
+      .put(`https://fb-clone-backend.herokuapp.com/likes/${id}`, response)
       .then((res) =>
         allPost.map((post) => {
           if (post._id === id) {
@@ -104,7 +104,7 @@ const Feed = () => {
       dislikes: value + 1,
     };
     axios
-      .put(`http://localhost:4050/dislikes/${id}`, response)
+      .put(`https://fb-clone-backend.herokuapp.com/dislikes/${id}`, response)
       .then((res) =>
         allPost.map((post) => {
           if (post._id === id) {
@@ -121,11 +121,12 @@ const Feed = () => {
       });
   };
   const hearts = (id, value) => {
+    console.log(id);
     const response = {
       hearts: value + 1,
     };
     axios
-      .put(`http://localhost:4050/hearts/${id}`, response)
+      .put(`https://fb-clone-backend.herokuapp.com/hearts/${id}`, response)
       .then((res) =>
         allPost.map((post) => {
           if (post._id === id) {
