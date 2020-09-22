@@ -8,7 +8,7 @@ const Post = ({ post, addLikes, addComment, disLikes, hearts, setComment }) => {
   return (
     <React.Fragment>
       <div
-        key={post._id}
+        key={post.id}
         style={{ borderRadius: "0.25rem", flexDirection: "column-reverse" }}
         className="container bg-dark mt-3 mb-3 p-3"
       >
@@ -19,21 +19,21 @@ const Post = ({ post, addLikes, addComment, disLikes, hearts, setComment }) => {
             height="15px"
             src={ThumbsUp}
             alt=""
-            onClick={() => addLikes(post._id, post.likes)}
+            onClick={() => addLikes(post.id, post.likes)}
           />
           <p>{post.dislikes}</p>
           <img
             height="15px"
             src={ThumbsDown}
             alt=""
-            onClick={() => disLikes(post._id, post.dislikes)}
+            onClick={() => disLikes(post.id, post.dislikes)}
           />
           <p>{post.hearts}</p>
           <img
             height="15px"
             src={Heart}
             alt=""
-            onClick={() => hearts(post._id, post.hearts)}
+            onClick={() => hearts(post.id, post.hearts)}
           />
         </div>
         <div className="input-group mb-3 mt-3">
@@ -50,7 +50,7 @@ const Post = ({ post, addLikes, addComment, disLikes, hearts, setComment }) => {
             className="btn btn-primary"
             onClick={(event) => {
               event.preventDefault();
-              addComment(post._id, post.comments);
+              addComment(post.id, post.comments);
             }}
           >
             Add Comment

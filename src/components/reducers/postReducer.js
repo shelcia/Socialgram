@@ -5,8 +5,26 @@ const postReducer = (state = [], action) => {
     case "ADD_POST":
       return [
         ...state,
-        { title: action.title, likes: 0, dislikes: 0, hearts: 0, comments: [] },
+        {
+          id: action.id,
+          title: action.title,
+          likes: 0,
+          dislikes: 0,
+          hearts: 0,
+          comments: [],
+        },
       ];
+    case "ADD_COMMENT":
+      console.log(state);
+      state.map((post) => {
+        if (post.id === action.id) {
+          console.log(post.id, action.title);
+        } else {
+          console.log("not found");
+        }
+      });
+
+      return state;
     default:
       return state;
   }

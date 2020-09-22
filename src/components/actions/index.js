@@ -4,16 +4,19 @@ export const LoadPost = (result) => {
     result: result,
   };
 };
-export const AddPost = (post) => {
+export const AddPost = (id, post) => {
+  console.log(id);
   return {
     type: `ADD_POST`,
-    post: post,
+    id: id,
+    title: post,
   };
 };
 
-//   export const DelService = (id) => {
-//     return {
-//       type: `DEL_SERVICE_REQUEST`,
-//       id: id,
-//     };
-//   };
+export const AddComment = (id, comment) => {
+  return {
+    type: `ADD_COMMENT`,
+    id: id,
+    title: comment,
+  };
+};
