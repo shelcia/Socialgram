@@ -3,16 +3,13 @@ import React from "react";
 import "./components/styles/style.css";
 import SideNav from "./components/SideNav";
 import Adds from "./components/Adds";
-import Feed from "./components/Feed";
+import Feed from "./components/Feed/Feed";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <React.Fragment>
-      <nav className="navbar navbar-dark bg-dark">
-        <a className="navbar-brand" href="#!">
-          Home
-        </a>
-      </nav>
+      <Navbar />
       <div className="container">
         <div className="row mt-5">
           <SideNav />

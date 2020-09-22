@@ -4,8 +4,16 @@ const Login = () => {
   return (
     <React.Fragment>
       <form>
-        <input></input>
-        <input></input>
+        <input
+          type="text"
+          className="form-control"
+          placeholder="enter user name"
+        />
+        <input
+          type="passwork"
+          className="form-control"
+          placeholder="password"
+        />
         <button></button>
       </form>
     </React.Fragment>
