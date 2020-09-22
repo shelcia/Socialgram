@@ -1,0 +1,52 @@
+$font: "Open Sans", sans-serif;
+$textColor: #fff;
+$background: #282c34;
+$lighterBackground: #343a40;
+$border: 1px solid rgba(210, 210, 210, 0.125);
+
+* {
+  font-family: $font;
+}
+
+body {
+  background-color: $background;
+  color: $textColor !important;
+}
+
+@mixin displayFlex($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.container .row {
+  .col-sm-3 ul li {
+    background-color: $background !important;
+    color: $textColor !important;
+    border-bottom: $border;
+    cursor: pointer;
+    &:hover {
+      background-color: $lighterBackground !important;
+    }
+  }
+  .col-sm-6 {
+    .button-container {
+      width: 100%;
+    }
+    .container {
+      background-color: $background;
+      .icon-container {
+        @include displayFlex(left, center);
+        img {
+          height: 15px;
+          cursor: pointer;
+          padding-right: 1rem;
+        }
+        p {
+          margin-bottom: 0rem;
+          padding-right: 1rem;
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,7 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
 body {
   background-color: #282c34;
   color: #fff !important;
@@ -9,31 +13,39 @@ body {
   border-bottom: 1px solid rgba(210, 210, 210, 0.125);
   cursor: pointer;
 }
+
 .container .row .col-sm-3 ul li:hover {
   background-color: #343a40 !important;
 }
 
-.container .row .col-sm-6 {
-  overflow-y: auto;
-  height: 80vh;
-}
 .container .row .col-sm-6 .button-container {
   width: 100%;
 }
-.container .row .col-sm-6 .container .icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: left;
+
+.container .row .col-sm-6 .container {
+  background-color: #282c34;
 }
+
+.container .row .col-sm-6 .container .icon-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .container .row .col-sm-6 .container .icon-container img {
   height: 15px;
   cursor: pointer;
   padding-right: 1rem;
 }
+
 .container .row .col-sm-6 .container .icon-container p {
   margin-bottom: 0rem;
   padding-right: 1rem;
 }
-.container .row .col-sm-6 .container .container {
-  background-color: #282c34;
-}
+/*# sourceMappingURL=style.css.map */

@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./App.css";
+import "./components/styles/style.css";
 import SideNav from "./components/SideNav";
 import Adds from "./components/Adds";
 import Feed from "./components/Feed";
