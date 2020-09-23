@@ -1,4 +1,8 @@
 import React from "react";
+import Home from "../../assets/home.png";
+import Profile from "../../assets/profile.png";
+import MyPost from "../../assets/posts.png";
+import Settings from "../../assets/settings.png";
 
 const SideNav = () => {
   return (
@@ -6,20 +10,20 @@ const SideNav = () => {
       <div className="col-sm-3">
         <ul className="list-group list-group-flush">
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            Home
+            <img className="icon" src={Home} alt="" /> Home
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            About Us
+            <img className="icon" src={Profile} alt="" /> Profile
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            Privacy
+            <img className="icon" src={MyPost} alt="" /> My Post
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            Contact Us
+            <img className="icon" src={Settings} alt="" /> Settings
           </li>
-          <li className="list-group-item list-group-item-action list-group-item-dark">
+          {/* <li className="list-group-item list-group-item-action list-group-item-dark">
             Copyrights 2020
-          </li>
+          </li> */}
         </ul>
       </div>
     </React.Fragment>

@@ -3,6 +3,7 @@ $textColor: #fff;
 $background: #282c34;
 $lighterBackground: #343a40;
 $border: 1px solid rgba(210, 210, 210, 0.125);
+$primaryColor: #007bff;
 
 ::-webkit-scrollbar {
   width: 4px;
@@ -44,6 +45,18 @@ body {
   }
 }
 .container .row {
+  .col-sm-3.form {
+    @include displayFlex(center, center);
+    flex-direction: column;
+    form .form-control {
+      margin-top: 3px;
+    }
+    p em {
+      color: $primaryColor;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
   .col-sm-3 ul li {
     background-color: $background !important;
     color: $textColor !important;
@@ -51,6 +64,10 @@ body {
     cursor: pointer;
     &:hover {
       background-color: $lighterBackground !important;
+    }
+    img.icon {
+      height: 1rem;
+      padding-right: 30px;
     }
   }
   .col-sm-6 {

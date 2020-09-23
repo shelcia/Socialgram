@@ -2,6 +2,7 @@ import React from "react";
 import Heart from "../../assets/heart.png";
 import ThumbsUp from "../../assets/thumb-up.png";
 import ThumbsDown from "../../assets/thumb-down.png";
+import ReactEmoji from "react-emoji";
 
 const Post = ({
   post,
@@ -19,7 +20,7 @@ const Post = ({
         style={{ borderRadius: "0.25rem", flexDirection: "column-reverse" }}
         className="container bg-dark mt-3 mb-3 p-3"
       >
-        <h3 className="mb-3">{post.title}</h3>
+        <h3 className="mb-3">{ReactEmoji.emojify(post.title)}</h3>
         <div className="icon-container">
           <p>{post.likes}</p>
           <img
@@ -70,7 +71,7 @@ const Post = ({
             className="container p-3 mb-2"
             style={{ borderRadius: "0.25rem" }}
           >
-            {comment.comments}
+            {ReactEmoji.emojify(comment.comments)}
           </div>
         ))}
       </div>

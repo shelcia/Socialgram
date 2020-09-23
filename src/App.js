@@ -1,10 +1,10 @@
 import React from "react";
 
 import "./components/styles/style.css";
-import SideNav from "./components/SideNav";
-import Adds from "./components/Adds";
-import Feed from "./components/Feed/Feed";
 import Navbar from "./components/Navbar";
+import Login from "./components/Login";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import HomePage from "./components/HomPage/HomePage";
 
 const App = () => {
   return (
@@ -12,9 +12,12 @@ const App = () => {
       <Navbar />
       <div className="container outside">
         <div className="row" style={{ marginTop: "14vh" }}>
-          <SideNav />
-          <Feed />
-          <Adds />
+          <Router>
+            <Switch>
+              <Route path="/" component={Login} />
+              <Route path="/homepage" component={HomePage} />
+            </Switch>
+          </Router>
         </div>
       </div>
     </React.Fragment>
