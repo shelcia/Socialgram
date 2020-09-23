@@ -27,6 +27,18 @@ const Adds = () => {
           {" "}
           www.flaticon.com
         </a>
+        <a href="https://thenounproject.com/search/?q=home&i=1076883">
+          House by Тимур Минвалеев from the Noun Project
+        </a>
+        <a href="https://thenounproject.com/search/?q=profile&i=956157">
+          profile by icongeek from the Noun Project
+        </a>
+        <a href="https://thenounproject.com/search/?q=notes&i=3107500">
+          note by IcoMoon from the Noun Project
+        </a>
+        <a href="https://thenounproject.com/search/?q=settings&i=2650511">
+          Settings by i cons from the Noun Project
+        </a>
       </div>
     </React.Fragment>
   );

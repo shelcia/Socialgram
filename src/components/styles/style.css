@@ -1,5 +1,23 @@
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
+
 * {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Titillium Web", sans-serif;
 }
 
 body {
@@ -8,8 +26,12 @@ body {
 }
 
 @media (min-width: 576px) {
-  .container {
-    width: 90%;
+  .container.outside {
+    max-width: 95% !important;
+  }
+  .container.outside .col-sm-6 {
+    height: 86vh;
+    overflow-y: auto;
   }
 }
 

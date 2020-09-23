@@ -10,8 +10,8 @@ const App = () => {
   return (
     <React.Fragment>
       <Navbar />
-      <div className="container">
-        <div className="row mt-5">
+      <div className="container outside">
+        <div className="row" style={{ marginTop: "14vh" }}>
           <SideNav />
           <Feed />
           <Adds />
