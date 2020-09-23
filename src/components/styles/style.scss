@@ -23,6 +23,11 @@ $primaryColor: #007bff;
 * {
   font-family: $font;
 }
+a,
+a:visited,
+a:any-link {
+  text-decoration: none;
+}
 
 body {
   background-color: $background;
@@ -61,13 +66,19 @@ body {
     background-color: $background !important;
     color: $textColor !important;
     border-bottom: $border;
-    cursor: pointer;
-    &:hover {
-      background-color: $lighterBackground !important;
-    }
+    padding: 0px;
     img.icon {
       height: 1rem;
       padding-right: 30px;
+    }
+    a {
+      color: $textColor !important;
+      display: block;
+      padding: 0.8rem 1.25rem;
+      cursor: pointer;
+      &:hover {
+        background-color: $lighterBackground !important;
+      }
     }
   }
   .col-sm-6 {

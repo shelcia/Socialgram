@@ -3,11 +3,13 @@ import { useRef } from "react";
 import { useState } from "react";
 import Illustration from "../assets/iillustration.png";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Login = ({ setIsLogin }) => {
   const email = useRef("");
   const password = useRef("");
   const LINK = process.env.REACT_APP_HEROKU_LINK;
+  const history = useHistory();
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -18,6 +20,7 @@ const Login = ({ setIsLogin }) => {
       })
       .then((res) => {
         console.log(res);
+        history.push("/homepage");
       })
       .catch((error) => {
         console.log(error);

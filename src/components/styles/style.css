@@ -20,6 +20,24 @@
   font-family: "Josefin Sans", sans-serif;
 }
 
+a,
+a:visited,
+a:-webkit-any-link {
+  text-decoration: none;
+}
+
+a,
+a:visited,
+a:-moz-any-link {
+  text-decoration: none;
+}
+
+a,
+a:visited,
+a:any-link {
+  text-decoration: none;
+}
+
 body {
   background-color: #282c34;
   color: #fff !important;
@@ -65,16 +83,23 @@ body {
   background-color: #282c34 !important;
   color: #fff !important;
   border-bottom: 1px solid rgba(210, 210, 210, 0.125);
-  cursor: pointer;
-}
-
-.container .row .col-sm-3 ul li:hover {
-  background-color: #343a40 !important;
+  padding: 0px;
 }
 
 .container .row .col-sm-3 ul li img.icon {
   height: 1rem;
   padding-right: 30px;
+}
+
+.container .row .col-sm-3 ul li a {
+  color: #fff !important;
+  display: block;
+  padding: 0.8rem 1.25rem;
+  cursor: pointer;
+}
+
+.container .row .col-sm-3 ul li a:hover {
+  background-color: #343a40 !important;
 }
 
 .container .row .col-sm-6 .button-container {

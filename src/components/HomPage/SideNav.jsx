@@ -3,6 +3,8 @@ import Home from "../../assets/home.png";
 import Profile from "../../assets/profile.png";
 import MyPost from "../../assets/posts.png";
 import Settings from "../../assets/settings.png";
+import Logout from "../../assets/logout.png";
+import { NavLink } from "react-router-dom";
 
 const SideNav = () => {
   return (
@@ -10,20 +12,30 @@ const SideNav = () => {
       <div className="col-sm-3">
         <ul className="list-group list-group-flush">
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            <img className="icon" src={Home} alt="" /> Home
+            <NavLink to="/homepage">
+              <img className="icon" src={Home} alt="" /> Home
+            </NavLink>
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            <img className="icon" src={Profile} alt="" /> Profile
+            <NavLink to="/homepage/profile">
+              <img className="icon" src={Profile} alt="" /> Profile
+            </NavLink>
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            <img className="icon" src={MyPost} alt="" /> My Post
+            <NavLink to="/homepage/myposts">
+              <img className="icon" src={MyPost} alt="" /> My Post
+            </NavLink>
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            <img className="icon" src={Settings} alt="" /> Settings
+            <NavLink to="/homepage/settings">
+              <img className="icon" src={Settings} alt="" /> Settings
+            </NavLink>
           </li>
-          {/* <li className="list-group-item list-group-item-action list-group-item-dark">
-            Copyrights 2020
-          </li> */}
+          <li className="list-group-item list-group-item-action list-group-item-dark">
+            <NavLink to="/homepage/settings">
+              <img className="icon" src={Logout} alt="" /> Logout
+            </NavLink>
+          </li>
         </ul>
       </div>
     </React.Fragment>

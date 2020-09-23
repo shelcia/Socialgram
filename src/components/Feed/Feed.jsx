@@ -1,6 +1,8 @@
 import React, { useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import InputForm from "./InputFrom";
+import Adds from "../HomPage/Adds";
+import SideNav from "../HomPage/SideNav";
 import Post from "./Post";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -191,19 +193,23 @@ const Feed = () => {
   return (
     <React.Fragment>
       <ToastContainer />
-      <div className="col-sm-6">
-        <InputForm addPost={addPost} postText={postText} />
-        {allPost.map((post) => (
-          <Post
-            key={post.id}
-            post={post}
-            addLikes={addLikes}
-            addComment={addComment}
-            disLikes={disLikes}
-            hearts={hearts}
-            commentText={commentText}
-          />
-        ))}
+      <div className="row">
+        <SideNav />
+        <div className="col-sm-6">
+          <InputForm addPost={addPost} postText={postText} />
+          {allPost.map((post) => (
+            <Post
+              key={post.id}
+              post={post}
+              addLikes={addLikes}
+              addComment={addComment}
+              disLikes={disLikes}
+              hearts={hearts}
+              commentText={commentText}
+            />
+          ))}
+        </div>
+        <Adds />
       </div>
     </React.Fragment>
   );
