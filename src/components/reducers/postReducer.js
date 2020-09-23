@@ -15,16 +15,13 @@ const postReducer = (state = [], action) => {
         },
       ];
     case "ADD_COMMENT":
-      console.log(state);
-      state.map((post) => {
-        if (post.id === action.id) {
-          console.log(post.id, action.title);
-        } else {
-          console.log("not found");
-        }
-      });
-
-      return state;
+      return action.result;
+    case "ADD_LIKE":
+      return action.result;
+    case "ADD_DISLIKE":
+      return action.result;
+    case "ADD_HEART":
+      return action.result;
     default:
       return state;
   }

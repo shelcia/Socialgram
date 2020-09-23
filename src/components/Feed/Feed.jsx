@@ -1,21 +1,27 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import InputForm from "./InputFrom";
 import Post from "./Post";
 import { useSelector, useDispatch } from "react-redux";
-import { LoadPost, AddPost, AddComment } from "../actions/index";
+import {
+  LoadPost,
+  AddPost,
+  AddComment,
+  AddLike,
+  AddDislike,
+  AddHearts,
+} from "../actions/index";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Feed = () => {
-  const [comment, setComment] = useState("");
-  const [allComment, setAllComment] = useState([]);
   const LINK = process.env.REACT_APP_HEROKU_LINK;
 
   const postText = useRef("");
+  const commentText = useRef("");
 
   const allPost = useSelector((state) => state.posts);
-  console.table(allPost);
+  // console.table(allPost);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -61,20 +67,40 @@ const Feed = () => {
   };
   const addComment = useCallback(
     (id, value) => {
+      console.log("executed");
+      const commentId = Date.now();
       const response = {
-        comments: value.concat({ id: Date.now(), comments: comment }),
+        comments: value.concat({
+          id: commentId,
+          comments: commentText.current.value,
+        }),
       };
       console.log(response);
-      dispatch(AddComment(id, value));
       axios
         .put(`${LINK}comments/${id}`, response)
-        .then((res) => console.log(res))
+        .then((res) => {
+          const newAllPost = allPost.map((post) => {
+            if (post.id === id) {
+              const updatedPost = {
+                ...post,
+                comments: [
+                  ...post.comments,
+                  { id: commentId, comments: commentText.current.value },
+                ],
+              };
+              return updatedPost;
+            }
+            return post;
+          });
+          dispatch(AddComment(newAllPost));
+          console.log(res);
+        })
         .catch((error) => {
           console.log(error);
           errorNotify('Oops! The comment couldn"t be added 🥺🥺!!');
         });
     },
-    [LINK, comment, dispatch]
+    [LINK, allPost, dispatch]
   );
   const addLikes = useCallback(
     (id, value) => {
@@ -83,22 +109,26 @@ const Feed = () => {
       };
       axios
         .put(`${LINK}likes/${id}`, response)
-        .then((res) =>
-          allPost.map((post) => {
+        .then((res) => {
+          const newAllPost = allPost.map((post) => {
             if (post.id === id) {
-              post.likes = post.likes + 1;
-              setAllComment((prev) => [
-                ...prev,
-                { id: Date.now(), comments: comment },
-              ]);
+              const updatedPost = {
+                ...post,
+                likes: response.likes,
+              };
+              return updatedPost;
             }
-          })
-        )
+            return post;
+          });
+          dispatch(AddLike(newAllPost));
+          console.log(res);
+        })
         .catch((error) => {
           console.log(error);
+          errorNotify('Oops! The like couldn"t be added 🥺🥺!!');
         });
     },
-    [LINK, allPost, comment]
+    [LINK, allPost, dispatch]
   );
   const disLikes = useCallback(
     (id, value) => {
@@ -108,22 +138,26 @@ const Feed = () => {
       };
       axios
         .put(`${LINK}dislikes/${id}`, response)
-        .then((res) =>
-          allPost.map((post) => {
-            if (post._id === id) {
-              post.dislikes = post.dislikes + 1;
-              setAllComment((prev) => [
-                ...prev,
-                { id: Date.now(), comments: comment },
-              ]);
+        .then((res) => {
+          const newAllPost = allPost.map((post) => {
+            if (post.id === id) {
+              const updatedPost = {
+                ...post,
+                dislikes: response.dislikes,
+              };
+              return updatedPost;
             }
-          })
-        )
+            return post;
+          });
+          dispatch(AddDislike(newAllPost));
+          console.log(res);
+        })
         .catch((error) => {
           console.log(error);
+          errorNotify('Oops! The dislike couldn"t be added 🥺🥺!!');
         });
     },
-    [LINK, allPost, comment]
+    [LINK, allPost, dispatch]
   );
   const hearts = useCallback(
     (id, value) => {
@@ -133,22 +167,26 @@ const Feed = () => {
       };
       axios
         .put(`${LINK}hearts/${id}`, response)
-        .then((res) =>
-          allPost.map((post) => {
-            if (post._id === id) {
-              post.hearts = post.hearts + 1;
-              setAllComment((prev) => [
-                ...prev,
-                { id: Date.now(), comments: comment },
-              ]);
+        .then((res) => {
+          const newAllPost = allPost.map((post) => {
+            if (post.id === id) {
+              const updatedPost = {
+                ...post,
+                hearts: response.hearts,
+              };
+              return updatedPost;
             }
-          })
-        )
+            return post;
+          });
+          dispatch(AddHearts(newAllPost));
+          console.log(res);
+        })
         .catch((error) => {
           console.log(error);
+          errorNotify('Oops! The heart couldn"t be added 🥺🥺!!');
         });
     },
-    [LINK, allPost, comment]
+    [LINK, allPost, dispatch]
   );
   return (
     <React.Fragment>
@@ -163,7 +201,7 @@ const Feed = () => {
             addComment={addComment}
             disLikes={disLikes}
             hearts={hearts}
-            setComment={setComment}
+            commentText={commentText}
           />
         ))}
       </div>

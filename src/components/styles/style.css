@@ -7,6 +7,12 @@ body {
   color: #fff !important;
 }
 
+@media (min-width: 576px) {
+  .container {
+    width: 90%;
+  }
+}
+
 .container .row .col-sm-3 ul li {
   background-color: #282c34 !important;
   color: #fff !important;

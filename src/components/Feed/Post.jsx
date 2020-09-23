@@ -3,7 +3,14 @@ import Heart from "../../assets/heart.png";
 import ThumbsUp from "../../assets/thumb-up.png";
 import ThumbsDown from "../../assets/thumb-down.png";
 
-const Post = ({ post, addLikes, addComment, disLikes, hearts, setComment }) => {
+const Post = ({
+  post,
+  addLikes,
+  addComment,
+  disLikes,
+  hearts,
+  commentText,
+}) => {
   console.log(post);
   return (
     <React.Fragment>
@@ -41,7 +48,8 @@ const Post = ({ post, addLikes, addComment, disLikes, hearts, setComment }) => {
             type="text"
             className="form-control"
             placeholder="comment"
-            onChange={(event) => setComment(event.target.value)}
+            ref={commentText}
+            // onChange={(event) => setComment(event.target.value)}
           />
         </div>
         <div className="button-container text-center mt-3 mb-3">
