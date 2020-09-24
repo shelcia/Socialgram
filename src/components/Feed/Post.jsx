@@ -49,6 +49,7 @@ const Post = ({
             className="form-control"
             placeholder="comment"
             ref={commentText}
+            required
           />
         </div>
         <div className="button-container text-center mt-3 mb-3">

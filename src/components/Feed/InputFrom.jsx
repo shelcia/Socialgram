@@ -9,6 +9,7 @@ const InputForm = ({ addPost, postText }) => {
           className="form-control"
           placeholder="share your thoughts"
           ref={postText}
+          required
         ></textarea>
       </div>
       <div className="button-container text-center mt-3 mb-5">

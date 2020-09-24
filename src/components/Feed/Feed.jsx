@@ -64,11 +64,11 @@ const Feed = () => {
         body: JSON.stringify(response),
       });
       dispatch(AddPost(response));
-      postText.current.value = "";
+      postText.current.value = null;
     } catch (error) {
       console.log(error);
       errorNotify('Oops! The post couldn"t be added 🥺🥺!!');
-      postText.current.value = "";
+      postText.current.value = null;
     }
   };
 
@@ -101,12 +101,13 @@ const Feed = () => {
           });
           dispatch(AddComment(newAllPost));
           console.log(res);
+          // commentText.current.value = null;
         })
         .catch((error) => {
           console.log(error);
           errorNotify('Oops! The comment couldn"t be added 🥺🥺!!');
+          // commentText.current.value = null;
         });
-      commentText.current.value = "";
     },
     [LINK, allPost, dispatch]
   );
