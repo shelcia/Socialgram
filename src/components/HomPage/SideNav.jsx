@@ -12,27 +12,27 @@ const SideNav = () => {
       <div className="col-sm-3">
         <ul className="list-group list-group-flush">
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            <NavLink to="/homepage">
+            <NavLink to="/homepage" exact activeClassName="active">
               <img className="icon" src={Home} alt="" /> Home
             </NavLink>
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            <NavLink to="/homepage/profile">
+            <NavLink to="/homepage/profile" activeClassName="active">
               <img className="icon" src={Profile} alt="" /> Profile
             </NavLink>
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            <NavLink to="/homepage/myposts">
+            <NavLink to="/homepage/myposts" activeClassName="active">
               <img className="icon" src={MyPost} alt="" /> My Post
             </NavLink>
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            <NavLink to="/homepage/settings">
+            <NavLink to="/homepage/settings" activeClassName="active">
               <img className="icon" src={Settings} alt="" /> Settings
             </NavLink>
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            <NavLink to="/homepage/settings">
+            <NavLink to="/" exact activeClassName="active">
               <img className="icon" src={Logout} alt="" /> Logout
             </NavLink>
           </li>

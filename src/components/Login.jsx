@@ -1,17 +1,20 @@
 import React from "react";
 import { useRef } from "react";
 import { useState } from "react";
-import Illustration from "../assets/iillustration.png";
+import Illustration from "../assets/Illustration.png";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Loading from "./Loading";
 
 const Login = ({ setIsLogin }) => {
   const email = useRef("");
   const password = useRef("");
   const LINK = process.env.REACT_APP_HEROKU_LINK;
   const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = (event) => {
+    setIsLoading(true);
     event.preventDefault();
     axios
       .post(`${LINK}signin`, {
@@ -20,41 +23,52 @@ const Login = ({ setIsLogin }) => {
       })
       .then((res) => {
         console.log(res);
+        setIsLoading(false);
         history.push("/homepage");
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false);
       });
   };
 
   return (
     <React.Fragment>
-      <h3>Login</h3>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          ref={email}
-          className="form-control"
-          placeholder="enter email"
-        />
-        <input
-          ref={password}
-          type="password"
-          className="form-control"
-          placeholder="enter password"
-        />
-        <div className="text-center mt-4">
-          <button className="btn btn-primary" type="submit">
-            Login
-          </button>
-        </div>
-        <div className="text-center mt-4">
-          <p>
-            Don't have an account? then{" "}
-            <em onClick={() => setIsLogin(false)}>Signup</em>
-          </p>
-        </div>
-      </form>
+      {isLoading ? (
+        <Loading>
+          <h1>Please wait while we create your account !!</h1>
+        </Loading>
+      ) : (
+        <React.Fragment>
+          {" "}
+          <h3>Login</h3>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              ref={email}
+              className="form-control"
+              placeholder="enter email"
+            />
+            <input
+              ref={password}
+              type="password"
+              className="form-control"
+              placeholder="enter password"
+            />
+            <div className="text-center mt-4">
+              <button className="btn btn-primary" type="submit">
+                Login
+              </button>
+            </div>
+            <div className="text-center mt-4">
+              <p>
+                Don't have an account? then{" "}
+                <em onClick={() => setIsLogin(false)}>Signup</em>
+              </p>
+            </div>
+          </form>
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 };
