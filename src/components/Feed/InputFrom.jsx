@@ -7,7 +7,7 @@ const InputForm = ({ addPost, postText }) => {
       <div className="input-group-lg">
         <textarea
           className="form-control"
-          placeholder="enter your thoughts"
+          placeholder="share your thoughts"
           ref={postText}
         ></textarea>
       </div>
@@ -15,7 +15,9 @@ const InputForm = ({ addPost, postText }) => {
         <button
           style={{ width: "100%" }}
           className="btn btn-primary"
-          onClick={(event) => addPost(event)}
+          onClick={(event) => {
+            addPost(event);
+          }}
         >
           Add Post
         </button>

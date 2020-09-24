@@ -5,6 +5,8 @@ import Illustration from "../assets/Illustration.png";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Loading from "./Loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = ({ setIsLogin }) => {
   const email = useRef("");
@@ -12,9 +14,18 @@ const Login = ({ setIsLogin }) => {
   const LINK = process.env.REACT_APP_HEROKU_LINK;
   const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
+  const PREFIX = "SocialGram";
+
+  const sucessNotify = (message) => {
+    toast.success(message);
+  };
+  const failedNotify = (message) => {
+    toast.error(message);
+  };
 
   const onSubmit = (event) => {
     setIsLoading(true);
+    localStorage.setItem(`${PREFIX}Email`, email.current.value);
     event.preventDefault();
     axios
       .post(`${LINK}signin`, {
@@ -23,17 +34,23 @@ const Login = ({ setIsLogin }) => {
       })
       .then((res) => {
         console.log(res);
+        localStorage.setItem(`${PREFIX}Token`, res.data.token);
+        localStorage.setItem(`${PREFIX}UserId`, res.data.userId);
         setIsLoading(false);
+        sucessNotify("Login succesfulll");
+
         history.push("/homepage");
       })
       .catch((error) => {
         console.log(error);
         setIsLoading(false);
+        failedNotify("Incorrect Credentials");
       });
   };
 
   return (
     <React.Fragment>
+      <ToastContainer />
       {isLoading ? (
         <Loading>
           <h1>Please wait while we create your account !!</h1>

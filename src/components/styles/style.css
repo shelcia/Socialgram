@@ -43,6 +43,10 @@ body {
   color: #fff !important;
 }
 
+hr {
+  color: #343a40;
+}
+
 @media (min-width: 576px) {
   .container.outside {
     max-width: 95% !important;

@@ -12,12 +12,11 @@ const Post = ({
   hearts,
   commentText,
 }) => {
-  console.log(post);
   return (
     <React.Fragment>
       <div
         key={post.id}
-        style={{ borderRadius: "0.25rem", flexDirection: "column-reverse" }}
+        style={{ borderRadius: "0.25rem" }}
         className="container bg-dark mt-3 mb-3 p-3"
       >
         <h3 className="mb-3">{ReactEmoji.emojify(post.title)}</h3>
@@ -50,7 +49,6 @@ const Post = ({
             className="form-control"
             placeholder="comment"
             ref={commentText}
-            // onChange={(event) => setComment(event.target.value)}
           />
         </div>
         <div className="button-container text-center mt-3 mb-3">

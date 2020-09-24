@@ -4,11 +4,10 @@ export const LoadPost = (result) => {
     result: result,
   };
 };
-export const AddPost = (id, post) => {
+export const AddPost = (newPost) => {
   return {
     type: `ADD_POST`,
-    id: id,
-    title: post,
+    result: newPost,
   };
 };
 

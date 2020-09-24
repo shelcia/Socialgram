@@ -3,17 +3,7 @@ const postReducer = (state = [], action) => {
     case "LOAD_POST":
       return action.result;
     case "ADD_POST":
-      return [
-        ...state,
-        {
-          id: action.id,
-          title: action.title,
-          likes: 0,
-          dislikes: 0,
-          hearts: 0,
-          comments: [],
-        },
-      ];
+      return [...state, action.result];
     case "ADD_COMMENT":
       return action.result;
     case "ADD_LIKE":

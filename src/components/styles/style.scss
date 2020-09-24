@@ -5,6 +5,10 @@ $lighterBackground: #343a40;
 $border: 1px solid rgba(210, 210, 210, 0.125);
 $primaryColor: #007bff;
 
+// :root {
+//   filter: invert(1) hue-rotate(180deg);
+// }
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -32,6 +36,9 @@ a:any-link {
 body {
   background-color: $background;
   color: $textColor !important;
+}
+hr {
+  color: $lighterBackground;
 }
 
 @mixin displayFlex($justify, $align) {

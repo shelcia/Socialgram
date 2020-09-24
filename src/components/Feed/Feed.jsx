@@ -44,8 +44,10 @@ const Feed = () => {
 
   const addPost = async (event) => {
     event.preventDefault();
+    const userid = localStorage.getItem("SocialGramUserId");
     const response = {
       id: Date.now(),
+      userId: userid,
       title: postText.current.value,
       likes: 0,
       dislikes: 0,
@@ -61,12 +63,15 @@ const Feed = () => {
         },
         body: JSON.stringify(response),
       });
-      dispatch(AddPost(response.id, postText.current.value));
+      dispatch(AddPost(response));
+      postText.current.value = "";
     } catch (error) {
       console.log(error);
       errorNotify('Oops! The post couldn"t be added 🥺🥺!!');
+      postText.current.value = "";
     }
   };
+
   const addComment = useCallback(
     (id, value) => {
       console.log("executed");
@@ -101,9 +106,11 @@ const Feed = () => {
           console.log(error);
           errorNotify('Oops! The comment couldn"t be added 🥺🥺!!');
         });
+      commentText.current.value = "";
     },
     [LINK, allPost, dispatch]
   );
+
   const addLikes = useCallback(
     (id, value) => {
       const response = {
@@ -132,6 +139,7 @@ const Feed = () => {
     },
     [LINK, allPost, dispatch]
   );
+
   const disLikes = useCallback(
     (id, value) => {
       console.log("clicked");
@@ -161,6 +169,7 @@ const Feed = () => {
     },
     [LINK, allPost, dispatch]
   );
+
   const hearts = useCallback(
     (id, value) => {
       console.log(id);
@@ -197,17 +206,19 @@ const Feed = () => {
         <SideNav />
         <div className="col-sm-6">
           <InputForm addPost={addPost} postText={postText} />
-          {allPost.map((post) => (
-            <Post
-              key={post.id}
-              post={post}
-              addLikes={addLikes}
-              addComment={addComment}
-              disLikes={disLikes}
-              hearts={hearts}
-              commentText={commentText}
-            />
-          ))}
+          <div style={{ flexDirection: "column-reverse" }} className="d-flex">
+            {allPost.map((post) => (
+              <Post
+                key={post.id}
+                post={post}
+                addLikes={addLikes}
+                addComment={addComment}
+                disLikes={disLikes}
+                hearts={hearts}
+                commentText={commentText}
+              />
+            ))}
+          </div>
         </div>
         <Adds />
       </div>
