@@ -65,12 +65,14 @@ const Login = ({ setIsLogin }) => {
               ref={email}
               className="form-control"
               placeholder="enter email"
+              required
             />
             <input
               ref={password}
               type="password"
               className="form-control"
               placeholder="enter password"
+              required
             />
             <div className="text-center mt-4">
               <button className="btn btn-primary" type="submit">
@@ -95,9 +97,11 @@ const Signup = ({ setIsLogin }) => {
   const email = useRef("");
   const password = useRef("");
   const LINK = process.env.REACT_APP_HEROKU_LINK;
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true);
 
     const response = {
       fname: fname.current.value,
@@ -111,51 +115,65 @@ const Signup = ({ setIsLogin }) => {
       .post(`${LINK}register`, response)
       .then((res) => {
         console.log(res);
+        setIsLoading(false);
       })
       .catch((error) => {
+        setIsLoading(false);
         console.log(error);
       });
   };
   return (
     <React.Fragment>
-      <h3>Signup</h3>
-      <form onSubmit={onSubmit}>
-        <input
-          ref={fname}
-          type="text"
-          className="form-control"
-          placeholder="enter first name"
-        />
-        <input
-          ref={lname}
-          type="text"
-          className="form-control"
-          placeholder="enter last name"
-        />
-        <input
-          ref={email}
-          type="text"
-          className="form-control"
-          placeholder="enter email"
-        />
-        <input
-          ref={password}
-          type="password"
-          className="form-control"
-          placeholder="enter password"
-        />
-        <div className="text-center mt-4">
-          <button className="btn btn-primary" type="submit">
-            Signup
-          </button>
-        </div>
-        <div className="text-center mt-4">
-          <p>
-            Already have an account? then{" "}
-            <em onClick={() => setIsLogin(true)}>Login</em>
-          </p>
-        </div>
-      </form>
+      {isLoading ? (
+        <Loading>
+          <h1>Please wait while we create your account !!</h1>
+        </Loading>
+      ) : (
+        <React.Fragment>
+          <h3>Signup</h3>
+          <form onSubmit={onSubmit}>
+            <input
+              ref={fname}
+              type="text"
+              className="form-control"
+              placeholder="enter first name"
+              required
+            />
+            <input
+              ref={lname}
+              type="text"
+              className="form-control"
+              placeholder="enter last name"
+              required
+            />
+            <input
+              ref={email}
+              type="text"
+              className="form-control"
+              placeholder="enter email"
+              required
+            />
+            <input
+              ref={password}
+              type="password"
+              className="form-control"
+              placeholder="enter password"
+              required
+            />
+            <div className="text-center mt-4">
+              <button className="btn btn-primary" type="submit">
+                Signup
+              </button>
+            </div>
+            <div className="text-center mt-4">
+              <p>
+                Already have an account? then{" "}
+                <em onClick={() => setIsLogin(true)}>Login</em>
+              </p>
+            </div>
+          </form>{" "}
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 };

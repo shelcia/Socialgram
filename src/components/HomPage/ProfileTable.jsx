@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProfileTable = ({ profile, isEdit, setFname, setLname }) => {
-  console.log(profile.date);
+  //   console.log(profile.date);
 
   return (
     <React.Fragment>

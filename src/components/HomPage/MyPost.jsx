@@ -19,7 +19,7 @@ const MyPosts = () => {
       axios
         .get(`${LINK}myposts/${id}`)
         .then((response) => {
-          console.log(response.data);
+          //   console.log(response.data);
           setPosts(response.data);
         })
         .catch((error) => {
