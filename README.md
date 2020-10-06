@@ -1,4 +1,4 @@
-##Deployement 
+## Deployement 
 
 
 ### Frontend deployment
@@ -12,7 +12,7 @@ https://fb-clone-backend.herokuapp.com/
 
 
 
-###To work with thie repo
+### To work with thie repo
 
 
 - Clone this repo 
