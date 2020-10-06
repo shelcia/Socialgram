@@ -17,6 +17,6 @@ https://fb-clone-backend.herokuapp.com/
 
 - Clone this repo 
 
-- Run npm install
+- Run <code>npm install</code>
 
-- Then Run npm start
+- Then Run <code>npm start</code>
