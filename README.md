@@ -12,7 +12,7 @@ https://fb-clone-backend.herokuapp.com/
 
 
 
-### To work with thie repo
+### To work with this repo
 
 
 - Clone this repo 
