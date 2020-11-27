@@ -1,6 +1,6 @@
-Want to contribute ? Join our server (NWoC'20)
+# Want to contribute ? Join our server (NWoC'20)
 
-https://discord.gg/BqYZG47V
+https://discord.gg/TkKHAYVCza
 
 
 ## Deployement 
