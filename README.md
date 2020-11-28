@@ -2,20 +2,12 @@
 
 https://discord.gg/TkKHAYVCza
 
-
 ## Deployement 
 
 
 ### Frontend deployment
 
-https://fb-clone-frontend.netlify.app/
-
-
-### Backend deployment
-
-https://fb-clone-backend.herokuapp.com/
-
-
+https://socialgram.netlify.app/
 
 ### To work with this repo
 
