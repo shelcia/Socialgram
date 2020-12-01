@@ -2,21 +2,19 @@
 
 https://discord.gg/TkKHAYVCza
 
-## Deployement 
-
+## Deployement
 
 ### Frontend deployment
 
 https://socialgram.netlify.app/
 
-##Backend Link
+## Backend Code
 
 https://github.com/shelcia/fb-clone-backend
 
 ### To work with this repo
 
-
-- Clone this repo 
+- Clone this repo
 
 - Run <code>npm install</code>
 
