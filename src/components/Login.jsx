@@ -99,6 +99,13 @@ const Signup = ({ setIsLogin }) => {
   const LINK = process.env.REACT_APP_HEROKU_LINK;
   const [isLoading, setIsLoading] = useState(false);
 
+  const sucessNotify = (message) => {
+    toast.success(message);
+  };
+  const failedNotify = (message) => {
+    toast.error(message);
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -115,10 +122,12 @@ const Signup = ({ setIsLogin }) => {
       .post(`${LINK}register`, response)
       .then((res) => {
         console.log(res);
+        sucessNotify("Account Created.You can login now!!");
         setIsLoading(false);
       })
       .catch((error) => {
         setIsLoading(false);
+        failedNotify("Account Creation Failed!");
         console.log(error);
       });
   };
