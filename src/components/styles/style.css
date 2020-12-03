@@ -52,7 +52,7 @@ hr {
     max-width: 95% !important;
   }
   .container.outside .col-sm-6 {
-    height: 86vh;
+    height: 87vh;
     overflow-y: auto;
   }
 }
@@ -98,7 +98,7 @@ hr {
 .container .row .col-sm-3 ul li a {
   color: #fff !important;
   display: block;
-  padding: 0.8rem 1.25rem;
+  padding: 0.8rem 1.24rem;
   cursor: pointer;
 }
 
