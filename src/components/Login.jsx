@@ -39,7 +39,7 @@ const Login = ({ setIsLogin }) => {
         setIsLoading(false);
         sucessNotify("Login succesfulll");
 
-        history.push("/homepage");
+        history.push("/homepage/profile");
       })
       .catch((error) => {
         console.log(error);
