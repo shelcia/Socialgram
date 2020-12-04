@@ -36,9 +36,11 @@ const MyPosts = () => {
         <div className="col-sm-6">
           <h1>My Post</h1>
           <hr />
-          {posts.map((post) => (
-            <Post post={post} key={post.id} />
-          ))}
+          <div style={{ flexDirection: "column-reverse" }} className="d-flex">
+            {posts.map((post) => (
+              <Post post={post} key={post.id} />
+            ))}
+          </div>
         </div>
         <Adds />
       </div>
