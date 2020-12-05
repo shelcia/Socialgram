@@ -101,12 +101,12 @@ const Feed = () => {
           });
           dispatch(AddComment(newAllPost));
           console.log(res);
-          // commentText.current.value = null;
+          commentText.current.value = null;
         })
         .catch((error) => {
           console.log(error);
+          commentText.current.value = null;
           errorNotify('Oops! The comment couldn"t be added 🥺🥺!!');
-          // commentText.current.value = null;
         });
     },
     [LINK, allPost, dispatch]
