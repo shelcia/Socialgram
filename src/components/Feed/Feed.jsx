@@ -117,7 +117,7 @@ const Feed = () => {
   const addLikes = useCallback(
     (id, value) => {
       const response = {
-        likes: ((Liked == 0) ? value + 1 : value - 1),
+        likes: ((!Liked) ? value + 1 : value - 1),
       };
       Liked = !Liked;
       axios
@@ -148,7 +148,7 @@ const Feed = () => {
     (id, value) => {
       console.log("clicked");
       const response = {
-        dislikes: ((Disiked == 0) ? value + 1 : value - 1),
+        dislikes: ((!Disiked) ? value + 1 : value - 1),
       };
       Disliked = !Disliked;
       axios
@@ -179,7 +179,7 @@ const Feed = () => {
     (id, value) => {
       console.log(id);
       const response = {
-        hearts: ((Heart == 0) ? value + 1 : value - 1),
+        hearts: ((!Heart) ? value + 1 : value - 1),
       };
       Heart = !Heart;
       axios
