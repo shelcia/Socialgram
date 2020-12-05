@@ -19,3 +19,8 @@ https://github.com/shelcia/fb-clone-backend
 - Run <code>npm install</code>
 
 - Then Run <code>npm start</code>
+
+##  💼  Code of Conduct
+
+We want to facilitate a healthy and constructive community behavior by adopting and enforcing our code of conduct.
+Please adhere toward our [Code-of-Conduct](code-of-conduct.md).
