@@ -112,7 +112,8 @@ const Feed = () => {
     [LINK, allPost, dispatch]
   );
   
-  var Liked = 0, Disliked = 0, Heart = 0;
+  var Liked, Disliked, Heart;
+  Liked = Disliked = Heart = new Boolean(false);
   const addLikes = useCallback(
     (id, value) => {
       const response = {
