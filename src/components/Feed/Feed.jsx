@@ -111,12 +111,14 @@ const Feed = () => {
     },
     [LINK, allPost, dispatch]
   );
-
+  
+  var Liked = 0, Disliked = 0, Heart = 0;
   const addLikes = useCallback(
     (id, value) => {
       const response = {
-        likes: value + 1,
+        likes: ((Liked == 0) ? value + 1 : value - 1),
       };
+      Liked = !Liked;
       axios
         .put(`${LINK}likes/${id}`, response)
         .then((res) => {
@@ -145,8 +147,9 @@ const Feed = () => {
     (id, value) => {
       console.log("clicked");
       const response = {
-        dislikes: value + 1,
+        dislikes: ((Disiked == 0) ? value + 1 : value - 1),
       };
+      Disliked = !Disliked;
       axios
         .put(`${LINK}dislikes/${id}`, response)
         .then((res) => {
@@ -175,8 +178,9 @@ const Feed = () => {
     (id, value) => {
       console.log(id);
       const response = {
-        hearts: value + 1,
+        hearts: ((Heart == 0) ? value + 1 : value - 1),
       };
+      Heart = !Heart;
       axios
         .put(`${LINK}hearts/${id}`, response)
         .then((res) => {
