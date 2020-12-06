@@ -26,6 +26,8 @@ const Feed = () => {
   // console.table(allPost);
   const dispatch = useDispatch();
 
+  const [liked, setLiked] = useState(false);
+
   useEffect(() => {
     const getPost = async () => {
       try {
@@ -115,8 +117,13 @@ const Feed = () => {
   const addLikes = useCallback(
     (id, value) => {
       const response = {
-        likes: value + 1,
+        likes: (liked ? (value + 1) : (value - 1)),
       };
+      if(liked)
+        setLiked(false);
+      else  
+        setLiked(true);
+        
       axios
         .put(`${LINK}likes/${id}`, response)
         .then((res) => {
