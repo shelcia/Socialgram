@@ -118,7 +118,7 @@ const Feed = () => {
       let response = {
         likes: value + 1,
       };
-      likesData = JSON.parse(localStorage.getItem('likeIDS'));
+      likesData = JSON.parse(localStorage.getItem('likeIDS')) || [];
             
       if (JSON.parse(localStorage.getItem('likeIDS')).includes(id)) {
         response = {
