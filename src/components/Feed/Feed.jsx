@@ -140,7 +140,9 @@ const Feed = () => {
           });
           dispatch(AddLike(newAllPost));
           console.log(res);
-          likesData.push(id);
+          if (!JSON.parse(localStorage.getItem('likeIDS')).includes(id)) {
+            likesData.push(id);            
+          }
           localStorage.setItem('likeIDS', JSON.stringify(likesData));
         })
         .catch((error) => {
