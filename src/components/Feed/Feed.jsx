@@ -112,11 +112,19 @@ const Feed = () => {
     [LINK, allPost, dispatch]
   );
 
+  let likesData = [];
   const addLikes = useCallback(
     (id, value) => {
-      const response = {
+      let response = {
         likes: value + 1,
       };
+      likesData = JSON.parse(localStorage.getItem('likeIDS'));
+            
+      if (JSON.parse(localStorage.getItem('likeIDS')).includes(id)) {
+        response = {
+          likes: value,
+        };
+      }
       axios
         .put(`${LINK}likes/${id}`, response)
         .then((res) => {
@@ -132,6 +140,8 @@ const Feed = () => {
           });
           dispatch(AddLike(newAllPost));
           console.log(res);
+          likesData.push(id);
+          localStorage.setItem('likeIDS', JSON.stringify(likesData));
         })
         .catch((error) => {
           console.log(error);
