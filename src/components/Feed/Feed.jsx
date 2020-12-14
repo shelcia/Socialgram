@@ -66,6 +66,8 @@ const Feed = () => {
         });
         dispatch(AddPost(response));
         postText.current.value = null;        
+      } else {
+        errorNotify('Post cannot be empty!');
       }
     } catch (error) {
       console.log(error);
