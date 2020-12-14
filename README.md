@@ -36,10 +36,10 @@ You can refer to the following articles on the basics of Git and Github and also
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Open Source Love svg2](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-- Take a look at the Existing [Issues](https://github.com/Tejas1510/Hacking-Scripts/issues) or create your own Issues!
+- Take a look at the Existing [Issues](https://github.com/shelcia/Socialgram/issues) or create your own Issues!
 - Wait for the Issue to be assigned to you after which you can start working on it.
 - Fork the Repo and create a Branch for any Issue that you are working upon.
-- Read the [Code of Conduct](https://github.com/Tejas1510/CRM/blob/master/CODE_OF_CONDUCT.mdd)
+- Read the [Code of Conduct](https://github.com/shelcia/CRM/blob/master/CODE_OF_CONDUCT.md)
 - Create a Pull Request which will be promptly reviewed and suggestions would be added to improve it.
 - Add Screenshots to help us know what this Script is all about.
 
