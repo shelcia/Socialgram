@@ -55,16 +55,20 @@ const Feed = () => {
       comments: [],
     };
     try {
-      await fetch(`${LINK}post`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(response),
-      });
-      dispatch(AddPost(response));
-      postText.current.value = null;
+      if (response.title) {
+        await fetch(`${LINK}post`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(response),
+        });
+        dispatch(AddPost(response));
+        postText.current.value = null;        
+      } else {
+        errorNotify('Post cannot be empty!');
+      }
     } catch (error) {
       console.log(error);
       errorNotify('Oops! The post couldn"t be added 🥺🥺!!');
