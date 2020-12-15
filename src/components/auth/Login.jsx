@@ -54,23 +54,26 @@ const Login = ({ setIsLogin }) => {
         </Loading>
       ) : (
         <React.Fragment>
-          {" "}
           <h3>Login</h3>
           <form onSubmit={onSubmit}>
-            <input
-              type="text"
-              ref={email}
-              className="form-control"
-              placeholder="enter email"
-              required
-            />
-            <input
-              ref={password}
-              type="password"
-              className="form-control"
-              placeholder="enter password"
-              required
-            />
+            <div className="form-group">
+              <input
+                type="text"
+                ref={email}
+                className="form-control w-100"
+                placeholder="enter email"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                ref={password}
+                type="password"
+                className="form-control w-100"
+                placeholder="enter password"
+                required
+              />
+            </div>
             <div className="text-center mt-4">
               <button className="btn btn-primary" type="submit">
                 Login

@@ -1,4 +1,7 @@
-$font: "Josefin Sans", sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "./scrollbar";
+// $font: "Josefin Sans", sans-serif;
+$font: "Fira Sans", sans-serif;
 $textColor: #fff;
 $background: #282c34;
 $lighterBackground: #343a40;
@@ -9,30 +12,17 @@ $primaryColor: #007bff;
 //   filter: invert(1) hue-rotate(180deg);
 // }
 
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 0.25rem;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: black;
-}
-
 * {
   font-family: $font;
+}
+p {
+  font-style: italic;
 }
 a,
 a:visited,
 a:any-link {
   text-decoration: none;
 }
-
 body {
   background-color: $background;
   color: $textColor !important;
@@ -40,7 +30,9 @@ body {
 hr {
   color: $lighterBackground;
 }
-
+.navbar-dark {
+  background-color: $background !important;
+}
 @mixin displayFlex($justify, $align) {
   display: flex;
   justify-content: $justify;
@@ -56,27 +48,24 @@ hr {
     }
   }
 }
+// Form
 .container .row {
   .col-sm-3.form {
-    @include displayFlex(center, center);
-    flex-direction: column;
-    form .form-control {
-      margin-top: 3px;
-    }
     p em {
       color: $primaryColor;
       cursor: pointer;
       text-decoration: underline;
     }
   }
+  // sidenav
   .col-sm-3 ul li {
     background-color: $background !important;
     color: $textColor !important;
     border-bottom: $border;
     padding: 0px;
-    img.icon {
+    i.fas {
+      padding-right: 2rem;
       height: 1rem;
-      padding-right: 30px;
     }
     a {
       color: $textColor !important;

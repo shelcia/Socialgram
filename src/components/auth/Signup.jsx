@@ -71,34 +71,42 @@ const Signup = ({ setIsLogin }) => {
         <React.Fragment>
           <h3>Signup</h3>
           <form onSubmit={onSubmit}>
-            <input
-              ref={fname}
-              type="text"
-              className="form-control"
-              placeholder="enter first name"
-              required
-            />
-            <input
-              ref={lname}
-              type="text"
-              className="form-control"
-              placeholder="enter last name"
-              required
-            />
-            <input
-              ref={email}
-              type="text"
-              className="form-control"
-              placeholder="enter email"
-              required
-            />
-            <input
-              onChange={(event) => setPassword(event.target.value)}
-              type="password"
-              className="form-control"
-              placeholder="enter password"
-              required
-            />
+            <div className="form-group">
+              <input
+                ref={fname}
+                type="text"
+                className="form-control w-100"
+                placeholder="enter first name"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                ref={lname}
+                type="text"
+                className="form-control w-100"
+                placeholder="enter last name"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                ref={email}
+                type="text"
+                className="form-control w-100"
+                placeholder="enter email"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                onChange={(event) => setPassword(event.target.value)}
+                type="password"
+                className="form-control w-100"
+                placeholder="enter password"
+                required
+              />
+            </div>
             {warning && (
               <p className="text-danger mt-4">
                 *Password should have atleast 6 characters

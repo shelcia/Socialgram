@@ -10,7 +10,7 @@ const AuthPage = () => {
       <div className="col-sm-9">
         <img src={Illustration} style={{ maxHeight: "84vh" }} alt="" />
       </div>
-      <div className="col-sm-3 form">
+      <div className="col-sm-3 form d-flex align-items-center flex-column justify-content-center flex-wrap">
         {isLogin ? (
           <Login setIsLogin={setIsLogin} />
         ) : (

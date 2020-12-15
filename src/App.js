@@ -1,5 +1,4 @@
 import React from "react";
-
 import "./components/styles/style.css";
 import Navbar from "./components/Navbar";
 import Feed from "./components/Feed/Feed";
@@ -13,10 +12,10 @@ import AuthPage from "./components/auth/Auth";
 const App = () => {
   return (
     <React.Fragment>
-      <Navbar />
       <div className="container outside">
         <div className="row" style={{ marginTop: "14vh" }}>
           <Router>
+            <Navbar />
             <Switch>
               <Route path="/" exact component={AuthPage} />
               <Route path="/homepage" exact component={Feed} />
