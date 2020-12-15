@@ -25,8 +25,8 @@ const MyProfile = () => {
     axios
       .get(`${LINK}userdetails/${userid}`)
       .then((response) => {
-        // console.log(response.data);
-        setProfile(response.data);
+        console.log(response.data);
+        setProfile(response.data.message);
       })
       .catch((error) => console.log(error));
   }, [LINK]);

@@ -20,7 +20,7 @@ const MyPosts = () => {
         .get(`${LINK}myposts/${id}`)
         .then((response) => {
           //   console.log(response.data);
-          setPosts(response.data);
+          setPosts(response.data.message);
         })
         .catch((error) => {
           console.log(error);
@@ -36,6 +36,7 @@ const MyPosts = () => {
         <div className="col-sm-6">
           <h1>My Post</h1>
           <hr />
+          {posts.length === 0 && <p>No Post yet !!</p>}
           <div style={{ flexDirection: "column-reverse" }} className="d-flex">
             {posts.map((post) => (
               <Post post={post} key={post.id} />

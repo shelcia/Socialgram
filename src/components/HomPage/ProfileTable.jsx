@@ -3,6 +3,19 @@ import React from "react";
 const ProfileTable = ({ profile, isEdit, setFname, setLname }) => {
   //   console.log(profile.date);
 
+  const convertDate = (date) => {
+    const dates = new Date(date);
+    const formattedDate = Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    }).format(dates);
+    return formattedDate;
+  };
+
   return (
     <React.Fragment>
       <table className="table table-dark table-striped">
@@ -40,9 +53,7 @@ const ProfileTable = ({ profile, isEdit, setFname, setLname }) => {
           </tr>
           <tr>
             <th>Account Created At</th>
-            <td>
-              {profile.date ? Date(profile.date).toString() : profile.date}
-            </td>
+            <td>{profile.date ? convertDate(profile.date) : ""}</td>
           </tr>
         </tbody>
       </table>

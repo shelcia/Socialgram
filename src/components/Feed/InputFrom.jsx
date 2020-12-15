@@ -3,7 +3,7 @@ import React from "react";
 const InputForm = ({ addPost, postText }) => {
   return (
     <React.Fragment>
-      <h3>What's on your mind?</h3>
+      <h3 className="mb-3">What's on your mind?</h3>
       <div className="input-group-lg">
         <textarea
           className="form-control"
