@@ -18,7 +18,7 @@ const ProfileTable = ({ profile, isEdit, setFname, setLname }) => {
 
   return (
     <React.Fragment>
-      <table className="table table-dark table-striped">
+      <table className="table table-dark">
         <tbody>
           <tr>
             <th>First Name</th>

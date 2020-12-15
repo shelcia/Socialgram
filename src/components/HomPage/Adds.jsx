@@ -3,44 +3,50 @@ import React from "react";
 const Adds = () => {
   return (
     <React.Fragment>
-      <div className="col-sm-3">
-        <h2>Ads</h2>
-        Icons made by{" "}
+      <div className="col-sm-3" style={{ height: "86vh", overflowY: "auto" }}>
+        <h2 className="my-4">About Project</h2>
+        <img
+          src="https://socialify.git.ci/shelcia/Socialgram/image?font=Rokkitt&forks=1&issues=1&language=1&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Dark"
+          alt="Socialgram"
+          className="w-100 mb-4"
+        />
+        <a
+          href="https://github.com/shelcia/Socialgram"
+          title="Repository"
+          style={{ fontSize: "1.2rem" }}
+        >
+          Repository Link
+        </a>
+        <h3 className="mt-3">How to Contribute?</h3>
         <p>
-          <a
-            href="https://www.flaticon.com/authors/pixel-perfect"
-            title="Pixel perfect"
-          >
-            Pixel perfect
-          </a>{" "}
-          from{" "}
-          <a href="https://www.flaticon.com/" title="Flaticon">
-            {" "}
-            www.flaticon.com
-          </a>
-          <br />
-          Icons made by{" "}
-          <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
-            Freepik
-          </a>{" "}
-          from{" "}
-          <a href="https://www.flaticon.com/" title="Flaticon">
-            {" "}
-            www.flaticon.com
-          </a>
-          <br />
-          <a href="https://thenounproject.com/search/?q=home&i=1076883">
-            House by Тимур Минвалеев from the Noun Project
-          </a>
-          <a href="https://thenounproject.com/search/?q=profile&i=956157">
-            profile by icongeek from the Noun Project
-          </a>
-          <a href="https://thenounproject.com/search/?q=notes&i=3107500">
-            note by IcoMoon from the Noun Project
-          </a>
-          <a href="https://thenounproject.com/search/?q=settings&i=2650511">
-            Settings by i cons from the Noun Project
-          </a>
+          <ul>
+            <li>
+              Take a look at the Existing
+              <a href="https://github.com/shelcia/Socialgram/issues">Issues</a>
+              or create your own Issues!
+            </li>
+            <li>
+              Wait for the Issue to be assigned to you after which you can start
+              working on it.
+            </li>
+            <li>
+              Fork the Repo and create a Branch for any Issue that you are
+              working upon.
+            </li>
+            <li>
+              Read the
+              <a href="https://github.com/shelcia/CRM/blob/master/CODE_OF_CONDUCT.md">
+                Code of Conduct
+              </a>
+            </li>
+            <li>
+              Create a Pull Request which will be promptly reviewed and
+              suggestions would be added to improve it.
+            </li>
+            <li>
+              Add Screenshots to help us know what this Script is all about.
+            </li>
+          </ul>
         </p>
       </div>
     </React.Fragment>

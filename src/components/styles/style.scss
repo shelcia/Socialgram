@@ -3,7 +3,7 @@
 // $font: "Josefin Sans", sans-serif;
 $font: "Fira Sans", sans-serif;
 $textColor: #fff;
-$background: #282c34;
+$background: #161b22;
 $lighterBackground: #343a40;
 $border: 1px solid rgba(210, 210, 210, 0.125);
 $primaryColor: #007bff;
@@ -31,13 +31,18 @@ body {
 hr {
   color: $lighterBackground;
 }
-.navbar-dark {
+
+.bg-dark {
+  background-color: #343a4000 !important;
+}
+
+.navbar-dark,
+.table-dark {
   background-color: $background !important;
 }
-@mixin displayFlex($justify, $align) {
-  display: flex;
-  justify-content: $justify;
-  align-items: $align;
+.table-dark {
+  border: none;
+  border-bottom: $border;
 }
 
 @media (min-width: 576px) {
@@ -59,10 +64,9 @@ hr {
     }
   }
   // sidenav
-  .col-sm-3 ul li {
+  .sidenav ul .list-group-item {
     background-color: $background !important;
     color: $textColor !important;
-    // border-bottom: $border;
     border: none;
     padding: 0px;
     i.fas {
@@ -92,17 +96,38 @@ hr {
     .container {
       background-color: $background;
       .icon-container {
-        @include displayFlex(left, center);
-        img {
-          height: 15px;
+        // @include displayFlex(left, center);
+        .icons {
+          display: inline;
+          padding: 0.5rem 1rem;
           cursor: pointer;
-          padding-right: 1rem;
+          border-radius: 50ex;
+          &:hover {
+            background-color: $hover;
+            color: $primaryColor;
+          }
         }
-        p {
-          margin-bottom: 0rem;
-          padding-right: 1rem;
+        .icons.hearts {
+          &:hover {
+            background-color: rgba(211, 0, 0, 0.325);
+            color: rgb(211, 0, 0);
+          }
         }
       }
     }
+  }
+}
+
+.post {
+  border: $border;
+}
+
+.form-control {
+  background-color: $background;
+  border: $border;
+  &:focus {
+    background-color: $background;
+    border: $border;
+    color: $textColor;
   }
 }

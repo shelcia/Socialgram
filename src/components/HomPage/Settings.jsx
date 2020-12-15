@@ -10,14 +10,15 @@ const Settings = () => {
         <div className="col-sm-6">
           <h1>Settings</h1>
           <hr />
-          <table className="table table-dark table-striped">
+          <table className="table table-dark">
             <tbody>
               <tr>
                 <td>
-                  <b>Logout</b>
-                  <br />
-                  You will be logged out of your account. All your posts will be
-                  safe.
+                  <p className="font-weight-bold">Logout</p>
+                  <p>
+                    You will be logged out of your account. All your posts will
+                    be safe.
+                  </p>
                 </td>
                 <td>
                   <button className="btn btn-warning">Logout</button>
@@ -25,9 +26,11 @@ const Settings = () => {
               </tr>
               <tr>
                 <td>
-                  <b>Delete Account</b> <br />
-                  Your account will be deleted. You cannot retreive your
-                  whatsoever. All your details will be deleted forever.
+                  <p className="font-weight-bold">Delete Account</p>
+                  <p>
+                    Your account will be deleted. You cannot retreive your
+                    whatsoever. All your details will be deleted forever.
+                  </p>
                 </td>
                 <td>
                   <button className="btn btn-danger">Delete Account</button>
