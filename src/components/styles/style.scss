@@ -40,10 +40,6 @@ hr {
 .table-dark {
   background-color: $background !important;
 }
-.table-dark {
-  border: none;
-  border-bottom: $border;
-}
 
 @media (min-width: 576px) {
   .container.outside {
@@ -109,7 +105,7 @@ hr {
         }
         .icons.hearts {
           &:hover {
-            background-color: rgba(211, 0, 0, 0.325);
+            background-color: rgba(211, 0, 0, 0.249);
             color: rgb(211, 0, 0);
           }
         }
@@ -120,6 +116,7 @@ hr {
 
 .post {
   border: $border;
+  word-break: break-all;
 }
 
 .form-control {
@@ -130,4 +127,8 @@ hr {
     border: $border;
     color: $textColor;
   }
+}
+
+.table-dark tbody tr {
+  border-bottom: $border;
 }

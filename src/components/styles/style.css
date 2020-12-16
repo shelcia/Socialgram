@@ -61,11 +61,6 @@ hr {
   background-color: #161b22 !important;
 }
 
-.table-dark {
-  border: none;
-  border-bottom: 1px solid rgba(210, 210, 210, 0.125);
-}
-
 @media (min-width: 576px) {
   .container.outside {
     max-width: 95% !important;
@@ -133,12 +128,13 @@ hr {
 }
 
 .container .row .col-sm-6 .container .icon-container .icons.hearts:hover {
-  background-color: rgba(211, 0, 0, 0.325);
+  background-color: rgba(211, 0, 0, 0.249);
   color: #d30000;
 }
 
 .post {
   border: 1px solid rgba(210, 210, 210, 0.125);
+  word-break: break-all;
 }
 
 .form-control {
@@ -150,5 +146,9 @@ hr {
   background-color: #161b22;
   border: 1px solid rgba(210, 210, 210, 0.125);
   color: #fff;
+}
+
+.table-dark tbody tr {
+  border-bottom: 1px solid rgba(210, 210, 210, 0.125);
 }
 /*# sourceMappingURL=style.css.map */

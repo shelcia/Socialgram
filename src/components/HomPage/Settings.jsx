@@ -10,7 +10,7 @@ const Settings = () => {
         <div className="col-sm-6">
           <h1>Settings</h1>
           <hr />
-          <table className="table table-dark">
+          <table className="table table-dark table-borderless">
             <tbody>
               <tr>
                 <td>

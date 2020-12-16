@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactEmoji from "react-emoji";
 
 const Post = ({
@@ -8,7 +8,44 @@ const Post = ({
   disLikes,
   hearts,
   commentText,
+  setCommentText,
 }) => {
+  const convertDate = (date) => {
+    const dates = new Date(date);
+    const formattedDate = Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+    }).format(dates);
+    return formattedDate;
+  };
+
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    const fetchIds = async () => {
+      try {
+        const LINK = process.env.REACT_APP_HEROKU_LINK;
+        const response = await fetch(`${LINK}userId`);
+        const ids = await response.json();
+        console.log(post._id, ids);
+        const userData = await ids.filter((ids) => ids._id === post.userId);
+        console.log(userData);
+        if (userData.length) {
+          setUser(userData[0].fname);
+        } else {
+          setUser("Deleted User");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchIds();
+  }, [post._id, post.userId]);
+
   return (
     <React.Fragment>
       <div
@@ -16,6 +53,12 @@ const Post = ({
         className="container bg-dark mt-3 mb-3 p-3 post rounded"
       >
         <h3 className="mb-3">{ReactEmoji.emojify(post.title)}</h3>
+        <div className="my-4 d-flex justify-content-between">
+          <p className="text-muted">Posted By: {user}</p>
+          <p className="text-muted">
+            {post.date ? convertDate(post.date) : "Just now"}
+          </p>
+        </div>
         <div className="icon-container d-flex">
           <div className="icons" title="like">
             <i
@@ -46,7 +89,8 @@ const Post = ({
                 type="text"
                 className="form-control w-100"
                 placeholder="comment"
-                ref={commentText}
+                value={commentText}
+                onChange={(event) => setCommentText(event.target.value)}
                 required
               />
             </div>
@@ -64,15 +108,16 @@ const Post = ({
             </div>
           </form>
         </div>
-
-        {post.comments.map((comment) => (
-          <div
-            key={comment.id}
-            className="container p-3 mb-2 shadow-lg rounded-lg"
-          >
-            {ReactEmoji.emojify(comment.comments)}
-          </div>
-        ))}
+        <div style={{ maxHeight: "20vh", overflowY: "auto" }}>
+          {post.comments.map((comment) => (
+            <div
+              key={comment.id}
+              className="container p-3 mb-2 shadow-lg rounded-lg"
+            >
+              {ReactEmoji.emojify(comment.comments)}
+            </div>
+          ))}
+        </div>
       </div>
     </React.Fragment>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef } from "react";
+import React, { useEffect, useCallback, useRef, useState } from "react";
 import axios from "axios";
 import InputForm from "./InputFrom";
 import Adds from "../HomPage/Adds";
@@ -20,7 +20,7 @@ const Feed = () => {
   const LINK = process.env.REACT_APP_HEROKU_LINK;
 
   const postText = useRef("");
-  const commentText = useRef("");
+  const [commentText, setCommentText] = useState("");
 
   const allPost = useSelector((state) => state.posts);
   // console.table(allPost);
@@ -65,9 +65,9 @@ const Feed = () => {
           body: JSON.stringify(response),
         });
         dispatch(AddPost(response));
-        postText.current.value = null;        
+        postText.current.value = null;
       } else {
-        errorNotify('Post cannot be empty!');
+        errorNotify("Post cannot be empty!");
       }
     } catch (error) {
       console.log(error);
@@ -83,7 +83,7 @@ const Feed = () => {
       const response = {
         comments: value.concat({
           id: commentId,
-          comments: commentText.current.value,
+          comments: commentText,
         }),
       };
       console.log(response);
@@ -96,7 +96,7 @@ const Feed = () => {
                 ...post,
                 comments: [
                   ...post.comments,
-                  { id: commentId, comments: commentText.current.value },
+                  { id: commentId, comments: commentText },
                 ],
               };
               return updatedPost;
@@ -105,15 +105,15 @@ const Feed = () => {
           });
           dispatch(AddComment(newAllPost));
           console.log(res);
-          // commentText.current.value = null;
+          setCommentText("");
         })
         .catch((error) => {
           console.log(error);
           errorNotify('Oops! The comment couldn"t be added 🥺🥺!!');
-          // commentText.current.value = null;
+          setCommentText("");
         });
     },
-    [LINK, allPost, dispatch]
+    [LINK, allPost, commentText, dispatch]
   );
 
   const addLikes = useCallback(
@@ -221,6 +221,7 @@ const Feed = () => {
                 disLikes={disLikes}
                 hearts={hearts}
                 commentText={commentText}
+                setCommentText={setCommentText}
               />
             ))}
           </div>

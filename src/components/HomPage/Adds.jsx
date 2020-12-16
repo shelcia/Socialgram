@@ -18,36 +18,35 @@ const Adds = () => {
           Repository Link
         </a>
         <h3 className="mt-3">How to Contribute?</h3>
-        <p>
-          <ul>
-            <li>
-              Take a look at the Existing
-              <a href="https://github.com/shelcia/Socialgram/issues">Issues</a>
-              or create your own Issues!
-            </li>
-            <li>
-              Wait for the Issue to be assigned to you after which you can start
-              working on it.
-            </li>
-            <li>
-              Fork the Repo and create a Branch for any Issue that you are
-              working upon.
-            </li>
-            <li>
-              Read the
-              <a href="https://github.com/shelcia/CRM/blob/master/CODE_OF_CONDUCT.md">
-                Code of Conduct
-              </a>
-            </li>
-            <li>
-              Create a Pull Request which will be promptly reviewed and
-              suggestions would be added to improve it.
-            </li>
-            <li>
-              Add Screenshots to help us know what this Script is all about.
-            </li>
-          </ul>
-        </p>
+
+        <ul style={{ fontStyle: "italic" }}>
+          <li>
+            Take a look at the Existing
+            <a href="https://github.com/shelcia/Socialgram/issues">Issues</a>
+            or create your own Issues!
+          </li>
+          <li>
+            Wait for the Issue to be assigned to you after which you can start
+            working on it.
+          </li>
+          <li>
+            Fork the Repo and create a Branch for any Issue that you are working
+            upon.
+          </li>
+          <li>
+            Read the
+            <a href="https://github.com/shelcia/CRM/blob/master/CODE_OF_CONDUCT.md">
+              Code of Conduct
+            </a>
+          </li>
+          <li>
+            Create a Pull Request which will be promptly reviewed and
+            suggestions would be added to improve it.
+          </li>
+          <li>
+            Add Screenshots to help us know what this Script is all about.
+          </li>
+        </ul>
       </div>
     </React.Fragment>
   );
