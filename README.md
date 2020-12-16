@@ -21,6 +21,12 @@
 ## 📌 Introduction
 Clone of Facebook with limited features
 
+#### Demo Purpose:
+
+email: demo@gmail.com
+password: demouser
+
+
 ## ⭐ How to get started?
 
 You can refer to the following articles on the basics of Git and Github and also contact the Project Mentors, in case you are stuck:
