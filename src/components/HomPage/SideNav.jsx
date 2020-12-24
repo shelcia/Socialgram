@@ -47,7 +47,7 @@ const Modal = () => {
   };
   return (
     <div className="modal fade" id="logoutModal">
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content modal-dark">
           <div className="modal-header border border-0">
             <h4 className="modal-title">Important !!</h4>
@@ -62,6 +62,7 @@ const Modal = () => {
             <button
               type="button"
               className="btn btn-primary"
+              data-dismiss="modal"
               onClick={() => logout()}
             >
               Logout
