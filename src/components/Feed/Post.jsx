@@ -128,11 +128,14 @@ const Post = ({
             </div>
           </form>
         </div>
-        <div style={{ maxHeight: "20vh", overflowY: "auto" }}>
+        <div
+          style={{ maxHeight: "20vh", overflowY: "auto" }}
+          className="d-flex flex-column-reverse"
+        >
           {post.comments.map((comment) => (
             <div
               key={comment.id}
-              className="container p-3 mb-2 shadow-lg rounded-lg"
+              className="container p-3 mb-2 shadow-lg rounded-lg w-100"
             >
               {ReactEmoji.emojify(comment.comments)}
             </div>
