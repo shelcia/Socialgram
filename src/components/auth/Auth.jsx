@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Illustration from "../../assets/Illustration.png";
 import Login from "./Login";
 import Signup from "./Signup";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const history = useHistory();
+
+  useEffect(() => {
+    const token = localStorage.getItem(`SocialGramToken`);
+    if (token) {
+      history.push("/homepage");
+    } else {
+      history.push("/");
+    }
+  }, [history]);
+
   return (
     <React.Fragment>
       <div className="col-sm-9">

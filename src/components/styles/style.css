@@ -52,6 +52,10 @@ hr {
   color: #343a40;
 }
 
+.modal-dark {
+  background-color: #161b22 !important;
+}
+
 .bg-dark {
   background-color: #343a4000 !important;
 }

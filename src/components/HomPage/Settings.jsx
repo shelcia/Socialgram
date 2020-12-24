@@ -1,8 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Adds from "./Adds";
 import SideNav from "./SideNav";
 
 const Settings = () => {
+  const history = useHistory();
+
+  const logout = () => {
+    localStorage.clear();
+    history.push("/");
+  };
+
   return (
     <React.Fragment>
       <div className="row">
@@ -14,7 +22,9 @@ const Settings = () => {
             <tbody>
               <tr>
                 <td>
-                  <p className="font-weight-bold">Logout</p>
+                  <p className="font-weight-bold" onClick={() => logout()}>
+                    Logout
+                  </p>
                   <p>
                     You will be logged out of your account. All your posts will
                     be safe.

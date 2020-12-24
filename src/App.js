@@ -6,10 +6,28 @@ import Profile from "./components/HomPage/Profile";
 import Settings from "./components/HomPage/Settings";
 import MyPosts from "./components/HomPage/MyPost";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import AuthPage from "./components/auth/Auth";
 
 const App = () => {
+  const isAuthenticated = () => {
+    return localStorage.getItem("SocialGramToken") ? true : false;
+  };
+
+  const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={(props) =>
+        isAuthenticated() ? <Component {...props} /> : <Redirect to="/" />
+      }
+    />
+  );
+
   return (
     <React.Fragment>
       <div className="container outside">
@@ -18,10 +36,10 @@ const App = () => {
             <Navbar />
             <Switch>
               <Route path="/" exact component={AuthPage} />
-              <Route path="/homepage" exact component={Feed} />
-              <Route path="/homepage/profile" component={Profile} />
-              <Route path="/homepage/myposts" component={MyPosts} />
-              <Route path="/homepage/settings" component={Settings} />
+              <PrivateRoute path="/homepage" exact component={Feed} />
+              <PrivateRoute path="/homepage/profile" component={Profile} />
+              <PrivateRoute path="/homepage/myposts" component={MyPosts} />
+              <PrivateRoute path="/homepage/settings" component={Settings} />
             </Switch>
           </Router>
         </div>

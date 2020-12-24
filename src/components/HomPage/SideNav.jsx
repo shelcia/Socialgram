@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 const SideNav = () => {
   return (
@@ -27,20 +27,50 @@ const SideNav = () => {
             </NavLink>
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
-            <NavLink to="/" exact activeClassName="active">
+            <a href="!#" data-toggle="modal" data-target="#logoutModal">
               <i className="fas fa-sign-out-alt"></i>Logout
-            </NavLink>
+            </a>
           </li>
         </ul>
       </div>
+      <Modal />
     </React.Fragment>
   );
 };
 
-export default SideNav;
+const Modal = () => {
+  const history = useHistory();
 
-// import Home from "../../assets/home-solid.svg";
-// import Profile from "../../assets/profile.png";
-// import MyPost from "../../assets/posts.png";
-// import Settings from "../../assets/settings.png";
-// import Logout from "../../assets/logout.png";
+  const logout = () => {
+    localStorage.clear();
+    history.push("/");
+  };
+  return (
+    <div className="modal fade" id="logoutModal">
+      <div className="modal-dialog">
+        <div className="modal-content modal-dark">
+          <div className="modal-header border border-0">
+            <h4 className="modal-title">Important !!</h4>
+            <div data-dismiss="modal" style={{ cursor: "pointer" }}>
+              <i className="fas fa-times"></i> close
+            </div>
+          </div>
+
+          <div className="modal-body">You sure want to logout ?</div>
+
+          <div className="modal-footer border border-0">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => logout()}
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SideNav;
