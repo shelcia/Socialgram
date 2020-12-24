@@ -79,39 +79,43 @@ const Feed = () => {
   const addComment = useCallback(
     (id, value) => {
       console.log("executed");
-      const commentId = Date.now();
-      const response = {
-        comments: value.concat({
-          id: commentId,
-          comments: commentText,
-        }),
-      };
-      console.log(response);
-      axios
-        .put(`${LINK}comments/${id}`, response)
-        .then((res) => {
-          const newAllPost = allPost.map((post) => {
-            if (post.id === id) {
-              const updatedPost = {
-                ...post,
-                comments: [
-                  ...post.comments,
-                  { id: commentId, comments: commentText },
-                ],
-              };
-              return updatedPost;
-            }
-            return post;
-          });
-          dispatch(AddComment(newAllPost));
-          console.log(res);
-          setCommentText("");
-        })
-        .catch((error) => {
-          console.log(error);
-          errorNotify('Oops! The comment couldn"t be added 🥺🥺!!');
-          setCommentText("");
-        });
+      if (commentText) {
+        const commentId = Date.now();
+        const response = {
+          comments: value.concat({
+            id: commentId,
+            comments: commentText,
+          }),
+        };
+        console.log(response);
+        axios
+          .put(`${LINK}comments/${id}`, response)
+          .then((res) => {
+            const newAllPost = allPost.map((post) => {
+              if (post.id === id) {
+                const updatedPost = {
+                  ...post,
+                  comments: [
+                    ...post.comments,
+                    { id: commentId, comments: commentText },
+                  ],
+                };
+                return updatedPost;
+              }
+              return post;
+            });
+            dispatch(AddComment(newAllPost));
+            console.log(res);
+            setCommentText("");
+          })
+          .catch((error) => {
+            console.log(error);
+            errorNotify('Oops! The comment couldn"t be added 🥺🥺!!');
+            setCommentText("");
+          });        
+      } else {
+        errorNotify("Comment cannot be empty!");
+      }
     },
     [LINK, allPost, commentText, dispatch]
   );
