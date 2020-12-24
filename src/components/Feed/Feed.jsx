@@ -67,7 +67,7 @@ const Feed = () => {
         dispatch(AddPost(response));
         postText.current.value = null;
       } else {
-        errorNotify("Post cannot be empty!");
+        errorNotify("Post cannot be empty🥺🥺!");
       }
     } catch (error) {
       console.log(error);
@@ -79,43 +79,44 @@ const Feed = () => {
   const addComment = useCallback(
     (id, value) => {
       console.log("executed");
-      if (commentText) {
-        const commentId = Date.now();
-        const response = {
-          comments: value.concat({
-            id: commentId,
-            comments: commentText,
-          }),
-        };
-        console.log(response);
-        axios
-          .put(`${LINK}comments/${id}`, response)
-          .then((res) => {
-            const newAllPost = allPost.map((post) => {
-              if (post.id === id) {
-                const updatedPost = {
-                  ...post,
-                  comments: [
-                    ...post.comments,
-                    { id: commentId, comments: commentText },
-                  ],
-                };
-                return updatedPost;
-              }
-              return post;
-            });
-            dispatch(AddComment(newAllPost));
-            console.log(res);
-            setCommentText("");
-          })
-          .catch((error) => {
-            console.log(error);
-            errorNotify('Oops! The comment couldn"t be added 🥺🥺!!');
-            setCommentText("");
-          });        
-      } else {
-        errorNotify("Comment cannot be empty!");
+      if (!commentText) {
+        errorNotify("Comment cannot be empty 🥺🥺!");
+        return;
       }
+
+      const commentId = Date.now();
+      const response = {
+        comments: value.concat({
+          id: commentId,
+          comments: commentText,
+        }),
+      };
+      console.log(response);
+      axios
+        .put(`${LINK}comments/${id}`, response)
+        .then((res) => {
+          const newAllPost = allPost.map((post) => {
+            if (post.id === id) {
+              const updatedPost = {
+                ...post,
+                comments: [
+                  ...post.comments,
+                  { id: commentId, comments: commentText },
+                ],
+              };
+              return updatedPost;
+            }
+            return post;
+          });
+          dispatch(AddComment(newAllPost));
+          // console.log(res);
+          setCommentText("");
+        })
+        .catch((error) => {
+          console.log(error);
+          errorNotify('Oops! The comment couldn"t be added 🥺🥺!!');
+          setCommentText("");
+        });
     },
     [LINK, allPost, commentText, dispatch]
   );
@@ -139,7 +140,7 @@ const Feed = () => {
             return post;
           });
           dispatch(AddLike(newAllPost));
-          console.log(res);
+          // console.log(res);
         })
         .catch((error) => {
           console.log(error);
@@ -151,7 +152,7 @@ const Feed = () => {
 
   const disLikes = useCallback(
     (id, value) => {
-      console.log("clicked");
+      // console.log("clicked");
       const response = {
         dislikes: value + 1,
       };
@@ -169,7 +170,7 @@ const Feed = () => {
             return post;
           });
           dispatch(AddDislike(newAllPost));
-          console.log(res);
+          // console.log(res);
         })
         .catch((error) => {
           console.log(error);
@@ -181,7 +182,7 @@ const Feed = () => {
 
   const hearts = useCallback(
     (id, value) => {
-      console.log(id);
+      // console.log(id);
       const response = {
         hearts: value + 1,
       };
@@ -199,7 +200,7 @@ const Feed = () => {
             return post;
           });
           dispatch(AddHearts(newAllPost));
-          console.log(res);
+          // console.log(res);
         })
         .catch((error) => {
           console.log(error);

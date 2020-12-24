@@ -1,8 +1,6 @@
 import React from "react";
 
-const ProfileTable = ({ profile, isEdit, setFname, setLname }) => {
-  //   console.log(profile.date);
-
+const ProfileTable = ({ profile, isEdit, handleInput }) => {
   const convertDate = (date) => {
     const dates = new Date(date);
     const formattedDate = Intl.DateTimeFormat("en-US", {
@@ -28,7 +26,9 @@ const ProfileTable = ({ profile, isEdit, setFname, setLname }) => {
               ) : (
                 <input
                   className="form-control"
-                  onChange={(event) => setFname(event.target.value)}
+                  name="fname"
+                  onChange={(event) => handleInput(event)}
+                  value={profile.fname}
                 ></input>
               )}
             </td>
@@ -42,7 +42,9 @@ const ProfileTable = ({ profile, isEdit, setFname, setLname }) => {
               ) : (
                 <input
                   className="form-control"
-                  onChange={(event) => setLname(event.target.value)}
+                  name="lname"
+                  onChange={(event) => handleInput(event)}
+                  value={profile.lname}
                 ></input>
               )}
             </td>

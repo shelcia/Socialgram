@@ -5,9 +5,6 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import ReactEmoji from "react-emoji";
-// import Heart from "../../assets/heart.png";
-// import ThumbsUp from "../../assets/thumb-up.png";
-// import ThumbsDown from "../../assets/thumb-down.png";
 
 const MyPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -19,7 +16,6 @@ const MyPosts = () => {
       axios
         .get(`${LINK}myposts/${id}`)
         .then((response) => {
-          //   console.log(response.data);
           setPosts(response.data.message);
         })
         .catch((error) => {

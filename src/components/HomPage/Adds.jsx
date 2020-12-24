@@ -14,6 +14,8 @@ const Adds = () => {
           href="https://github.com/shelcia/Socialgram"
           title="Repository"
           style={{ fontSize: "1.2rem" }}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Repository Link
         </a>
@@ -22,7 +24,14 @@ const Adds = () => {
         <ul style={{ fontStyle: "italic" }}>
           <li>
             Take a look at the Existing
-            <a href="https://github.com/shelcia/Socialgram/issues">Issues</a>
+            <a
+              href="https://github.com/shelcia/Socialgram/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2"
+            >
+              Issues
+            </a>
             or create your own Issues!
           </li>
           <li>
@@ -35,7 +44,12 @@ const Adds = () => {
           </li>
           <li>
             Read the
-            <a href="https://github.com/shelcia/CRM/blob/master/CODE_OF_CONDUCT.md">
+            <a
+              href="https://github.com/shelcia/CRM/blob/master/CODE_OF_CONDUCT.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-2"
+            >
               Code of Conduct
             </a>
           </li>

@@ -8,16 +8,14 @@ const addLinks = (postText) => {
     if (block.match(urlRegexp)) {
       return (
         <React.Fragment key={i}>
-          <a href={block} target='_blank' rel='noopener noreferrer'>
+          <a href={block} target="_blank" rel="noopener noreferrer">
             {ReactEmoji.emojify(block)}
           </a>
         </React.Fragment>
       );
     } else {
       return (
-        <React.Fragment key={i}>
-          {ReactEmoji.emojify(block)}
-        </React.Fragment>
+        <React.Fragment key={i}>{ReactEmoji.emojify(block)}</React.Fragment>
       );
     }
   });
@@ -53,9 +51,9 @@ const Post = ({
         const LINK = process.env.REACT_APP_HEROKU_LINK;
         const response = await fetch(`${LINK}userId`);
         const ids = await response.json();
-        console.log(post._id, ids);
+        // console.log(post._id, ids);
         const userData = await ids.filter((ids) => ids._id === post.userId);
-        console.log(userData);
+        // console.log(userData);
         if (userData.length) {
           setUser(userData[0].fname);
         } else {
@@ -66,7 +64,7 @@ const Post = ({
       }
     };
     fetchIds();
-  }, [post._id, post.userId]);
+  }, [post._id, post.userId, post]);
 
   return (
     <React.Fragment>
@@ -146,28 +144,3 @@ const Post = ({
 };
 
 export default Post;
-
-// import Heart from "../../assets/heart.png";
-// import ThumbsUp from "../../assets/thumb-up.png";
-// import ThumbsDown from "../../assets/thumb-down.png";
-
-// {/* <img
-//             height="15px"
-//             src={ThumbsUp}
-//             alt=""
-//             onClick={() => addLikes(post.id, post.likes)}
-//           /> */}
-
-// {/* <img
-//             height="15px"
-//             src={ThumbsDown}
-//             alt=""
-//             onClick={() => disLikes(post.id, post.dislikes)}
-//           /> */}
-
-// {/* <img
-//             height="15px"
-//             src={Heart}
-//             alt=""
-//             onClick={() => hearts(post.id, post.hearts)}
-//           /> */}

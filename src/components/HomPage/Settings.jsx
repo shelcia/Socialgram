@@ -28,8 +28,9 @@ const Settings = () => {
                 <td>
                   <p className="font-weight-bold">Delete Account</p>
                   <p>
-                    Your account will be deleted. You cannot retreive your
-                    whatsoever. All your details will be deleted forever.
+                    Your account will be deleted. You cannot retrieve your
+                    account whatsoever. All your details will be deleted
+                    forever.
                   </p>
                 </td>
                 <td>

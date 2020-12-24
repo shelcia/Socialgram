@@ -23,7 +23,7 @@ const SideNav = () => {
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
             <NavLink to="/homepage/settings" activeClassName="active">
-              <i className="fas fa-dharmachakra"></i>Settings
+              <i className="fas fa-cog"></i>Settings
             </NavLink>
           </li>
           <li className="list-group-item list-group-item-action list-group-item-dark">
