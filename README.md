@@ -1,7 +1,4 @@
-<p align="center">
-  <a href="#"><img src="https://capsule-render.vercel.app/api?type=rect&color=009ACD&height=100&section=header&text=Socialgram&fontSize=60%&fontColor=ffffff" alt="website title image"></a>
-  <h2 align="center">👉 Clone of Facebook with limited features👈</h2>
-</p>
+![Socialgram](https://socialify.git.ci/shelcia/Socialgram/image?description=1&font=KoHo&forks=1&issues=1&language=1&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1&theme=Dark)
 
 
 <p align="center">
