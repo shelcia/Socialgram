@@ -13,6 +13,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import AuthPage from "./components/auth/Auth";
+import OpeningPage from "./components/about/Opening";
 
 const App = () => {
   const isAuthenticated = () => {
@@ -35,7 +36,8 @@ const App = () => {
           <Router>
             <Navbar />
             <Switch>
-              <Route path="/" exact component={AuthPage} />
+              <Route path="/" exact component={OpeningPage} />
+              <Route path="/logIn" exact component={AuthPage} />
               <PrivateRoute path="/homepage" exact component={Feed} />
               <PrivateRoute path="/homepage/profile" component={Profile} />
               <PrivateRoute path="/homepage/myposts" component={MyPosts} />

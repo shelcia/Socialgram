@@ -7,13 +7,13 @@ import Signup from "./Signup";
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const history = useHistory();
-
+  console.log("doing");
   useEffect(() => {
     const token = localStorage.getItem(`SocialGramToken`);
     if (token) {
       history.push("/homepage");
     } else {
-      history.push("/");
+      history.push("/logIn");
     }
   }, [history]);
 
