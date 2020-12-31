@@ -70,6 +70,10 @@ https://github.com/shelcia/fb-clone-backend
 
 - Clone this repo
 
+- Create a new file with name ".env" in the same directory as the "src" folder to set up the environment variable for the backend
+
+- Inside ".env" file, type <code>REACT_APP_HEROKU_LINK = https://fb-clone-backend.herokuapp.com/"</code> . This step sets up the backend for the front end which is deployed at heroku. Without this, storing/loading of data would not work. For further details about the url, follow the [backend repository](https://github.com/shelcia/fb-clone-backend) 
+
 - Run <code>npm install</code>
 
 - Then Run <code>npm start</code>
