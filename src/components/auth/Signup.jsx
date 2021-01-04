@@ -50,6 +50,7 @@ const Signup = ({ setIsLogin }) => {
           failedNotify(res.data.message);
         } else if (res.data.status === "200") {
           sucessNotify("Account Created.You can login now!!");
+          setIsLogin(true);
         } else if (res.data.status === "500") {
           failedNotify("Internal server error");
         }
