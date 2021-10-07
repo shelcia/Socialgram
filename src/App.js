@@ -13,6 +13,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import AuthPage from "./components/auth/Auth";
+import Error404 from "./components/Error404";
 
 const App = () => {
   const isAuthenticated = () => {
@@ -40,6 +41,7 @@ const App = () => {
               <PrivateRoute path="/homepage/profile" component={Profile} />
               <PrivateRoute path="/homepage/myposts" component={MyPosts} />
               <PrivateRoute path="/homepage/settings" component={Settings} />
+              <PrivateRoute component={Error404} />
             </Switch>
           </Router>
         </div>
