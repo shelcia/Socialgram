@@ -1,39 +1,33 @@
 import React from "react";
-import "./components/styles/style.css";
-import Navbar from "./components/Navbar";
-import Feed from "./components/Feed/Feed";
-import Profile from "./components/HomPage/Profile";
-import Settings from "./components/HomPage/Settings";
-import MyPosts from "./components/HomPage/MyPost";
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
-import AuthPage from "./components/auth/Auth";
-import Error404 from "./components/Error404";
+import { Toaster } from "react-hot-toast";
+import { useRoutes } from "react-router-dom";
+import Navbar from "./common/Navbar";
+import "./styles/style.css";
+import routes from "./routes";
 
 const App = () => {
-  const isAuthenticated = () => {
-    return localStorage.getItem("SocialGramToken") ? true : false;
-  };
+  // const isAuthenticated = () => {
+  //   return localStorage.getItem("SocialGramToken") ? true : false;
+  // };
 
-  const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route
-      {...rest}
-      render={(props) =>
-        isAuthenticated() ? <Component {...props} /> : <Redirect to="/" />
-      }
-    />
-  );
+  const allPages = useRoutes(routes);
+
+  const toasterOptions = {
+    style: {
+      fontWeight: 500,
+      fontFamily: "'Fira Sans', sans-serif",
+    },
+  };
 
   return (
     <React.Fragment>
+      <Toaster toastOptions={toasterOptions} />
       <div className="container outside">
         <div className="row" style={{ marginTop: "14vh" }}>
-          <Router>
+          <Navbar />
+          {allPages}
+
+          {/* <Router>
             <Navbar />
             <Switch>
               <Route path="/" exact component={AuthPage} />
@@ -43,7 +37,7 @@ const App = () => {
               <PrivateRoute path="/homepage/settings" component={Settings} />
               <PrivateRoute component={Error404} />
             </Switch>
-          </Router>
+          </Router> */}
         </div>
       </div>
     </React.Fragment>

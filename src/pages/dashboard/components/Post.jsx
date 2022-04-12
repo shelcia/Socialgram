@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactEmoji from "react-emoji";
+import { convertDate } from "../../../helpers/convert";
+import { apiPlain } from "../../../services/models/plainModel";
 
 const addLinks = (postText) => {
   const urlRegexp = /(https?:\/\/[^\s]+)/g;
@@ -30,40 +32,42 @@ const Post = ({
   commentText,
   setCommentText,
 }) => {
-  const convertDate = (date) => {
-    const dates = new Date(date);
-    const formattedDate = Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "2-digit",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-    }).format(dates);
-    return formattedDate;
-  };
+  //   const convertDate = (date) => {
+  //     const dates = new Date(date);
+  //     const formattedDate = Intl.DateTimeFormat("en-US", {
+  //       year: "numeric",
+  //       month: "short",
+  //       day: "2-digit",
+  //       hour: "numeric",
+  //       minute: "numeric",
+  //       second: "numeric",
+  //     }).format(dates);
+  //     return formattedDate;
+  //   };
 
   const [user, setUser] = useState("");
 
   useEffect(() => {
+    const ac = new AbortController();
     const fetchIds = async () => {
       try {
-        const LINK = process.env.REACT_APP_HEROKU_LINK;
-        const response = await fetch(`${LINK}userId`);
-        const ids = await response.json();
-        // console.log(post._id, ids);
-        const userData = await ids.filter((ids) => ids._id === post.userId);
-        // console.log(userData);
-        if (userData.length) {
-          setUser(userData[0].fname);
-        } else {
-          setUser("Deleted User");
-        }
+        apiPlain.getSingle(`userId`, ac.signal, "").then((res) => {
+          if (!Array.isArray(res)) {
+            return;
+          }
+          const userData = res?.filter((ids) => ids._id === post.userId);
+          if (userData?.length) {
+            setUser(userData[0]?.fname);
+          } else {
+            setUser("Deleted User");
+          }
+        });
       } catch (error) {
         console.log(error);
       }
     };
     fetchIds();
+    return () => ac.abort();
   }, [post._id, post.userId, post]);
 
   return (
@@ -82,21 +86,21 @@ const Post = ({
         <div className="icon-container d-flex">
           <div className="icons" title="like">
             <i
-              className="fas fa-thumbs-up pr-4"
+              className="fas fa-thumbs-up pe-4"
               onClick={() => addLikes(post.id, post.likes)}
             ></i>
             <span>{post.likes}</span>
           </div>
           <div className="icons" title="dislike">
             <i
-              className="fas fa-thumbs-down pr-4"
+              className="fas fa-thumbs-down pe-4"
               onClick={() => disLikes(post.id, post.dislikes)}
             ></i>
             <span>{post.dislikes}</span>
           </div>
           <div className="icons hearts" title="heart">
             <i
-              className="fas fa-heart pr-4"
+              className="fas fa-heart pe-4"
               onClick={() => hearts(post.id, post.hearts)}
             ></i>
             <span>{post.hearts}</span>

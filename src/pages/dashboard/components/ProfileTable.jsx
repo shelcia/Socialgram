@@ -1,19 +1,7 @@
 import React from "react";
+import { convertDate } from "../../../helpers/convert";
 
 const ProfileTable = ({ profile, isEdit, handleInput }) => {
-  const convertDate = (date) => {
-    const dates = new Date(date);
-    const formattedDate = Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "2-digit",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-    }).format(dates);
-    return formattedDate;
-  };
-
   return (
     <React.Fragment>
       <table className="table table-dark table-borderless">
@@ -36,7 +24,6 @@ const ProfileTable = ({ profile, isEdit, handleInput }) => {
           <tr>
             <th>Last Name</th>
             <td>
-              {" "}
               {!isEdit ? (
                 profile.lname
               ) : (

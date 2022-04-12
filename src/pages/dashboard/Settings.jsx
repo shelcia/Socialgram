@@ -1,14 +1,14 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import Adds from "./Adds";
-import SideNav from "./SideNav";
+import { useNavigate } from "react-router-dom";
+import Adds from "../../common/Add";
+import SideNav from "../../common/SideNav";
 
 const Settings = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const logout = () => {
     localStorage.clear();
-    history.push("/");
+    navigate("/");
   };
 
   return (

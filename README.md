@@ -1,6 +1,5 @@
 ![Socialgram](https://socialify.git.ci/shelcia/Socialgram/image?description=1&font=KoHo&forks=1&issues=1&language=1&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1&theme=Dark)
 
-
 <p align="center">
 <img src="https://img.shields.io/badge/language-React-blue?style=for-the-badge">
 <img src="https://img.shields.io/badge/language-MongoDB-blue?style=for-the-badge">
@@ -12,17 +11,17 @@
 <img src="https://img.shields.io/github/stars/shelcia/Socialgram?style=for-the-badge" >
 <img src="https://img.shields.io/github/forks/shelcia/Socialgram?style=for-the-badge" >  
 <img src="https://img.shields.io/github/issues-raw/shelcia/Socialgram?style=for-the-badge" >
-<img src="https://img.shields.io/github/issues-pr-closed-raw/shelcia/Socialgram?style=for-the-badge" >
+<img src="https://img.shields.io/github/issues-pe-closed-raw/shelcia/Socialgram?style=for-the-badge" >
 </p>
 
 ## 📌 Introduction
+
 Clone of Facebook with limited features
 
 #### Demo Purpose:
 
 email: demo@gmail.com
 password: demouser
-
 
 ## ⭐ How to get started?
 
@@ -46,8 +45,8 @@ You can refer to the following articles on the basics of Git and Github and also
 - Create a Pull Request which will be promptly reviewed and suggestions would be added to improve it.
 - Add Screenshots to help us know what this Script is all about.
 
-
 ## ⭐ Issues:
+
 For major changes, you are welcome to open an issue to discuss what you would like to change. Enhancements will be appreciated.
 
 </p>
@@ -72,13 +71,13 @@ https://github.com/shelcia/fb-clone-backend
 
 - Create a new file with name <code>.env</code> in the same directory as the <code>src</code> folder to set up the environment variable for the backend
 
-- Inside <code>.env</code> file, type <code>REACT_APP_HEROKU_LINK = https://fb-clone-backend.herokuapp.com/</code> . This step sets up the backend for the front end which is deployed at heroku. Without this, storing/loading of data would not work. For further details about the url, follow the [backend repository](https://github.com/shelcia/fb-clone-backend) 
+- Inside <code>.env</code> file, type <code>REACT_APP_HEROKU_LINK = https://fb-clone-backend.herokuapp.com/</code> . This step sets up the backend for the front end which is deployed at heroku. Without this, storing/loading of data would not work. For further details about the url, follow the [backend repository](https://github.com/shelcia/fb-clone-backend)
 
 - Run <code>npm install</code>
 
 - Then Run <code>npm start</code>
 
-##  💼  Code of Conduct
+## 💼 Code of Conduct
 
 We want to facilitate a healthy and constructive community behavior by adopting and enforcing our code of conduct.
 Please adhere toward our [Code-of-Conduct](code-of-conduct.md).

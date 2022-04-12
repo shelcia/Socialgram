@@ -1,17 +1,13 @@
-import React from "react";
-import { useEffect } from "react";
-import Adds from "./Adds";
-import SideNav from "./SideNav";
-import axios from "axios";
-import { useState } from "react";
-import ProfileTable from "./ProfileTable";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState, useEffect } from "react";
+import SideNav from "../../common/SideNav";
+import toast from "react-hot-toast";
+import Adds from "../../common/Add";
+import { apiPlain } from "../../services/models/plainModel";
+import ProfileTable from "./components/ProfileTable";
 
 const MyProfile = () => {
   const [isEdit, setIsEdit] = useState(false);
 
-  const LINK = process.env.REACT_APP_HEROKU_LINK;
   const [profile, setProfile] = useState({
     fname: "",
     lname: "",
@@ -20,41 +16,33 @@ const MyProfile = () => {
   });
 
   const handleInput = (event) => {
-    const newProfile = {
+    setProfile({
       ...profile,
       [event.target.name]: event.target.value,
-    };
-    console.log(newProfile);
-    setProfile(newProfile);
+    });
   };
 
   useEffect(() => {
+    const ac = new AbortController();
     const userid = localStorage.getItem("SocialGramUserId");
-
-    axios
-      .get(`${LINK}userdetails/${userid}`)
-      .then((response) => {
-        setProfile(response.data.message);
-      })
-      .catch((error) => console.log(error));
-  }, [LINK]);
+    apiPlain.getSingle(`userdetails/${userid}`, ac.signal).then((res) => {
+      setProfile(res.message);
+    });
+    return () => ac.abort();
+  }, []);
 
   const editUser = (event) => {
     event.preventDefault();
     const userid = localStorage.getItem("SocialGramUserId");
 
     const response = { fname: profile.fname, lname: profile.lname };
-    axios
-      .put(`${LINK}userdetails/edit/${userid}`, response)
-      .then((res) => {
-        toast.success("Successfully Edited your profile");
-      })
-      .catch((error) => console.log(error));
+    apiPlain.put(response, `userdetails/edit/${userid}`).then((res) => {
+      toast.success("Successfully Edited your profile");
+    });
   };
 
   return (
     <React.Fragment>
-      <ToastContainer />
       <div className="row">
         <SideNav />
         <div className="col-sm-6">
