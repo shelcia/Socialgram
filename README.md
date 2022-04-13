@@ -11,7 +11,7 @@
 <img src="https://img.shields.io/github/stars/shelcia/Socialgram?style=for-the-badge" >
 <img src="https://img.shields.io/github/forks/shelcia/Socialgram?style=for-the-badge" >  
 <img src="https://img.shields.io/github/issues-raw/shelcia/Socialgram?style=for-the-badge" >
-<img src="https://img.shields.io/github/issues-pe-closed-raw/shelcia/Socialgram?style=for-the-badge" >
+<img src="https://img.shields.io/github/issues-pr-closed-raw/shelcia/Socialgram?style=for-the-badge" >
 </p>
 
 ## 📌 Introduction
