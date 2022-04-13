@@ -11,7 +11,7 @@
 <img src="https://img.shields.io/github/stars/shelcia/Socialgram?style=for-the-badge" >
 <img src="https://img.shields.io/github/forks/shelcia/Socialgram?style=for-the-badge" >  
 <img src="https://img.shields.io/github/issues-raw/shelcia/Socialgram?style=for-the-badge" >
-<img src="https://img.shields.io/github/issues-pe-closed-raw/shelcia/Socialgram?style=for-the-badge" >
+<img src="https://img.shields.io/github/issues-pr-closed-raw/shelcia/Socialgram?style=for-the-badge" >
 </p>
 
 ## 📌 Introduction
@@ -68,10 +68,6 @@ https://github.com/shelcia/fb-clone-backend
 ### To work with this repo
 
 - Clone this repo
-
-- Create a new file with name <code>.env</code> in the same directory as the <code>src</code> folder to set up the environment variable for the backend
-
-- Inside <code>.env</code> file, type <code>REACT_APP_HEROKU_LINK = https://fb-clone-backend.herokuapp.com/</code> . This step sets up the backend for the front end which is deployed at heroku. Without this, storing/loading of data would not work. For further details about the url, follow the [backend repository](https://github.com/shelcia/fb-clone-backend)
 
 - Run <code>npm install</code>
 
