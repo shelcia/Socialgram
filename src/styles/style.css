@@ -155,4 +155,44 @@ hr {
 .table-dark tbody tr {
   border-bottom: 1px solid rgba(210, 210, 210, 0.125);
 }
+
+.se-container,
+.sun-editor .se-list-layer {
+  background-color: #161b22 !important;
+  border: 1px solid rgba(210, 210, 210, 0.125) !important;
+  color: #fff !important;
+}
+
+.sun-editor {
+  border: 1px solid rgba(210, 210, 210, 0.125) !important;
+  background-color: rgba(210, 210, 210, 0.125) !important;
+  border-radius: 0.3rem;
+}
+
+.sun-editor .se-toolbar {
+  background-color: #161b22 !important;
+  outline: 1px solid rgba(210, 210, 210, 0.125) !important;
+  color: #fff !important;
+}
+
+.sun-editor button {
+  color: #fff !important;
+  outline: 1px solid rgba(210, 210, 210, 0.125) !important;
+}
+
+.sun-editor .se-wrapper .se-wrapper-inner,
+.se-resizing-bar .sun-editor-common,
+.sun-editor .se-resizing-bar {
+  background-color: #161b22 !important;
+  outline: 1px solid rgba(210, 210, 210, 0.125) !important;
+}
+
+.sun-editor .se-btn-module-border {
+  border: 1px solid rgba(210, 210, 210, 0.125) !important;
+}
+
+.sun-editor-editable,
+.se-btn-list {
+  color: #fff !important;
+}
 /*# sourceMappingURL=style.css.map */

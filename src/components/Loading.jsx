@@ -8,13 +8,7 @@ const Loading = ({ children }) => {
       className="w-100 h-100 d-flex"
       style={{ alignItems: "center", justifyContent: "center" }}
     >
-      <Rings
-        type="TailSpin"
-        color="#007bff"
-        height={100}
-        width={100}
-        timeout={3000}
-      >
+      <Rings type="TailSpin" color="#007bff" height={250} width={250}>
         {children}
       </Rings>
     </div>

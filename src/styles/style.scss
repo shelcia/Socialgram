@@ -6,6 +6,7 @@ $textColor: #fff;
 $background: #161b22;
 $lighterBackground: #343a40;
 $border: 1px solid rgba(210, 210, 210, 0.125);
+$borderColor: rgba(210, 210, 210, 0.125);
 $primaryColor: #007bff;
 $hover: #007bff4c;
 
@@ -135,4 +136,41 @@ hr {
 
 .table-dark tbody tr {
   border-bottom: $border;
+}
+
+.se-container,
+.sun-editor .se-list-layer {
+  background-color: $background !important;
+  border: $border !important;
+  color: $textColor !important;
+}
+.sun-editor {
+  border: $border !important;
+  background-color: $borderColor !important;
+  border-radius: 0.3rem;
+}
+
+.sun-editor .se-toolbar {
+  background-color: $background !important;
+  outline: $border !important;
+  color: $textColor !important;
+}
+.sun-editor button {
+  color: $textColor !important;
+  outline: $border !important;
+}
+.sun-editor .se-wrapper .se-wrapper-inner,
+.se-resizing-bar .sun-editor-common,
+.sun-editor .se-resizing-bar {
+  background-color: $background !important;
+  outline: $border !important;
+}
+
+.sun-editor .se-btn-module-border {
+  border: $border !important;
+}
+
+.sun-editor-editable,
+.se-btn-list {
+  color: $textColor !important;
 }

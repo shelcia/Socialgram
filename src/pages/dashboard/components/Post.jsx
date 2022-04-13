@@ -1,27 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ReactEmoji from "react-emoji";
 import { convertDate } from "../../../helpers/convert";
 import { apiPlain } from "../../../services/models/plainModel";
-
-const addLinks = (postText) => {
-  const urlRegexp = /(https?:\/\/[^\s]+)/g;
-  const splitWithLinks = postText.split(urlRegexp);
-  return splitWithLinks.map((block, i) => {
-    if (block.match(urlRegexp)) {
-      return (
-        <React.Fragment key={i}>
-          <a href={block} target="_blank" rel="noopener noreferrer">
-            {ReactEmoji.emojify(block)}
-          </a>
-        </React.Fragment>
-      );
-    } else {
-      return (
-        <React.Fragment key={i}>{ReactEmoji.emojify(block)}</React.Fragment>
-      );
-    }
-  });
-};
+import parse from "html-react-parser";
 
 const Post = ({
   post,
@@ -32,19 +12,6 @@ const Post = ({
   commentText,
   setCommentText,
 }) => {
-  //   const convertDate = (date) => {
-  //     const dates = new Date(date);
-  //     const formattedDate = Intl.DateTimeFormat("en-US", {
-  //       year: "numeric",
-  //       month: "short",
-  //       day: "2-digit",
-  //       hour: "numeric",
-  //       minute: "numeric",
-  //       second: "numeric",
-  //     }).format(dates);
-  //     return formattedDate;
-  //   };
-
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -76,7 +43,7 @@ const Post = ({
         key={post.id}
         className="container bg-dark mt-3 mb-3 p-3 post rounded"
       >
-        <h3 className="mb-3">{addLinks(post.title)}</h3>
+        <h3 className="mb-3">{parse(post.title)}</h3>
         <div className="my-4 d-flex justify-content-between">
           <p className="text-muted">Posted By: {user}</p>
           <p className="text-muted">
@@ -141,7 +108,7 @@ const Post = ({
               key={comment.id}
               className="container p-3 mb-2 shadow-lg rounded-lg w-100"
             >
-              {ReactEmoji.emojify(comment.comments)}
+              {parse(comment.comments)}
             </div>
           ))}
         </div>

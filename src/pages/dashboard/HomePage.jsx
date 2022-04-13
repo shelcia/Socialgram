@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { AddPost, LoadPost } from "../../data/actions";
@@ -6,9 +6,13 @@ import { apiPlain } from "../../services/models/plainModel";
 import SideNav from "../../common/SideNav";
 import Adds from "../../common/Add";
 import Post from "./components/Post";
+import Loading from "../../components/Loading";
+import SunEditor from "suneditor-react";
+import "suneditor/dist/css/suneditor.min.css"; // I
 
 const Feed = () => {
-  const postText = useRef("");
+  // const postText = useRef("");
+  const [post, setPost] = useState("");
   const [commentText, setCommentText] = useState("");
 
   const allPost = useSelector((state) => state.posts);
@@ -32,10 +36,6 @@ const Feed = () => {
     return () => ac.abort();
   }, [dispatch]);
 
-  //   const errorNotify = (message) => {
-  //     toast.error(message);
-  //   };
-
   const addingNotif = () => {
     toast("Adding!", {
       icon: "👏",
@@ -49,7 +49,7 @@ const Feed = () => {
     const body = {
       id: Date.now(),
       userId: userid,
-      title: postText.current.value,
+      title: post,
       likes: 0,
       dislikes: 0,
       hearts: 0,
@@ -64,7 +64,7 @@ const Feed = () => {
       dispatch(AddPost(body));
     });
 
-    postText.current.value = null;
+    setPost("");
   };
 
   const addComment = (id, value) => {
@@ -137,20 +137,24 @@ const Feed = () => {
       <div className="row">
         <SideNav />
         <div className="col-sm-6">
-          <InputForm addPost={addPost} postText={postText} />
+          <InputForm addPost={addPost} setPost={setPost} />
           <div style={{ flexDirection: "column-reverse" }} className="d-flex">
-            {allPost?.map((post) => (
-              <Post
-                key={post.id}
-                post={post}
-                addLikes={addLikes}
-                addComment={addComment}
-                disLikes={disLikes}
-                hearts={hearts}
-                commentText={commentText}
-                setCommentText={setCommentText}
-              />
-            ))}
+            {allPost.length === 0 ? (
+              <Loading />
+            ) : (
+              allPost?.map((post) => (
+                <Post
+                  key={post.id}
+                  post={post}
+                  addLikes={addLikes}
+                  addComment={addComment}
+                  disLikes={disLikes}
+                  hearts={hearts}
+                  commentText={commentText}
+                  setCommentText={setCommentText}
+                />
+              ))
+            )}
           </div>
         </div>
         <Adds />
@@ -162,17 +166,33 @@ const Feed = () => {
 export default Feed;
 // REACT_APP_HEROKU_LINK = https://fb-clone-backend.herokuapp.com/
 
-const InputForm = ({ addPost, postText }) => {
+const InputForm = ({ addPost, setPost }) => {
+  const BUTTONLIST = [
+    ["undo", "redo"],
+    ["font", "fontSize", "formatBlock"],
+    ["bold", "underline", "italic", "strike", "subscript", "superscript"],
+    ["removeFormat"],
+    ["fontColor", "hiliteColor"],
+    ["outdent", "indent"],
+    ["align", "horizontalRule", "list", "table"],
+    ["link"],
+    // ["link", "image", "video"],
+    // ["fullScreen", "showBlocks" /*, 'codeView'*/],
+    // ["preview", "print"],
+    // ["save", "template"],
+  ];
+
   return (
     <React.Fragment>
       <h3 className="mb-3">What's on your mind?</h3>
       <div className="input-group-lg">
-        <textarea
-          className="form-control"
+        <SunEditor
+          onChange={(content) => setPost(content)}
           placeholder="share your thoughts"
-          ref={postText}
-          required
-        ></textarea>
+          setOptions={{
+            buttonList: BUTTONLIST,
+          }}
+        />
       </div>
       <div className="button-container text-center mt-3 mb-5">
         <button
