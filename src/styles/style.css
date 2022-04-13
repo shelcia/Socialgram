@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --bs-table-bg: #161b22;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -17,12 +21,48 @@
   background: black;
 }
 
-* {
-  font-family: "Fira Sans", sans-serif;
+.se-container,
+.sun-editor .se-list-layer {
+  background-color: #161b22 !important;
+  border: 1px solid rgba(210, 210, 210, 0.125) !important;
+  color: #fff !important;
 }
 
-p {
-  font-style: italic;
+.sun-editor {
+  border: 1px solid rgba(210, 210, 210, 0.125) !important;
+  background-color: rgba(210, 210, 210, 0.125) !important;
+  border-radius: 0.3rem;
+}
+
+.sun-editor .se-toolbar {
+  background-color: #161b22 !important;
+  outline: 1px solid rgba(210, 210, 210, 0.125) !important;
+  color: #fff !important;
+}
+
+.sun-editor button {
+  color: #fff !important;
+  outline: 1px solid rgba(210, 210, 210, 0.125) !important;
+}
+
+.sun-editor .se-wrapper .se-wrapper-inner,
+.se-resizing-bar .sun-editor-common,
+.sun-editor .se-resizing-bar {
+  background-color: #161b22 !important;
+  outline: 1px solid rgba(210, 210, 210, 0.125) !important;
+}
+
+.sun-editor .se-btn-module-border {
+  border: 1px solid rgba(210, 210, 210, 0.125) !important;
+}
+
+.sun-editor-editable,
+.se-btn-list {
+  color: #fff !important;
+}
+
+* {
+  font-family: "Fira Sans", sans-serif;
 }
 
 a,
@@ -61,7 +101,7 @@ hr {
 }
 
 .navbar-dark,
-.table-dark {
+.table > :not(caption) > * > * {
   background-color: #161b22 !important;
 }
 
@@ -154,45 +194,5 @@ hr {
 
 .table-dark tbody tr {
   border-bottom: 1px solid rgba(210, 210, 210, 0.125);
-}
-
-.se-container,
-.sun-editor .se-list-layer {
-  background-color: #161b22 !important;
-  border: 1px solid rgba(210, 210, 210, 0.125) !important;
-  color: #fff !important;
-}
-
-.sun-editor {
-  border: 1px solid rgba(210, 210, 210, 0.125) !important;
-  background-color: rgba(210, 210, 210, 0.125) !important;
-  border-radius: 0.3rem;
-}
-
-.sun-editor .se-toolbar {
-  background-color: #161b22 !important;
-  outline: 1px solid rgba(210, 210, 210, 0.125) !important;
-  color: #fff !important;
-}
-
-.sun-editor button {
-  color: #fff !important;
-  outline: 1px solid rgba(210, 210, 210, 0.125) !important;
-}
-
-.sun-editor .se-wrapper .se-wrapper-inner,
-.se-resizing-bar .sun-editor-common,
-.sun-editor .se-resizing-bar {
-  background-color: #161b22 !important;
-  outline: 1px solid rgba(210, 210, 210, 0.125) !important;
-}
-
-.sun-editor .se-btn-module-border {
-  border: 1px solid rgba(210, 210, 210, 0.125) !important;
-}
-
-.sun-editor-editable,
-.se-btn-list {
-  color: #fff !important;
 }
 /*# sourceMappingURL=style.css.map */

@@ -192,6 +192,7 @@ const InputForm = ({ addPost, setPost }) => {
           setOptions={{
             buttonList: BUTTONLIST,
           }}
+          autoFocus={true}
         />
       </div>
       <div className="button-container text-center mt-3 mb-5">

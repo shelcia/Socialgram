@@ -1,6 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import "./scrollbar";
-// $font: "Josefin Sans", sans-serif;
 $font: "Fira Sans", sans-serif;
 $textColor: #fff;
 $background: #161b22;
@@ -10,16 +8,19 @@ $borderColor: rgba(210, 210, 210, 0.125);
 $primaryColor: #007bff;
 $hover: #007bff4c;
 
-// :root {
-//   filter: invert(1) hue-rotate(180deg);
-// }
+:root {
+  --bs-table-bg: #161b22;
+}
+
+@import "./components/scrollbar";
+@import "./components/overrides";
 
 * {
   font-family: $font;
 }
-p {
-  font-style: italic;
-}
+// p {
+//   font-style: italic;
+// }
 a,
 a:visited,
 a:any-link {
@@ -42,7 +43,7 @@ hr {
 }
 
 .navbar-dark,
-.table-dark {
+.table > :not(caption) > * > * {
   background-color: $background !important;
 }
 
@@ -136,41 +137,4 @@ hr {
 
 .table-dark tbody tr {
   border-bottom: $border;
-}
-
-.se-container,
-.sun-editor .se-list-layer {
-  background-color: $background !important;
-  border: $border !important;
-  color: $textColor !important;
-}
-.sun-editor {
-  border: $border !important;
-  background-color: $borderColor !important;
-  border-radius: 0.3rem;
-}
-
-.sun-editor .se-toolbar {
-  background-color: $background !important;
-  outline: $border !important;
-  color: $textColor !important;
-}
-.sun-editor button {
-  color: $textColor !important;
-  outline: $border !important;
-}
-.sun-editor .se-wrapper .se-wrapper-inner,
-.se-resizing-bar .sun-editor-common,
-.sun-editor .se-resizing-bar {
-  background-color: $background !important;
-  outline: $border !important;
-}
-
-.sun-editor .se-btn-module-border {
-  border: $border !important;
-}
-
-.sun-editor-editable,
-.se-btn-list {
-  color: $textColor !important;
 }
