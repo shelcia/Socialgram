@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ReactEmoji from "react-emoji";
 import Adds from "../../common/Add";
 import SideNav from "../../common/SideNav";
 import { apiPlain } from "../../services/models/plainModel";
+import parse from "html-react-parser";
 
 const MyPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -42,7 +42,7 @@ export default MyPosts;
 const Post = ({ post }) => {
   return (
     <div key={post.id} className="container bg-dark mt-3 mb-3 p-3 post rounded">
-      <h3 className="mb-3">{ReactEmoji.emojify(post.title)}</h3>
+      <h3 className="mb-3">{parse(post.title)}</h3>
       <div className="icon-container d-flex">
         <div className="icons">
           <i className="fas fa-thumbs-up pe-4"></i>
@@ -63,7 +63,7 @@ const Post = ({ post }) => {
           key={comment.id}
           className="container p-3 mb-2 shadow-lg rounded-lg"
         >
-          {ReactEmoji.emojify(comment.comments)}
+          {parse(comment.comments)}
         </div>
       ))}
     </div>
