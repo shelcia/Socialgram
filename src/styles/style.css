@@ -61,6 +61,14 @@
   color: #fff !important;
 }
 
+.dropstart .dropdown-toggle::before {
+  display: none;
+}
+
+.btn.btn-secondary.dropdown-toggle {
+  background-color: transparent;
+}
+
 * {
   font-family: "Fira Sans", sans-serif;
 }
@@ -115,7 +123,7 @@ hr {
   }
 }
 
-.container .row .col-sm-3.form p em {
+.container .row .formlink {
   color: #007bff;
   cursor: pointer;
   text-decoration: underline;
@@ -184,6 +192,7 @@ hr {
 .form-control {
   background-color: #161b22;
   border: 1px solid rgba(210, 210, 210, 0.125);
+  color: #fff;
 }
 
 .form-control:focus {
@@ -194,5 +203,27 @@ hr {
 
 .table-dark tbody tr {
   border-bottom: 1px solid rgba(210, 210, 210, 0.125);
+}
+
+iframe {
+  border: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+@media only screen and (max-width: 576px) {
+  .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .sidenav {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .btn.btn-secondary.dropdown-toggle {
+    display: none;
+  }
 }
 /*# sourceMappingURL=style.css.map */

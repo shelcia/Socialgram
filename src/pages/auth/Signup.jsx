@@ -46,92 +46,101 @@ const Signup = () => {
 
         if (res.status === "400") {
           toast.error(res.message);
+          setIsLoading(false);
         } else if (res.status === "200") {
           toast.success("Account Created.You can login now!!");
           navigate("/login");
         } else if (res.status === "500") {
           toast.error("Internal server error");
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
         }
       })
-      .catch((err) => toast.error("Incorrect Credentials"));
-
-    setIsLoading(false);
+      .catch((err) => {
+        toast.error("Incorrect Credentials");
+        setIsLoading(false);
+      });
   };
 
   return (
     <React.Fragment>
+      <div className="col-lg-8">
+        <img
+          src={Illustration}
+          style={{ maxHeight: "84vh" }}
+          className="img-fluid"
+          alt=""
+        />
+      </div>
       {isLoading ? (
-        <Loading>
-          <h1>Please wait while we create your account !!</h1>
-        </Loading>
+        <div className="col-lg-4 d-flex align-items-center justify-content-center flex-wrap">
+          <Loading>
+            <p className="text-center">
+              Please wait while we create your account !!
+            </p>
+          </Loading>
+        </div>
       ) : (
-        <React.Fragment>
-          <div className="col-lg-8">
-            <img
-              src={Illustration}
-              style={{ maxHeight: "84vh" }}
-              className="img-fluid"
-              alt=""
-            />
-          </div>
-          <div className="col-lg-4 form d-flex align-items-center flex-column justify-content-center flex-wrap">
-            <h3>Signup</h3>
-            <form onSubmit={onSubmit}>
-              <div className="form-group mb-2">
-                <input
-                  ref={fname}
-                  type="text"
-                  className="form-control w-100"
-                  placeholder="enter first name"
-                  required
-                />
-              </div>
-              <div className="form-group mb-2">
-                <input
-                  ref={lname}
-                  type="text"
-                  className="form-control w-100"
-                  placeholder="enter last name"
-                  required
-                />
-              </div>
-              <div className="form-group mb-2">
-                <input
-                  type="text"
-                  ref={email}
-                  className="form-control w-100"
-                  placeholder="enter email"
-                  required
-                />
-              </div>
-              <div className="form-group mb-2">
-                <input
-                  ref={password}
-                  type="password"
-                  className="form-control w-100"
-                  placeholder="enter password"
-                  required
-                />
-              </div>
-              {warning && (
-                <p className="text-danger mt-4">
-                  *Password should have atleast 6 characters
-                </p>
-              )}
-              <div className="text-center mt-4">
-                <button className="btn btn-primary" type="submit">
-                  Signup
-                </button>
-              </div>
-              <div className="text-center mt-4">
-                <p>
-                  Already have an account? then{" "}
-                  <em onClick={() => navigate("/login")}>Login</em>
-                </p>
-              </div>
-            </form>
-          </div>
-        </React.Fragment>
+        <div className="col-lg-4 form d-flex align-items-center flex-column justify-content-center flex-wrap">
+          <h3>Signup</h3>
+          <form onSubmit={onSubmit}>
+            <div className="form-group mb-2">
+              <input
+                ref={fname}
+                type="text"
+                className="form-control w-100"
+                placeholder="enter first name"
+                required
+              />
+            </div>
+            <div className="form-group mb-2">
+              <input
+                ref={lname}
+                type="text"
+                className="form-control w-100"
+                placeholder="enter last name"
+                required
+              />
+            </div>
+            <div className="form-group mb-2">
+              <input
+                type="text"
+                ref={email}
+                className="form-control w-100"
+                placeholder="enter email"
+                required
+              />
+            </div>
+            <div className="form-group mb-2">
+              <input
+                ref={password}
+                type="password"
+                className="form-control w-100"
+                placeholder="enter password"
+                required
+              />
+            </div>
+            {warning && (
+              <p className="text-danger mt-4">
+                *Password should have atleast 6 characters
+              </p>
+            )}
+            <div className="text-center mt-4">
+              <button className="btn btn-primary" type="submit">
+                Signup
+              </button>
+            </div>
+            <div className="text-center mt-4">
+              <p>
+                Already have an account? then{" "}
+                <em onClick={() => navigate("/login")} className="formlink">
+                  Login
+                </em>
+              </p>
+            </div>
+          </form>
+        </div>
       )}
     </React.Fragment>
   );

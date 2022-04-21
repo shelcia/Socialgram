@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { convertDate } from "../../../helpers/convert";
 import { apiPlain } from "../../../services/models/plainModel";
 import parse from "html-react-parser";
+import { FaThumbsUp, FaThumbsDown, FaHeart } from "react-icons/fa";
 
 const Post = ({
   post,
@@ -51,25 +52,28 @@ const Post = ({
           </p>
         </div>
         <div className="icon-container d-flex">
-          <div className="icons" title="like">
-            <i
-              className="fas fa-thumbs-up pe-4"
-              onClick={() => addLikes(post.id, post.likes)}
-            ></i>
+          <div
+            className="icons"
+            title="like"
+            onClick={() => addLikes(post.id, post.likes)}
+          >
+            <FaThumbsUp className="pe-1" />
             <span>{post.likes}</span>
           </div>
-          <div className="icons" title="dislike">
-            <i
-              className="fas fa-thumbs-down pe-4"
-              onClick={() => disLikes(post.id, post.dislikes)}
-            ></i>
+          <div
+            className="icons"
+            title="dislike"
+            onClick={() => disLikes(post.id, post.dislikes)}
+          >
+            <FaThumbsDown className="pe-1" />
             <span>{post.dislikes}</span>
           </div>
-          <div className="icons hearts" title="heart">
-            <i
-              className="fas fa-heart pe-4"
-              onClick={() => hearts(post.id, post.hearts)}
-            ></i>
+          <div
+            className="icons hearts"
+            title="heart"
+            onClick={() => hearts(post.id, post.hearts)}
+          >
+            <FaHeart className="pe-1" />
             <span>{post.hearts}</span>
           </div>
         </div>

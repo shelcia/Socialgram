@@ -34,3 +34,11 @@
 .se-btn-list {
   color: $textColor !important;
 }
+
+.dropstart .dropdown-toggle::before {
+  display: none;
+}
+
+.btn.btn-secondary.dropdown-toggle {
+  background-color: transparent;
+}

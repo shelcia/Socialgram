@@ -58,12 +58,10 @@ hr {
 }
 // Form
 .container .row {
-  .col-sm-3.form {
-    p em {
-      color: $primaryColor;
-      cursor: pointer;
-      text-decoration: underline;
-    }
+  .formlink {
+    color: $primaryColor;
+    cursor: pointer;
+    text-decoration: underline;
   }
   // sidenav
   .sidenav ul .list-group-item {
@@ -128,6 +126,7 @@ hr {
 .form-control {
   background-color: $background;
   border: $border;
+  color: $textColor;
   &:focus {
     background-color: $background;
     border: $border;
@@ -137,4 +136,26 @@ hr {
 
 .table-dark tbody tr {
   border-bottom: $border;
+}
+
+iframe {
+  border: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+@media only screen and (max-width: 576px) {
+  .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .sidenav {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .btn.btn-secondary.dropdown-toggle {
+    display: none;
+  }
 }

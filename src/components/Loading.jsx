@@ -1,5 +1,4 @@
 import React from "react";
-// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Rings } from "react-loader-spinner";
 
 const Loading = ({ children }) => {
@@ -8,11 +7,17 @@ const Loading = ({ children }) => {
       className="w-100 h-100 d-flex"
       style={{ alignItems: "center", justifyContent: "center" }}
     >
-      <Rings type="TailSpin" color="#007bff" height={250} width={250}>
-        {children}
-      </Rings>
+      <Rings type="TailSpin" color="#007bff" height={150} width={150} />
+      {children}
     </div>
   );
 };
 
 export default Loading;
+
+export const PartLoader = ({ children }) => (
+  <div style={{ alignItems: "center", justifyContent: "center" }}>
+    <Rings type="TailSpin" color="#007bff" height={150} width={150} />
+    {children}
+  </div>
+);

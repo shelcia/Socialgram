@@ -23,7 +23,9 @@ const Feed = () => {
     try {
       apiPlain.getSingle(`post`, signal, "").then((res) => {
         //   console.log(res);
-        dispatch(LoadPost(res));
+        if (Array.isArray(res)) {
+          dispatch(LoadPost(res));
+        }
       });
     } catch (error) {
       console.log(error);
