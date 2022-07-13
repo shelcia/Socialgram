@@ -18,7 +18,7 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.1.2",
     "suneditor": "^2.43.6",
-    "suneditor-react": "^3.4.0"
+    "suneditor-react": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
