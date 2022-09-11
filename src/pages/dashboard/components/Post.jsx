@@ -19,13 +19,9 @@ const Post = ({
     const ac = new AbortController();
     const fetchIds = async () => {
       try {
-        apiPlain.getSingle(`userId`, ac.signal, "").then((res) => {
-          if (!Array.isArray(res)) {
-            return;
-          }
-          const userData = res?.filter((ids) => ids._id === post.userId);
-          if (userData?.length) {
-            setUser(userData[0]?.fname);
+        apiPlain.getSingle(`username/${post.userId}`, ac.signal).then((res) => {
+          if (res) {
+            setUser(res?.fname);
           } else {
             setUser("Deleted User");
           }

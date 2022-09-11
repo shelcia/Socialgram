@@ -16,6 +16,7 @@ const MyPosts = () => {
     const getMyPost = () => {
       const id = localStorage.getItem("SocialGramUserId");
       apiPlain.getSingle(`myposts/${id}`).then((response) => {
+        console.log(response);
         setPosts(response.message);
         setLoading(false);
       });
@@ -38,7 +39,7 @@ const MyPosts = () => {
             <hr />
             {posts?.length === 0 && <p>No Post yet !!</p>}
             <div style={{ flexDirection: "column-reverse" }} className="d-flex">
-              {posts.map((post) => (
+              {posts?.map((post) => (
                 <Post post={post} key={post.id} />
               ))}
             </div>

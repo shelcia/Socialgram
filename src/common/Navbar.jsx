@@ -51,9 +51,9 @@ const ListItems = () => {
   ];
 
   return (
-    <div class="dropdown dropstart">
+    <div className="dropdown dropstart">
       <button
-        class="btn btn-secondary dropdown-toggle"
+        className="btn btn-secondary dropdown-toggle"
         type="button"
         id="dropdownMenuButton2"
         data-bs-toggle="dropdown"
@@ -63,7 +63,7 @@ const ListItems = () => {
         <HiMenuAlt3 />
       </button>
       <ul
-        class="dropdown-menu dropdown-menu-dark"
+        className="dropdown-menu dropdown-menu-dark"
         aria-labelledby="dropdownMenuButton2"
       >
         {links.map((item, idx) => (
@@ -82,7 +82,7 @@ const ListItems = () => {
             href="!#"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
-            class="dropdown-item"
+            className="dropdown-item"
           >
             Logout
           </a>

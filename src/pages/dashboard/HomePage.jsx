@@ -166,7 +166,6 @@ const Feed = () => {
 };
 
 export default Feed;
-// REACT_APP_HEROKU_LINK = https://fb-clone-backend.herokuapp.com/
 
 const InputForm = ({ addPost, setPost }) => {
   const BUTTONLIST = [
