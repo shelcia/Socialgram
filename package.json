@@ -14,7 +14,7 @@
     "react-icons": "^4.4.0",
     "react-loader-spinner": "^5.1.5",
     "react-redux": "^8.0.4",
-    "react-router-dom": "^6.3.0",
+    "react-router-dom": "^6.4.1",
     "react-scripts": "^5.0.1",
     "redux": "^4.1.2",
     "suneditor": "^2.43.14",
