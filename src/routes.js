@@ -1,4 +1,6 @@
 import { lazy, Suspense } from "react";
+import { Outlet } from "react-router-dom";
+import AuthGuard from "./common/AuthGuard";
 import Loading from "./components/Loading";
 
 const Loadable = (Component) => (props) =>
@@ -33,19 +35,29 @@ const routes = [
   },
   {
     path: "homepage",
-    element: <HomePage />,
-  },
-  {
-    path: "homepage/profile",
-    element: <ProfilePage />,
-  },
-  {
-    path: "homepage/myposts",
-    element: <MyPostsPage />,
-  },
-  {
-    path: "homepage/settings",
-    element: <SettingsPage />,
+    element: (
+      <AuthGuard>
+        <Outlet />
+      </AuthGuard>
+    ),
+    children: [
+      {
+        path: "",
+        element: <HomePage />,
+      },
+      {
+        path: "profile",
+        element: <ProfilePage />,
+      },
+      {
+        path: "myposts",
+        element: <MyPostsPage />,
+      },
+      {
+        path: "settings",
+        element: <SettingsPage />,
+      },
+    ],
   },
 ];
 
