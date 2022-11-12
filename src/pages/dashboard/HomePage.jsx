@@ -22,9 +22,9 @@ const Feed = () => {
   const getPost = async (dispatch, signal) => {
     try {
       apiPlain.getSingle(`post`, signal, "").then((res) => {
-        //   console.log(res);
-        if (Array.isArray(res)) {
-          dispatch(LoadPost(res));
+        console.log(res);
+        if (Array.isArray(res.message) && res.status === "200") {
+          dispatch(LoadPost(res.message));
         }
       });
     } catch (error) {
