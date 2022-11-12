@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   FaHome,
@@ -7,6 +7,16 @@ import {
   FaCog,
   FaSignOutAlt,
 } from "react-icons/fa";
+import {
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Modal,
+} from "@mui/material";
 
 const SideNav = () => {
   const links = [
@@ -32,72 +42,72 @@ const SideNav = () => {
     },
   ];
 
+  const [open, setOpen] = useState(false);
+
   return (
     <React.Fragment>
-      <div className="col-sm-3 sidenav">
-        <ul className="list-group list-group-flush">
-          {links.map((item, idx) => (
-            <li
-              className="list-group-item list-group-item-action list-group-item-dark"
-              key={idx}
-            >
-              <NavLink to={item.link} end={true}>
-                {item.icon}
-                <span className="ms-3">{item.name}</span>
-              </NavLink>
-            </li>
-          ))}
-          <li className="list-group-item list-group-item-action list-group-item-dark">
-            <a href="!#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              <FaSignOutAlt className="me-3" /> Logout
-            </a>
-          </li>
-        </ul>
-      </div>
-      <Modal />
+      <List>
+        {links.map((item, idx) => (
+          <NavLink to={item.link} end={true} key={idx}>
+            <ListItem sx={{ p: 0.75 }}>
+              <ListItemButton>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            </ListItem>
+          </NavLink>
+        ))}
+        <ListItem onClick={() => setOpen(true)} sx={{ p: 0.75 }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <FaSignOutAlt />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <LogoutModal open={open} setOpen={setOpen} />
     </React.Fragment>
   );
 };
 
-export const Modal = () => {
+export const LogoutModal = ({ open, setOpen }) => {
   const navigate = useNavigate();
 
   const logout = () => {
+    setOpen(false);
     localStorage.clear();
     navigate("/");
   };
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+  };
+
   return (
-    <div
-      className="modal fade"
-      id="exampleModal"
-      tabIndex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
+    <Modal
+      open={open}
+      onClose={() => setOpen(false)}
+      aria-labelledby="logout-modal"
+      aria-describedby="use-this-to-logout"
     >
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content modal-dark">
-          <div className="modal-header border border-0">
-            <h4 className="modal-title">Important !!</h4>
-            <div data-bs-dismiss="modal" style={{ cursor: "pointer" }}>
-              close
-            </div>
-          </div>
-
-          <div className="modal-body">You sure want to logout ?</div>
-
-          <div className="modal-footer border border-0">
-            <button
-              type="button"
-              className="btn btn-primary"
-              data-bs-dismiss="modal"
-              onClick={logout}
-            >
-              Logout
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+      <Box sx={{ ...style, width: 400 }}>
+        <h2 id="parent-modal-title">Important !!</h2>
+        <p id="parent-modal-description">You sure want to logout ? </p>
+        <Button onClick={logout} variant="contained">
+          Logout
+        </Button>
+      </Box>
+    </Modal>
   );
 };
 

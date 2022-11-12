@@ -2,14 +2,14 @@
 
 import axios from "axios";
 import { handleResponse, handleError } from "./response";
-import { CYCLIC_BASE_URL } from "../api";
-// import { LOCALHOST_URL } from "../api";
+// import { CYCLIC_BASE_URL } from "../api";
+import { LOCALHOST_URL } from "../api";
 
 // Define your api url from any source.
 // Pulling from your .env file when on the server or from localhost when locally
-// const BASE_URL = LOCALHOST_URL;
+const BASE_URL = LOCALHOST_URL;
 
-const BASE_URL = CYCLIC_BASE_URL;
+// const BASE_URL = CYCLIC_BASE_URL;
 
 /** @param {string} resource */
 const getAll = async (resource, signal, isAuthorized = false) => {
@@ -45,16 +45,19 @@ const getSingle = async (
   try {
     let response;
     if (additionalParam === "") {
-      response = await axios.get(`${BASE_URL}/${id}`, {
+      response = await axios.get(`${BASE_URL}/${resource}/${id}`, {
         signal: signal,
         headers: headers,
       });
     } else {
       // console.log(`${BASE_URL}/${resource}/${additionalParam}/${id}`);
-      response = await axios.get(`${BASE_URL}/${additionalParam}/${id}`, {
-        signal: signal,
-        headers: headers,
-      });
+      response = await axios.get(
+        `${BASE_URL}/${resource}/${additionalParam}/${id}`,
+        {
+          signal: signal,
+          headers: headers,
+        }
+      );
     }
     return handleResponse(response);
   } catch (error) {
@@ -116,9 +119,13 @@ const post = async (
       });
     } else {
       //   console.log(`${BASE_URL}/${additionalParam}`);
-      response = await axios.post(`${BASE_URL}/${additionalParam}`, model, {
-        headers: headers,
-      });
+      response = await axios.post(
+        `${BASE_URL}/${resource}/${additionalParam}`,
+        model,
+        {
+          headers: headers,
+        }
+      );
     }
     return handleResponse(response);
   } catch (error) {
@@ -179,9 +186,13 @@ const put = async (resource, model, additionalParams, isAuthorized = false) => {
         headers: headers,
       });
     } else {
-      response = await axios.put(`${BASE_URL}/${additionalParams}`, model, {
-        headers: headers,
-      });
+      response = await axios.put(
+        `${BASE_URL}/${resource}/${additionalParams}`,
+        model,
+        {
+          headers: headers,
+        }
+      );
     }
 
     return handleResponse(response);

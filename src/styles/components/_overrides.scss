@@ -35,6 +35,10 @@
   color: $textColor !important;
 }
 
+.sun-editor .se-resizing-bar {
+  display: none !important;
+}
+
 .dropstart .dropdown-toggle::before {
   display: none;
 }

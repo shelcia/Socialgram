@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { AddPost, LoadPost } from "../../data/actions";
 import { apiPlain } from "../../services/models/plainModel";
-import SideNav from "../../common/SideNav";
-import Adds from "../../common/Add";
 import Post from "./components/Post";
 import Loading from "../../components/Loading";
+
+import { Box, Button, Typography } from "@mui/material";
+import { apiPost } from "../../services/models/postModel";
+
 import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css"; // I
 
@@ -21,7 +23,7 @@ const Feed = () => {
 
   const getPost = async (dispatch, signal) => {
     try {
-      apiPlain.getSingle(`post`, signal, "").then((res) => {
+      apiPost.getSingle(``, signal, "").then((res) => {
         console.log(res);
         if (Array.isArray(res.message) && res.status === "200") {
           dispatch(LoadPost(res.message));
@@ -62,7 +64,7 @@ const Feed = () => {
       return;
     }
 
-    apiPlain.post(body, "post").then(() => {
+    apiPost.post(body, "").then(() => {
       dispatch(AddPost(body));
     });
 
@@ -70,7 +72,7 @@ const Feed = () => {
   };
 
   const addComment = (id, value) => {
-    if (!commentText) {
+    if (!commentText || commentText === "") {
       toast.error("Comment cannot be empty 🥺🥺!");
       return;
     }
@@ -84,7 +86,7 @@ const Feed = () => {
       }),
     };
     setCommentText("");
-    apiPlain.put(response, `comments/${id}`).then((res) => {
+    apiPost.put(response, `comments/${id}`).then((res) => {
       //   console.log(res);
       getPost(dispatch, undefined).catch(() =>
         toast.error('Oops! The comment couldn"t be added 🥺🥺!!')
@@ -136,30 +138,24 @@ const Feed = () => {
 
   return (
     <React.Fragment>
-      <div className="row">
-        <SideNav />
-        <div className="col-sm-6">
-          <InputForm addPost={addPost} setPost={setPost} />
-          <div style={{ flexDirection: "column-reverse" }} className="d-flex">
-            {allPost.length === 0 ? (
-              <Loading />
-            ) : (
-              allPost?.map((post) => (
-                <Post
-                  key={post.id}
-                  post={post}
-                  addLikes={addLikes}
-                  addComment={addComment}
-                  disLikes={disLikes}
-                  hearts={hearts}
-                  commentText={commentText}
-                  setCommentText={setCommentText}
-                />
-              ))
-            )}
-          </div>
-        </div>
-        <Adds />
+      <InputForm addPost={addPost} setPost={setPost} />
+      <div style={{ flexDirection: "column-reverse" }} className="d-flex">
+        {allPost.length === 0 ? (
+          <Loading />
+        ) : (
+          allPost?.map((post) => (
+            <Post
+              key={post.id}
+              post={post}
+              addLikes={addLikes}
+              addComment={addComment}
+              disLikes={disLikes}
+              hearts={hearts}
+              commentText={commentText}
+              setCommentText={setCommentText}
+            />
+          ))
+        )}
       </div>
     </React.Fragment>
   );
@@ -169,24 +165,21 @@ export default Feed;
 
 const InputForm = ({ addPost, setPost }) => {
   const BUTTONLIST = [
-    ["undo", "redo"],
-    ["font", "fontSize", "formatBlock"],
-    ["bold", "underline", "italic", "strike", "subscript", "superscript"],
+    ["undo"],
+    ["fontSize", "formatBlock"],
+    ["bold", "underline", "italic", "strike"],
     ["removeFormat"],
     ["fontColor", "hiliteColor"],
-    ["outdent", "indent"],
-    ["align", "horizontalRule", "list", "table"],
-    ["link"],
-    // ["link", "image", "video"],
-    // ["fullScreen", "showBlocks" /*, 'codeView'*/],
-    // ["preview", "print"],
-    // ["save", "template"],
+    ["align", "list"],
+    ["link", "image"],
   ];
 
   return (
     <React.Fragment>
-      <h3 className="mb-3">What's on your mind?</h3>
-      <div className="input-group-lg">
+      <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
+        How about a thought ?
+      </Typography>
+      <Box className="input-group-lg">
         <SunEditor
           onChange={(content) => setPost(content)}
           placeholder="share your thoughts"
@@ -195,18 +188,18 @@ const InputForm = ({ addPost, setPost }) => {
           }}
           autoFocus={true}
         />
-      </div>
-      <div className="button-container text-center mt-3 mb-5">
-        <button
-          style={{ width: "100%" }}
-          className="btn btn-primary"
-          onClick={(event) => {
-            addPost(event);
-          }}
-        >
-          Add Post
-        </button>
-      </div>
+      </Box>
+      <Button
+        variant="contained"
+        onClick={(event) => {
+          addPost(event);
+        }}
+        fullWidth
+        size="small"
+        className="my-3"
+      >
+        Add Post
+      </Button>
     </React.Fragment>
   );
 };

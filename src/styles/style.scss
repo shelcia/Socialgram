@@ -1,7 +1,8 @@
 // @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 $font: "Poppins", sans-serif;
 $textColor: #fff;
-$background: #161b22;
+// $background: #161b22;
+$background: rgb(10, 20, 28);
 $lighterBackground: #343a40;
 $border: 1px solid rgba(210, 210, 210, 0.125);
 $borderColor: rgba(210, 210, 210, 0.125);
@@ -26,10 +27,12 @@ a:visited,
 a:any-link {
   text-decoration: none;
 }
+
 body {
   background-color: $background;
   color: $textColor !important;
 }
+
 hr {
   color: $lighterBackground;
 }
@@ -80,7 +83,7 @@ hr {
       cursor: pointer;
       font-size: 1.3rem;
       border-radius: 50ex;
-      font-style: italic;
+      // font-style: italic;
       &:hover {
         background-color: $hover;
       }

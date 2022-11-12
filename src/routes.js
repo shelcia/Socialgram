@@ -2,6 +2,8 @@ import { lazy, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import AuthGuard from "./common/AuthGuard";
 import Loading from "./components/Loading";
+import AuthLayout from "./layout/AuthLayout";
+import DashboardLayout from "./layout/DashboardLayout";
 
 const Loadable = (Component) => (props) =>
   (
@@ -23,21 +25,33 @@ const SettingsPage = Loadable(lazy(() => import("./pages/dashboard/Settings")));
 const routes = [
   {
     path: "",
-    element: <LoginPage />,
-  },
-  {
-    path: "login",
-    element: <LoginPage />,
-  },
-  {
-    path: "signup",
-    element: <SignupPage />,
+    element: (
+      <AuthLayout>
+        <Outlet />
+      </AuthLayout>
+    ),
+    children: [
+      {
+        path: "",
+        element: <LoginPage />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+      {
+        path: "signup",
+        element: <SignupPage />,
+      },
+    ],
   },
   {
     path: "homepage",
     element: (
       <AuthGuard>
-        <Outlet />
+        <DashboardLayout>
+          <Outlet />
+        </DashboardLayout>
       </AuthGuard>
     ),
     children: [

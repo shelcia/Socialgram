@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Adds from "../../common/Add";
-import SideNav from "../../common/SideNav";
-import { apiPlain } from "../../services/models/plainModel";
 import parse from "html-react-parser";
 import { FaThumbsUp, FaThumbsDown, FaHeart } from "react-icons/fa";
 import Loading from "../../components/Loading";
+import { apiPost } from "../../services/models/postModel";
+import { Box, Typography } from "@mui/material";
 
 const MyPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -15,7 +14,7 @@ const MyPosts = () => {
 
     const getMyPost = () => {
       const id = localStorage.getItem("SocialGramUserId");
-      apiPlain.getSingle(`myposts/${id}`).then((response) => {
+      apiPost.getSingle(`myposts/${id}`).then((response) => {
         console.log(response);
         setPosts(response.message);
         setLoading(false);
@@ -27,27 +26,26 @@ const MyPosts = () => {
   }, []);
   return (
     <React.Fragment>
-      <div className="row">
-        <SideNav />
-        {loading ? (
-          <div className="col-sm-6">
-            <Loading></Loading>
-          </div>
-        ) : (
-          <div className="col-sm-6">
-            <h1>My Posts</h1>
-            <hr />
-            {posts?.length === 0 && <p>No Post yet !!</p>}
-            <div style={{ flexDirection: "column-reverse" }} className="d-flex">
-              {posts?.map((post) => (
-                <Post post={post} key={post.id} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        <Adds />
-      </div>
+      {loading ? (
+        <Loading></Loading>
+      ) : (
+        <>
+          <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
+            My Posts
+          </Typography>
+          <hr />
+          {posts?.length === 0 && (
+            <Typography variant="p" component="p" sx={{ mb: 2 }}>
+              No Post yet !!
+            </Typography>
+          )}
+          <Box style={{ flexDirection: "column-reverse" }} className="d-flex">
+            {posts?.map((post) => (
+              <Post post={post} key={post.id} />
+            ))}
+          </Box>
+        </>
+      )}
     </React.Fragment>
   );
 };
@@ -56,9 +54,11 @@ export default MyPosts;
 
 const Post = ({ post }) => {
   return (
-    <div key={post.id} className="container bg-dark mt-3 mb-3 p-3 post rounded">
-      <h3 className="mb-3">{parse(post.title)}</h3>
-      <div className="icon-container d-flex">
+    <Box key={post.id} className="container bg-dark mt-3 mb-3 p-3 post rounded">
+      <Typography variant="h5" component="p">
+        {parse(post.title)}
+      </Typography>
+      {/* <div className="icon-container d-flex">
         <div className="icons" title="like">
           <FaThumbsUp className="pe-1" />
           <span>{post.likes}</span>
@@ -71,16 +71,16 @@ const Post = ({ post }) => {
           <FaHeart className="pe-1" />
           <span>{post.hearts}</span>
         </div>
-      </div>
+      </div> */}
 
       {post.comments.map((comment) => (
-        <div
+        <Box
           key={comment.id}
           className="container p-3 mb-2 shadow-lg rounded-lg"
         >
           {parse(comment.comments)}
-        </div>
+        </Box>
       ))}
-    </div>
+    </Box>
   );
 };

@@ -3,6 +3,8 @@ import { convertDate } from "../../../helpers/convert";
 import { apiPlain } from "../../../services/models/plainModel";
 import parse from "html-react-parser";
 import { FaThumbsUp, FaThumbsDown, FaHeart } from "react-icons/fa";
+import { apiUser } from "../../../services/models/userModal";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 const Post = ({
   post,
@@ -19,9 +21,10 @@ const Post = ({
     const ac = new AbortController();
     const fetchIds = async () => {
       try {
-        apiPlain.getSingle(`username/${post.userId}`, ac.signal).then((res) => {
+        apiUser.getSingle(`username/${post.userId}`, ac.signal).then((res) => {
           if (res) {
-            setUser(res?.fname);
+            // console.log(res);
+            setUser(res?.message?.fname);
           } else {
             setUser("Deleted User");
           }
@@ -36,18 +39,22 @@ const Post = ({
 
   return (
     <React.Fragment>
-      <div
+      <Box
         key={post.id}
-        className="container bg-dark mt-3 mb-3 p-3 post rounded"
+        className="container bg-dark mt-3 mb-3 p-3 post rounded w-100"
       >
-        <h3 className="mb-3">{parse(post.title)}</h3>
-        <div className="my-4 d-flex justify-content-between">
-          <p className="text-muted">Posted By: {user}</p>
-          <p className="text-muted">
+        <Typography variant="h5" component="p">
+          {parse(post.title)}
+        </Typography>
+        <Box className="my-4 d-flex justify-content-between">
+          <Typography variant="p" component="p" className="text-muted">
+            Posted By: {user}
+          </Typography>
+          <Typography variant="p" component="p" className="text-muted">
             {post.date ? convertDate(post.date) : "Just now"}
-          </p>
-        </div>
-        <div className="icon-container d-flex">
+          </Typography>
+        </Box>
+        {/* <div className="icon-container d-flex">
           <div
             className="icons"
             title="like"
@@ -72,47 +79,47 @@ const Post = ({
             <FaHeart className="pe-1" />
             <span>{post.hearts}</span>
           </div>
-        </div>
+        </div> */}
         <div className="input-group mb-3 mt-3">
           <form className="w-100">
             <div className="form-group w-100">
-              <input
-                type="text"
-                className="form-control w-100"
-                placeholder="comment"
+              <TextField
+                label="Comment"
+                size="small"
+                // placeholder="comment"
                 value={commentText}
                 onChange={(event) => setCommentText(event.target.value)}
-                required
+                fullWidth
               />
             </div>
-            <div className="button-container text-center mt-3 mb-3">
-              <button
-                style={{ width: "100%" }}
-                className="btn btn-primary"
-                onClick={(event) => {
-                  event.preventDefault();
-                  addComment(post.id, post.comments);
-                }}
-              >
-                Add Comment
-              </button>
-            </div>
+            <Button
+              variant="contained"
+              onClick={(event) => {
+                event.preventDefault();
+                addComment(post.id, post.comments);
+              }}
+              fullWidth
+              sx={{ mt: 2, mb: 3 }}
+              size="small"
+            >
+              Add Comment
+            </Button>
           </form>
         </div>
-        <div
+        <Box
           style={{ maxHeight: "20vh", overflowY: "auto" }}
           className="d-flex flex-column-reverse"
         >
           {post.comments.map((comment) => (
-            <div
+            <Box
               key={comment.id}
-              className="container p-3 mb-2 shadow-lg rounded-lg w-100"
+              className="p-3 mb-2 shadow-lg rounded-lg w-100"
             >
               {parse(comment.comments)}
-            </div>
+            </Box>
           ))}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </React.Fragment>
   );
 };

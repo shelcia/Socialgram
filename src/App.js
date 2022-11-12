@@ -1,9 +1,12 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { useRoutes } from "react-router-dom";
-import Navbar from "./common/Navbar";
-import "./styles/style.css";
 import routes from "./routes";
+import { customTheme } from "./theme";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { StyledEngineProvider } from "@mui/material/styles";
+import "./styles/bootstrap/bootstrap-utils.css";
+import "./styles/style.css";
 
 const App = () => {
   const allPages = useRoutes(routes);
@@ -11,19 +14,25 @@ const App = () => {
   const toasterOptions = {
     style: {
       fontWeight: 500,
-      fontFamily: "'Fira Sans', sans-serif",
+      fontFamily: "'Poppins', sans-serif",
     },
   };
 
+  const appTheme = customTheme({
+    theme: "dark",
+    direction: "ltr",
+    // responsiveFontSizes: settings.responsiveFontSizes
+  }); // toaster options
+
   return (
     <React.Fragment>
-      <Toaster toastOptions={toasterOptions} />
-      <div className="container outside">
-        <div className="row" style={{ marginTop: "14vh" }}>
-          <Navbar />
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={appTheme}>
+          <CssBaseline />
+          <Toaster toastOptions={toasterOptions} />
           {allPages}
-        </div>
-      </div>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </React.Fragment>
   );
 };

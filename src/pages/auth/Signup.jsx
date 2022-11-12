@@ -1,15 +1,15 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
-import Illustration from "../../assets/Illustration.png";
-import { apiPlain } from "../../services/models/plainModel";
+import { apiAuth } from "../../services/models/authModel";
 import toast from "react-hot-toast";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 const Signup = () => {
-  const fname = useRef("");
-  const lname = useRef("");
-  const email = useRef("");
-  const password = useRef("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -30,16 +30,16 @@ const Signup = () => {
     event.preventDefault();
 
     setIsLoading(true);
-    localStorage.setItem(`${PREFIX}Email`, email.current.value);
+    localStorage.setItem(`${PREFIX}Email`, email);
 
     const body = {
-      fname: fname.current.value,
-      lname: lname.current.value,
-      email: email.current.value,
-      password: password.current.value,
+      fname: fname,
+      lname: lname,
+      email: email,
+      password: password,
     };
 
-    apiPlain
+    apiAuth
       .post(body, "register")
       .then((res) => {
         setIsLoading(false);
@@ -65,82 +65,73 @@ const Signup = () => {
 
   return (
     <React.Fragment>
-      <div className="col-lg-8">
-        <img
-          src={Illustration}
-          style={{ maxHeight: "84vh" }}
-          className="img-fluid"
-          alt=""
-        />
-      </div>
       {isLoading ? (
-        <div className="col-lg-4 d-flex align-items-center justify-content-center flex-wrap">
-          <Loading>
-            <p className="text-center">
-              Please wait while we create your account !!
-            </p>
-          </Loading>
-        </div>
+        <Loading>
+          <Typography variant="p" component="p" className="text-center">
+            Please wait while we create your account !!
+          </Typography>
+        </Loading>
       ) : (
-        <div className="col-lg-4 form d-flex align-items-center flex-column justify-content-center flex-wrap">
-          <h3>Signup</h3>
+        <>
+          <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
+            Signup
+          </Typography>
           <form onSubmit={onSubmit}>
-            <div className="form-group mb-2">
-              <input
-                ref={fname}
-                type="text"
-                className="form-control w-100"
-                placeholder="enter first name"
-                required
-              />
-            </div>
-            <div className="form-group mb-2">
-              <input
-                ref={lname}
-                type="text"
-                className="form-control w-100"
-                placeholder="enter last name"
-                required
-              />
-            </div>
-            <div className="form-group mb-2">
-              <input
-                type="text"
-                ref={email}
-                className="form-control w-100"
-                placeholder="enter email"
-                required
-              />
-            </div>
-            <div className="form-group mb-2">
-              <input
-                ref={password}
-                type="password"
-                className="form-control w-100"
-                placeholder="enter password"
-                required
-              />
-            </div>
+            <TextField
+              label="First Name"
+              value={fname}
+              onChange={(e) => setFname(e.target.value)}
+              size="small"
+              fullWidth
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              label="Last Name"
+              value={lname}
+              onChange={(e) => setLname(e.target.value)}
+              size="small"
+              fullWidth
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              size="small"
+              fullWidth
+              sx={{ mb: 2 }}
+            />
+            <TextField
+              label="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              size="small"
+              fullWidth
+              sx={{ mb: 2 }}
+            />
             {warning && (
               <p className="text-danger mt-4">
                 *Password should have atleast 6 characters
               </p>
             )}
-            <div className="text-center mt-4">
-              <button className="btn btn-primary" type="submit">
+            <Box className="text-center mt-4">
+              <Button variant="contained" type="submit" onClick={onSubmit}>
                 Signup
-              </button>
-            </div>
+              </Button>
+            </Box>
             <div className="text-center mt-4">
-              <p>
+              <Typography variant="p" component="p">
                 Already have an account? then{" "}
-                <em onClick={() => navigate("/login")} className="formlink">
-                  Login
+                <em>
+                  <Link to={"/login"} className="formlink">
+                    Login
+                  </Link>
                 </em>
-              </p>
+              </Typography>
             </div>
           </form>
-        </div>
+        </>
       )}
     </React.Fragment>
   );

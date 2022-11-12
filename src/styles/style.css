@@ -22,7 +22,7 @@
 
 .se-container,
 .sun-editor .se-list-layer {
-  background-color: #161b22 !important;
+  background-color: #0a141c !important;
   border: 1px solid rgba(210, 210, 210, 0.125) !important;
   color: #fff !important;
 }
@@ -34,7 +34,7 @@
 }
 
 .sun-editor .se-toolbar {
-  background-color: #161b22 !important;
+  background-color: #0a141c !important;
   outline: 1px solid rgba(210, 210, 210, 0.125) !important;
   color: #fff !important;
 }
@@ -47,7 +47,7 @@
 .sun-editor .se-wrapper .se-wrapper-inner,
 .se-resizing-bar .sun-editor-common,
 .sun-editor .se-resizing-bar {
-  background-color: #161b22 !important;
+  background-color: #0a141c !important;
   outline: 1px solid rgba(210, 210, 210, 0.125) !important;
 }
 
@@ -58,6 +58,10 @@
 .sun-editor-editable,
 .se-btn-list {
   color: #fff !important;
+}
+
+.sun-editor .se-resizing-bar {
+  display: none !important;
 }
 
 .dropstart .dropdown-toggle::before {
@@ -91,7 +95,7 @@ a:any-link {
 }
 
 body {
-  background-color: #161b22;
+  background-color: #0a141c;
   color: #fff !important;
 }
 
@@ -100,7 +104,7 @@ hr {
 }
 
 .modal-dark {
-  background-color: #161b22 !important;
+  background-color: #0a141c !important;
 }
 
 .bg-dark {
@@ -109,7 +113,7 @@ hr {
 
 .navbar-dark,
 .table > :not(caption) > * > * {
-  background-color: #161b22 !important;
+  background-color: #0a141c !important;
 }
 
 @media (min-width: 576px) {
@@ -129,7 +133,7 @@ hr {
 }
 
 .container .row .sidenav ul .list-group-item {
-  background-color: #161b22 !important;
+  background-color: #0a141c !important;
   color: #fff !important;
   border: none;
   padding: 0px;
@@ -147,7 +151,6 @@ hr {
   cursor: pointer;
   font-size: 1.3rem;
   border-radius: 50ex;
-  font-style: italic;
 }
 
 .container .row .sidenav ul .list-group-item a:hover {
@@ -163,7 +166,7 @@ hr {
 }
 
 .container .row .col-sm-6 .container {
-  background-color: #161b22;
+  background-color: #0a141c;
 }
 
 .container .row .col-sm-6 .container .icon-container .icons {
@@ -189,13 +192,13 @@ hr {
 }
 
 .form-control {
-  background-color: #161b22;
+  background-color: #0a141c;
   border: 1px solid rgba(210, 210, 210, 0.125);
   color: #fff;
 }
 
 .form-control:focus {
-  background-color: #161b22;
+  background-color: #0a141c;
   border: 1px solid rgba(210, 210, 210, 0.125);
   color: #fff;
 }

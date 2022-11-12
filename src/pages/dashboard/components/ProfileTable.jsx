@@ -1,51 +1,76 @@
 import React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  TextField,
+} from "@mui/material";
 import { convertDate } from "../../../helpers/convert";
 
 const ProfileTable = ({ profile, isEdit, handleInput }) => {
+  const profileDetails = [
+    {
+      label: "First Name",
+      name: "fname",
+    },
+    {
+      label: "Last Name",
+      name: "lname",
+    },
+    {
+      label: "Email",
+      name: "email",
+    },
+    {
+      label: "Account Created At",
+      name: "date ",
+    },
+  ];
+
   return (
     <React.Fragment>
-      <table className="table table-dark table-borderless">
-        <tbody>
-          <tr>
-            <th>First Name</th>
-            <td>
-              {!isEdit ? (
-                profile.fname
-              ) : (
-                <input
-                  className="form-control"
-                  name="fname"
-                  onChange={(event) => handleInput(event)}
-                  value={profile.fname}
-                ></input>
-              )}
-            </td>
-          </tr>
-          <tr>
-            <th>Last Name</th>
-            <td>
-              {!isEdit ? (
-                profile.lname
-              ) : (
-                <input
-                  className="form-control"
-                  name="lname"
-                  onChange={(event) => handleInput(event)}
-                  value={profile.lname}
-                ></input>
-              )}
-            </td>
-          </tr>
-          <tr>
-            <th>Email</th>
-            <td>{profile.email}</td>
-          </tr>
-          <tr>
-            <th>Account Created At</th>
-            <td>{profile.date ? convertDate(profile.date) : ""}</td>
-          </tr>
-        </tbody>
-      </table>
+      <TableContainer>
+        <Table aria-label="profile table">
+          <TableBody>
+            {profileDetails.map((prof, idx) => (
+              <TableRow key={idx}>
+                <TableCell>{prof.label}</TableCell>
+                <TableCell>
+                  {!isEdit ? (
+                    idx === 3 ? (
+                      profile.date ? (
+                        convertDate(profile.date)
+                      ) : (
+                        "-"
+                      )
+                    ) : (
+                      profile?.[prof.name]
+                    )
+                  ) : idx === 2 ? (
+                    profile?.[prof.name]
+                  ) : idx === 3 ? (
+                    profile.date ? (
+                      convertDate(profile.date)
+                    ) : (
+                      "-"
+                    )
+                  ) : (
+                    <TextField
+                      label={prof.label}
+                      name={prof.name}
+                      onChange={(event) => handleInput(event)}
+                      value={profile?.[prof.name]}
+                      size="small"
+                    ></TextField>
+                  )}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </React.Fragment>
   );
 };

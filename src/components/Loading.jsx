@@ -16,8 +16,21 @@ const Loading = ({ children }) => {
 export default Loading;
 
 export const PartLoader = ({ children }) => (
-  <div style={{ alignItems: "center", justifyContent: "center" }}>
-    <Rings type="TailSpin" color="#007bff" height={150} width={150} />
+  <div
+    style={{
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <Rings
+      type="TailSpin"
+      color="#007bff"
+      height={150}
+      width={150}
+      style={{
+        justifyContent: "center",
+      }}
+    />
     {children}
   </div>
 );
