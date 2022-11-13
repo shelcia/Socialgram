@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { convertDate } from "../../../helpers/convert";
-import { apiPlain } from "../../../services/models/plainModel";
 import parse from "html-react-parser";
-import { FaThumbsUp, FaThumbsDown, FaHeart } from "react-icons/fa";
+// import { FaThumbsUp, FaThumbsDown, FaHeart } from "react-icons/fa";
 import { apiUser } from "../../../services/models/userModal";
 import { Box, Button, TextField, Typography } from "@mui/material";
 

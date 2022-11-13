@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import parse from "html-react-parser";
-import { FaThumbsUp, FaThumbsDown, FaHeart } from "react-icons/fa";
+// import { FaThumbsUp, FaThumbsDown, FaHeart } from "react-icons/fa";
 import Loading from "../../components/Loading";
 import { apiPost } from "../../services/models/postModel";
 import { Box, Typography } from "@mui/material";
