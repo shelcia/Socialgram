@@ -8,6 +8,7 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import {
+  Alert,
   Box,
   Button,
   List,
@@ -46,13 +47,14 @@ const SideNav = () => {
 
   return (
     <React.Fragment>
-      <List>
+      <List className="sidenav">
         {links.map((item, idx) => (
           <NavLink to={item.link} end={true} key={idx}>
-            <ListItem sx={{ p: 0.75 }}>
+            <ListItem sx={{ p: 0.5 }}>
               <ListItemButton>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.name} />
+                <span className="span"></span>
               </ListItemButton>
             </ListItem>
           </NavLink>
@@ -66,6 +68,7 @@ const SideNav = () => {
           </ListItemButton>
         </ListItem>
       </List>
+      <Alert severity="info">Please keep this safe and welcome!</Alert>
       <LogoutModal open={open} setOpen={setOpen} />
     </React.Fragment>
   );

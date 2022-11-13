@@ -108,34 +108,6 @@ const Feed = () => {
       .catch(() => toast.error('Oops! The like couldn"t be added 🥺🥺!!'));
   };
 
-  const disLikes = (id, value) => {
-    addingNotif();
-    const response = {
-      dislikes: value + 1,
-    };
-    apiPlain
-      .put(response, `dislikes/${id}`)
-      .then((res) => {
-        // console.log(res);
-        getPost(dispatch, undefined);
-      })
-      .catch(() => toast.error('Oops! The dislike couldn"t be added 🥺🥺!!'));
-  };
-
-  const hearts = (id, value) => {
-    addingNotif();
-    const response = {
-      hearts: value + 1,
-    };
-    apiPlain
-      .put(response, `hearts/${id}`)
-      .then((res) => {
-        // console.log(res);
-        getPost(dispatch, undefined);
-      })
-      .catch(() => toast.error('Oops! The heart couldn"t be added 🥺🥺!!'));
-  };
-
   return (
     <React.Fragment>
       <InputForm addPost={addPost} setPost={setPost} />
@@ -149,8 +121,6 @@ const Feed = () => {
               post={post}
               addLikes={addLikes}
               addComment={addComment}
-              disLikes={disLikes}
-              hearts={hearts}
               commentText={commentText}
               setCommentText={setCommentText}
             />
@@ -191,6 +161,7 @@ const InputForm = ({ addPost, setPost }) => {
       </Box>
       <Button
         variant="contained"
+        color="info"
         onClick={(event) => {
           addPost(event);
         }}

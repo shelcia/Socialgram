@@ -7,7 +7,6 @@ import {
   Toolbar,
   Typography,
   Divider,
-  Grid,
 } from "@mui/material";
 import { HiMenuAlt3 } from "react-icons/hi";
 import Adds from "../common/Add";
@@ -38,7 +37,14 @@ const DashboardLayout = ({ children }, props) => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar component="nav">
+      <AppBar
+        component="nav"
+        sx={{
+          backgroundColor: "rgba(10, 20, 2,.5)",
+          backdropFilter: "saturate(180%) blur(5px)",
+          boxShadow: "inset 0 -1px 0 0 hsla(0,0%,100%,.1)",
+        }}
+      >
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             SocialGram
@@ -68,6 +74,9 @@ const DashboardLayout = ({ children }, props) => {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              backgroundColor: "rgba(10, 20, 2,.5)",
+              backdropFilter: "saturate(180%) blur(5px)",
+              boxShadow: "inset 0 -1px 0 0 hsla(0,0%,100%,.1)",
             },
           }}
         >
@@ -79,17 +88,18 @@ const DashboardLayout = ({ children }, props) => {
         // sx={{ p: 3 }}
       >
         <Toolbar />
-        <Grid container>
-          <Grid item md={2} sx={{ display: { xs: "none", sm: "block" } }}>
+        <Box className="row" sx={{ px: 2, pt: 2 }}>
+          <Box
+            className="col-md-2"
+            sx={{ display: { xs: "none", sm: "block" } }}
+          >
             <SideNav />
-          </Grid>
-          <Grid item md={8} sx={{ p: 2 }}>
-            {children}
-          </Grid>
-          <Grid item md={2} p={2}>
+          </Box>
+          <Box className="col-md-8">{children}</Box>
+          <Box className="col-md-2">
             <Adds />
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

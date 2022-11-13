@@ -100,6 +100,7 @@ const Post = ({
               fullWidth
               sx={{ mt: 2, mb: 3 }}
               size="small"
+              color="info"
             >
               Add Comment
             </Button>

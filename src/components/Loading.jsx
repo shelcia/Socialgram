@@ -7,7 +7,7 @@ const Loading = ({ children }) => {
       className="w-100 h-100 d-flex"
       style={{ alignItems: "center", justifyContent: "center" }}
     >
-      <Rings type="TailSpin" color="#007bff" height={150} width={150} />
+      <Rings type="TailSpin" color="#7F00FF" height={150} width={150} />
       {children}
     </div>
   );
@@ -24,7 +24,7 @@ export const PartLoader = ({ children }) => (
   >
     <Rings
       type="TailSpin"
-      color="#007bff"
+      color="#7F00FF"
       height={150}
       width={150}
       style={{

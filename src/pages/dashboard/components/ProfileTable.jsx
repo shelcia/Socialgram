@@ -20,12 +20,31 @@ const ProfileTable = ({ profile, isEdit, handleInput }) => {
       name: "lname",
     },
     {
+      label: "Pronouns",
+      name: "pronouns",
+    },
+    {
+      label: "Location",
+      name: "location",
+    },
+    {
+      label: "Website",
+      name: "website",
+    },
+    {
+      label: "Bio",
+      name: "bio",
+    },
+  ];
+
+  const notEditableDetails = [
+    {
       label: "Email",
       name: "email",
     },
     {
       label: "Account Created At",
-      name: "date ",
+      name: "date",
     },
   ];
 
@@ -39,23 +58,7 @@ const ProfileTable = ({ profile, isEdit, handleInput }) => {
                 <TableCell>{prof.label}</TableCell>
                 <TableCell>
                   {!isEdit ? (
-                    idx === 3 ? (
-                      profile.date ? (
-                        convertDate(profile.date)
-                      ) : (
-                        "-"
-                      )
-                    ) : (
-                      profile?.[prof.name]
-                    )
-                  ) : idx === 2 ? (
                     profile?.[prof.name]
-                  ) : idx === 3 ? (
-                    profile.date ? (
-                      convertDate(profile.date)
-                    ) : (
-                      "-"
-                    )
                   ) : (
                     <TextField
                       label={prof.label}
@@ -63,8 +66,22 @@ const ProfileTable = ({ profile, isEdit, handleInput }) => {
                       onChange={(event) => handleInput(event)}
                       value={profile?.[prof.name]}
                       size="small"
+                      fullWidth
                     ></TextField>
                   )}
+                </TableCell>
+              </TableRow>
+            ))}
+
+            {notEditableDetails.map((prof, idx) => (
+              <TableRow key={idx}>
+                <TableCell>{prof.label}</TableCell>
+                <TableCell>
+                  {idx === 0
+                    ? profile?.[prof.name]
+                    : profile.date
+                    ? convertDate(profile.date)
+                    : "-"}
                 </TableCell>
               </TableRow>
             ))}

@@ -111,121 +111,97 @@ hr {
   background-color: #343a4000 !important;
 }
 
-.navbar-dark,
-.table > :not(caption) > * > * {
-  background-color: #0a141c !important;
+.sidenav li span {
+  font-weight: 600;
 }
 
-@media (min-width: 576px) {
-  .container.outside {
-    max-width: 95% !important;
+.sidenav .active li {
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  background-image: -webkit-gradient(linear, left top, right top, from(#7f00ff), color-stop(#bf00ff), color-stop(#d900ff), to(#e100ff));
+  background-image: linear-gradient(to right, #7f00ff, #bf00ff, #d900ff, #e100ff);
+  border-radius: 3px;
+  -webkit-animation: hue infinite alternate 0 ease-in;
+          animation: hue infinite alternate 0 ease-in;
+  background-size: 100% 100%;
+}
+
+.sidenav .active li div {
+  background-color: #161b22;
+  color: #fff;
+}
+
+@-webkit-keyframes hue {
+  from {
+    background-size: 100% 100%;
   }
-  .container.outside .col-sm-6 {
-    height: 86vh;
-    overflow-y: auto;
+  to {
+    background-size: 300% 100%;
   }
 }
 
-.container .row .formlink {
-  color: #007bff;
-  cursor: pointer;
-  text-decoration: underline;
+@keyframes hue {
+  from {
+    background-size: 100% 100%;
+  }
+  to {
+    background-size: 300% 100%;
+  }
 }
 
-.container .row .sidenav ul .list-group-item {
-  background-color: #0a141c !important;
-  color: #fff !important;
-  border: none;
-  padding: 0px;
-}
-
-.container .row .sidenav ul .list-group-item i.fas {
-  padding-right: 2rem;
-  height: 1rem;
-}
-
-.container .row .sidenav ul .list-group-item a {
-  color: #fff !important;
-  display: inline-block;
-  padding: 0.8rem 1.25rem;
-  cursor: pointer;
-  font-size: 1.3rem;
-  border-radius: 50ex;
-}
-
-.container .row .sidenav ul .list-group-item a:hover {
-  background-color: #007bff4c;
-}
-
-.container .row .sidenav ul .list-group-item a.active {
-  color: #007bff !important;
-}
-
-.container .row .col-sm-6 .button-container {
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-.container .row .col-sm-6 .container {
-  background-color: #0a141c;
+.row > * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) / 2);
+  padding-left: calc(var(--bs-gutter-x) / 2);
+  margin-top: var(--bs-gutter-y);
 }
 
-.container .row .col-sm-6 .container .icon-container .icons {
-  display: inline;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 50ex;
-}
-
-.container .row .col-sm-6 .container .icon-container .icons:hover {
-  background-color: #007bff4c;
-  color: #007bff;
-}
-
-.container .row .col-sm-6 .container .icon-container .icons.hearts:hover {
-  background-color: rgba(211, 0, 0, 0.249);
-  color: #d30000;
+@media (min-width: 768px) {
+  .col-md-2 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    width: 16.6666666667%;
+  }
+  .col-md-4 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    width: 33.33333333%;
+  }
+  .col-md-8 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    width: 66.6666666667%;
+  }
 }
 
 .post {
-  border: 1px solid rgba(210, 210, 210, 0.125);
+  -webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
   word-break: break-all;
-}
-
-.form-control {
-  background-color: #0a141c;
-  border: 1px solid rgba(210, 210, 210, 0.125);
-  color: #fff;
-}
-
-.form-control:focus {
-  background-color: #0a141c;
-  border: 1px solid rgba(210, 210, 210, 0.125);
-  color: #fff;
-}
-
-.table-dark tbody tr {
-  border-bottom: 1px solid rgba(210, 210, 210, 0.125);
 }
 
 iframe {
   border: 0;
   max-width: 100%;
   height: auto;
-}
-
-@media only screen and (max-width: 576px) {
-  .row {
-    margin-right: 0;
-    margin-left: 0;
-  }
-  .sidenav {
-    display: none;
-  }
-}
-
-@media only screen and (min-width: 576px) {
-  .btn.btn-secondary.dropdown-toggle {
-    display: none;
-  }
 }
 /*# sourceMappingURL=style.css.map */

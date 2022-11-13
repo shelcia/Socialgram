@@ -55,6 +55,18 @@ const baseOptions = {
             boxShadow: "none",
           },
         },
+        containedInfo: {
+          border: "none",
+          backgroundSize: "300% 100%",
+          //   borderRadius: "50ex",
+          transition: "all 0.4s ease-in-out",
+          backgroundImage:
+            "linear-gradient(to right, #7F00FF,#bf00ff,#d900ff,#E100FF)",
+          //   boxShadow: "0 1px 5px 0 rgba(225, 0, 225, 0.75)",
+          "&:hover": {
+            boxShadow: "0 1px 5px 0 rgba(225, 0, 225, 0.75)",
+          },
+        },
       },
     },
     MuiCssBaseline: {
