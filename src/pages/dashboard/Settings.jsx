@@ -48,7 +48,8 @@ const Settings = () => {
               </Typography>
               <Typography variant="p" component="p">
                 Your account will be deleted. You cannot retrieve your account
-                whatsoever. All your details will be deleted forever.
+                whatsoever. All your details will be deleted forever. (not
+                implemented yet)
               </Typography>
             </TableCell>
             <TableCell>

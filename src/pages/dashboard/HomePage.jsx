@@ -124,7 +124,7 @@ const Feed = () => {
   return (
     <React.Fragment>
       <InputForm addPost={addPost} setPost={setPost} />
-      <div style={{ flexDirection: "column-reverse" }} className="d-flex">
+      <div style={{ flexDirection: "column" }} className="d-flex">
         {isLoading ? (
           <Loading />
         ) : (

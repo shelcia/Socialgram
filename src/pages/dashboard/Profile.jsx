@@ -5,6 +5,7 @@ import { apiUser } from "../../services/models/userModal";
 import {
   Box,
   Button,
+  Divider,
   MenuItem,
   Select,
   Table,
@@ -106,7 +107,8 @@ const MyProfile = () => {
       <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
         Profile
       </Typography>
-      <hr />
+      <Divider sx={{ mb: 1 }} />
+      {/* <hr /> */}
       <Box className="text-center">
         {!isEdit ? (
           <img
@@ -155,6 +157,7 @@ const MyProfile = () => {
             variant="contained"
             onClick={() => setIsEdit(true)}
             sx={{ mb: 4 }}
+            color="info"
           >
             Edit Profile Details
           </Button>
@@ -167,12 +170,13 @@ const MyProfile = () => {
                 setIsEdit(false);
               }}
               sx={{ mr: 1, mb: 4 }}
+              color="info"
             >
               Confirm
             </Button>
             <Button
-              variant="contained"
-              color="error"
+              variant="outlined"
+              color="info"
               onClick={(event) => {
                 setIsEdit(false);
               }}

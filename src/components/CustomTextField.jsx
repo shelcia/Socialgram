@@ -3,20 +3,20 @@ import { TextField } from "@mui/material";
 
 export const CommentTextField = styled(TextField)({
   "& label.Mui-focused": {
-    color: "green",
+    color: "#7f00ff",
   },
   "& .MuiInput-underline:after": {
-    borderBottomColor: "green",
+    borderBottomColor: "#7f00ff",
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "red",
+      borderColor: "rgba(210, 210, 210, 0.125)",
     },
     "&:hover fieldset": {
-      borderColor: "yellow",
+      borderColor: "#d900ff",
     },
     "&.Mui-focused fieldset": {
-      borderColor: "green",
+      borderColor: "#7f00ff",
     },
   },
 });

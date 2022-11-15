@@ -5,10 +5,10 @@ import {
   Box,
   Button,
   Divider,
+  IconButton,
   Modal,
   // IconButton,
   Stack,
-  TextField,
   // TextField,
   Typography,
 } from "@mui/material";
@@ -17,6 +17,7 @@ import {
   AiOutlineFire,
   AiOutlineRetweet,
   AiOutlineShareAlt,
+  AiOutlineClose,
 } from "react-icons/ai";
 import {
   BlueButton,
@@ -26,6 +27,7 @@ import {
 } from "../../../components/CustomButtons";
 import { apiPost } from "../../../services/models/postModel";
 import { customModalStyle } from "../../../components/CustomModal";
+import { CommentTextField } from "../../../components/CustomTextField";
 
 const Post = ({
   userid,
@@ -92,7 +94,7 @@ const Post = ({
 
         {showComment && (
           <Stack direction="row" sx={{ my: 2 }}>
-            <TextField
+            <CommentTextField
               label="Comment"
               size="small"
               value={commentText}
@@ -238,7 +240,7 @@ const PostModal = ({
   const getComments = async (id, signal) => {
     try {
       apiPost.getSingle(`comments/${id}`, signal, "").then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.status === "200") {
           setComments(res.message);
         }
@@ -264,6 +266,18 @@ const PostModal = ({
         aria-describedby="use-this-to-post"
       >
         <Box sx={{ ...customModalStyle }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
+          >
+            <IconButton size="small" onClick={() => setOpen(false)}>
+              <AiOutlineClose />
+            </IconButton>
+          </Box>
+
           <Stack spacing={2} direction="row">
             <img
               src={`https://avatars.dicebear.com/api/avataaars/:seed.svg?${imageUrl}&r=10&size=50`}

@@ -18,6 +18,7 @@ import {
   ListItemText,
   Modal,
 } from "@mui/material";
+import { customModalStyle } from "../components/CustomModal";
 
 const SideNav = () => {
   const links = [
@@ -83,19 +84,6 @@ export const LogoutModal = ({ open, setOpen }) => {
     navigate("/");
   };
 
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
-  };
-
   return (
     <Modal
       open={open}
@@ -103,10 +91,10 @@ export const LogoutModal = ({ open, setOpen }) => {
       aria-labelledby="logout-modal"
       aria-describedby="use-this-to-logout"
     >
-      <Box sx={{ ...style, width: 400 }}>
+      <Box sx={{ ...customModalStyle, width: 400 }}>
         <h2 id="parent-modal-title">Important !!</h2>
         <p id="parent-modal-description">You sure want to logout ? </p>
-        <Button onClick={logout} variant="contained">
+        <Button onClick={logout} variant="contained" color="info">
           Logout
         </Button>
       </Box>

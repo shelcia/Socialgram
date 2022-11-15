@@ -4,9 +4,10 @@ import Loading from "../../components/CustomLoading";
 import { apiPost } from "../../services/models/postModel";
 import {
   Box,
-  Chip,
+  Button,
   Divider,
   IconButton,
+  Link,
   Stack,
   Typography,
 } from "@mui/material";
@@ -113,40 +114,39 @@ const MyPosts = () => {
               </Typography>
 
               <Stack direction="row" spacing={2}>
-                <Typography variant="p" component="p" sx={{ mb: 2 }}>
-                  <IconButton aria-label="location" size="small">
-                    <FiNavigation />
-                  </IconButton>
-                  {profile?.location}
-                </Typography>
+                {profile?.location && profile?.location !== "" && (
+                  <Typography variant="p" component="p" sx={{ mb: 2 }}>
+                    <IconButton aria-label="location" size="small" color="info">
+                      <FiNavigation size={"0.8rem"} />
+                    </IconButton>
+                    {profile?.location}
+                  </Typography>
+                )}
 
-                <Typography variant="p" component="p" sx={{ mb: 2 }}>
-                  <IconButton aria-label="website" size="small">
-                    <FiGlobe />
-                  </IconButton>
-                  {profile?.website}
-                </Typography>
+                {profile?.website && profile?.website !== "" && (
+                  <Typography variant="p" component="p" sx={{ mb: 2 }}>
+                    <IconButton aria-label="website" size="small" color="info">
+                      <FiGlobe size={"0.8rem"} />
+                    </IconButton>
+                    <Link target="_blank">{profile?.website}</Link>
+                  </Typography>
+                )}
               </Stack>
 
               <Stack direction="row" spacing={3}>
                 <Stack direction="row" spacing={0}>
-                  <Chip label="Followers" color="info" />
-                  <Chip label={profile.followers.length} color="info" />
+                  <Button variant="contained" color="info">
+                    {profile.followers.length} followers
+                  </Button>
                 </Stack>
                 <Stack direction="row" spacing={0}>
-                  <Chip label="Following" color="info" variant="outlined" />
-                  <Chip
-                    label={profile.followers.length}
-                    color="info"
-                    variant="outlined"
-                  />
+                  <Button variant="outlined" color="info">
+                    {profile.following.length} following
+                  </Button>
                 </Stack>
               </Stack>
             </Box>
           </Box>
-          {/* <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
-            My Posts
-          </Typography> */}
           <Divider sx={{ my: 3 }} />
           {posts?.length === 0 && (
             <Box className="text-center">
