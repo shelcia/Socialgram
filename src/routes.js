@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import AuthGuard from "./common/AuthGuard";
-import Loading from "./components/Loading";
+import Loading from "./components/CustomLoading";
 import AuthLayout from "./layout/AuthLayout";
 import DashboardLayout from "./layout/DashboardLayout";
 

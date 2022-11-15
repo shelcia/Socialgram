@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Loading from "../../components/Loading";
+import Loading from "../../components/CustomLoading";
 import { apiAuth } from "../../services/models/authModel";
 import toast from "react-hot-toast";
 import { Box, Button, TextField, Typography } from "@mui/material";

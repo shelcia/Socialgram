@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { AddPost, LoadPost } from "../../data/actions";
-import { apiPlain } from "../../services/models/plainModel";
 import Post from "./components/Post";
-import Loading from "../../components/Loading";
+import Loading from "../../components/CustomLoading";
 
 import { Box, Button, Typography } from "@mui/material";
 import { apiPost } from "../../services/models/postModel";
@@ -13,7 +12,10 @@ import SunEditor from "suneditor-react";
 import "suneditor/dist/css/suneditor.min.css"; // I
 
 const Feed = () => {
+  const userid = localStorage.getItem("SocialGramUserId");
+
   // const postText = useRef("");
+  const [isLoading, setIsLoading] = useState(true);
   const [post, setPost] = useState("");
   const [commentText, setCommentText] = useState("");
 
@@ -24,13 +26,15 @@ const Feed = () => {
   const getPost = async (dispatch, signal) => {
     try {
       apiPost.getSingle(``, signal, "").then((res) => {
-        console.log(res);
+        // console.log(res);
         if (Array.isArray(res.message) && res.status === "200") {
           dispatch(LoadPost(res.message));
+          setIsLoading(false);
         }
       });
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
 
@@ -47,22 +51,24 @@ const Feed = () => {
   };
 
   const addPost = async (event) => {
-    addingNotif();
     event.preventDefault();
-    const userid = localStorage.getItem("SocialGramUserId");
-    const body = {
-      id: Date.now(),
-      userId: userid,
-      title: post,
-      likes: 0,
-      dislikes: 0,
-      hearts: 0,
-      comments: [],
-    };
-    if (body.title === "") {
+    if (post === "") {
       toast.error("Post cannot be empty🥺🥺!");
       return;
     }
+    addingNotif();
+
+    const body = {
+      id: Date.now(),
+      userId: userid,
+      ownerId: userid,
+      title: post,
+      fires: 0,
+      fired: [],
+      comments: [],
+    };
+
+    // console.log(body);
 
     apiPost.post(body, "").then(() => {
       dispatch(AddPost(body));
@@ -72,6 +78,7 @@ const Feed = () => {
   };
 
   const addComment = (id, value) => {
+    // user id , post id, comment content
     if (!commentText || commentText === "") {
       toast.error("Comment cannot be empty 🥺🥺!");
       return;
@@ -80,46 +87,53 @@ const Feed = () => {
 
     const commentId = Date.now();
     const response = {
-      comments: value.concat({
-        id: commentId,
-        comments: commentText,
-      }),
+      commentId: commentId,
+      userId: userid,
+      comments: commentText,
     };
+    // const response = {
+    //   comments: value.concat({
+    //     id: commentId,
+    //     comments: commentText,
+    //   }),
+    // };
     setCommentText("");
-    apiPost.put(response, `comments/${id}`).then((res) => {
-      //   console.log(res);
-      getPost(dispatch, undefined).catch(() =>
-        toast.error('Oops! The comment couldn"t be added 🥺🥺!!')
-      );
-    });
+    apiPost
+      .put(response, `comments/${id}`)
+      .then((res) => {
+        console.log(res);
+        getPost(dispatch, undefined);
+      })
+      .catch(() => toast.error('Oops! The comment couldn"t be added 🥺🥺!!'));
   };
 
-  const addLikes = (id, value) => {
+  const addFires = (id, value) => {
     addingNotif();
     const response = {
-      likes: value + 1,
+      userId: userid,
     };
-    apiPlain
-      .put(response, `likes/${id}`)
+    apiPost
+      .put(response, `fires/${id}`)
       .then((res) => {
         // console.log(res);
         getPost(dispatch, undefined);
       })
-      .catch(() => toast.error('Oops! The like couldn"t be added 🥺🥺!!'));
+      .catch(() => toast.error('Oops! The fire couldn"t be added 🥺🥺!!'));
   };
 
   return (
     <React.Fragment>
       <InputForm addPost={addPost} setPost={setPost} />
       <div style={{ flexDirection: "column-reverse" }} className="d-flex">
-        {allPost.length === 0 ? (
+        {isLoading ? (
           <Loading />
         ) : (
           allPost?.map((post) => (
             <Post
               key={post.id}
+              userid={userid}
               post={post}
-              addLikes={addLikes}
+              addFires={addFires}
               addComment={addComment}
               commentText={commentText}
               setCommentText={setCommentText}

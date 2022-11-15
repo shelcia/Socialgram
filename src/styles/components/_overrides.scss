@@ -12,22 +12,26 @@
 
 .sun-editor .se-toolbar {
   background-color: $background !important;
-  outline: $border !important;
+  // outline: $border !important;
+  outline: none !important;
   color: $textColor !important;
 }
 .sun-editor button {
   color: $textColor !important;
-  outline: $border !important;
+  // outline: $border !important;
+  outline: none !important;
 }
 .sun-editor .se-wrapper .se-wrapper-inner,
 .se-resizing-bar .sun-editor-common,
 .sun-editor .se-resizing-bar {
   background-color: $background !important;
-  outline: $border !important;
+  // outline: $border !important;
+  outline: none !important;
 }
 
 .sun-editor .se-btn-module-border {
-  border: $border !important;
+  // border: $border !important;
+  border: none !important;
 }
 
 .sun-editor-editable,
@@ -45,4 +49,9 @@
 
 .btn.btn-secondary.dropdown-toggle {
   background-color: transparent;
+}
+
+.sun-editor .se-btn:enabled:focus,
+.sun-editor .se-btn:enabled:hover {
+  background-color: #a5a5a56c !important;
 }

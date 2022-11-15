@@ -151,7 +151,11 @@ const MyProfile = () => {
       />
       <Box className="text-center" sx={{ mt: 3 }}>
         {!isEdit ? (
-          <Button variant="contained" onClick={() => setIsEdit(true)}>
+          <Button
+            variant="contained"
+            onClick={() => setIsEdit(true)}
+            sx={{ mb: 4 }}
+          >
             Edit Profile Details
           </Button>
         ) : (
@@ -162,7 +166,7 @@ const MyProfile = () => {
                 editUser(event);
                 setIsEdit(false);
               }}
-              sx={{ mr: 1 }}
+              sx={{ mr: 1, mb: 4 }}
             >
               Confirm
             </Button>
@@ -172,7 +176,7 @@ const MyProfile = () => {
               onClick={(event) => {
                 setIsEdit(false);
               }}
-              sx={{ ml: 1 }}
+              sx={{ ml: 1, mb: 4 }}
             >
               Cancel
             </Button>

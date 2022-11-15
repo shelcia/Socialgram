@@ -4,7 +4,13 @@ import { Box, Link, List, ListItem, Typography } from "@mui/material";
 const Adds = () => {
   return (
     <React.Fragment>
-      <Box style={{ height: "86vh", overflowY: "auto", wordWrap: "wrap" }}>
+      <Box
+        style={{
+          // height: "86vh",
+          overflowY: "auto",
+          wordWrap: "wrap",
+        }}
+      >
         <Typography component="h2" variant="h5" sx={{ my: 4 }}>
           About Project
         </Typography>

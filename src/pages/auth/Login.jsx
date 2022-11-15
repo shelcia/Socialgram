@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { PartLoader } from "../../components/Loading";
+import { PartLoader } from "../../components/CustomLoading";
 import { apiAuth } from "../../services/models/authModel";
 import toast from "react-hot-toast";
 import { Box, Button, TextField, Typography } from "@mui/material";
@@ -27,7 +27,7 @@ const Login = () => {
       .post(body, "signin")
       .then((res) => {
         setIsLoading(false);
-        console.log(res);
+        // console.log(res);
         if (res.status === "400") {
           toast.error(res.message);
           setIsLoading(false);
@@ -36,7 +36,13 @@ const Login = () => {
           setIsLoading(false);
         } else if (res.status === "200") {
           localStorage.setItem(`${PREFIX}Token`, res.message.token);
-          localStorage.setItem(`${PREFIX}UserId`, res.message.userId);
+          localStorage.setItem(`${PREFIX}UserId`, res.message?.userId);
+          localStorage.setItem(`${PREFIX}Fname`, res.message?.fname);
+          localStorage.setItem(`${PREFIX}Lname`, res.message?.lname);
+          localStorage.setItem(
+            `${PREFIX}Avatar`,
+            JSON.stringify(res.message?.avatar)
+          );
           navigate("/homepage");
         } else {
           setIsLoading(false);

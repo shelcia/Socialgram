@@ -95,8 +95,8 @@ const DashboardLayout = ({ children }, props) => {
           >
             <SideNav />
           </Box>
-          <Box className="col-md-8">{children}</Box>
-          <Box className="col-md-2">
+          <Box className="col-md-7">{children}</Box>
+          <Box className="col-md-3">
             <Adds />
           </Box>
         </Box>

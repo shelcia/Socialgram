@@ -19,9 +19,7 @@ $hover: #007bff4c;
 * {
   font-family: $font;
 }
-// p {
-//   font-style: italic;
-// }
+
 a,
 a:visited,
 a:any-link {
@@ -44,6 +42,7 @@ hr {
 .bg-dark {
   background-color: #343a4000 !important;
 }
+
 .sidenav {
   li span {
     font-weight: 600;
@@ -100,9 +99,19 @@ hr {
     width: 16.6666666667%;
   }
 
+  .col-md-3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+
   .col-md-4 {
     flex: 0 0 auto;
-    width: 33.33333333%;
+    width: 33.3333333333%;
+  }
+
+  .col-md-7 {
+    flex: 0 0 auto;
+    width: 58.3333333333%;
   }
 
   .col-md-8 {
@@ -111,121 +120,14 @@ hr {
   }
 }
 
-// .navbar-dark,
-// .table > :not(caption) > * > * {
-//   background-color: $background !important;
-// }
-
-// @media (min-width: 576px) {
-//   .container.outside {
-//     max-width: 95% !important;
-//     .col-sm-6 {
-//       height: 86vh;
-//       overflow-y: auto;
-//     }
-//   }
-// }
-// Form
-// .container .row {
-//   .formlink {
-//     color: $primaryColor;
-//     cursor: pointer;
-//     text-decoration: underline;
-//   }
-//   // sidenav
-//   .sidenav ul .list-group-item {
-//     background-color: $background !important;
-//     color: $textColor !important;
-//     border: none;
-//     padding: 0px;
-//     i.fas {
-//       padding-right: 2rem;
-//       height: 1rem;
-//     }
-//     a {
-//       color: $textColor !important;
-//       display: inline-block;
-//       padding: 0.8rem 1.25rem;
-//       cursor: pointer;
-//       font-size: 1.3rem;
-//       border-radius: 50ex;
-//       // font-style: italic;
-//       &:hover {
-//         background-color: $hover;
-//       }
-//     }
-//     a.active {
-//       color: $primaryColor !important;
-//     }
-//   }
-//   .col-sm-6 {
-//     .button-container {
-//       width: 100%;
-//     }
-//     .container {
-//       background-color: $background;
-//       .icon-container {
-//         // @include displayFlex(left, center);
-//         .icons {
-//           display: inline;
-//           padding: 0.5rem 1rem;
-//           cursor: pointer;
-//           border-radius: 50ex;
-//           &:hover {
-//             background-color: $hover;
-//             color: $primaryColor;
-//           }
-//         }
-//         .icons.hearts {
-//           &:hover {
-//             background-color: rgba(211, 0, 0, 0.249);
-//             color: rgb(211, 0, 0);
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
 .post {
   // border: $border;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
   word-break: break-all;
 }
 
-// .form-control {
-//   background-color: $background;
-//   border: $border;
-//   color: $textColor;
-//   &:focus {
-//     background-color: $background;
-//     border: $border;
-//     color: $textColor;
-//   }
-// }
-
-// .table-dark tbody tr {
-//   border-bottom: $border;
-// }
-
 iframe {
   border: 0;
   max-width: 100%;
   height: auto;
 }
-
-// @media only screen and (max-width: 576px) {
-//   .row {
-//     margin-right: 0;
-//     margin-left: 0;
-//   }
-//   .sidenav {
-//     display: none;
-//   }
-// }
-
-// @media only screen and (min-width: 576px) {
-//   .btn.btn-secondary.dropdown-toggle {
-//     display: none;
-//   }
-// }

@@ -20,6 +20,7 @@
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
     "react-scripts": "^5.0.1",
+    "react-share": "^4.4.1",
     "redux": "^4.1.2",
     "suneditor": "^2.44.3",
     "suneditor-react": "^3.4.1"

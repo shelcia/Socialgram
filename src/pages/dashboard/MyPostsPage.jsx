@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import parse from "html-react-parser";
-// import { FaThumbsUp, FaThumbsDown, FaHeart } from "react-icons/fa";
-import Loading from "../../components/Loading";
+// import parse from "html-react-parser";
+import Loading from "../../components/CustomLoading";
 import { apiPost } from "../../services/models/postModel";
 import {
-  Badge,
   Box,
   Chip,
   Divider,
@@ -14,8 +12,11 @@ import {
 } from "@mui/material";
 import { apiUser } from "../../services/models/userModal";
 import { FiNavigation, FiGlobe } from "react-icons/fi";
+import Post from "./components/Post";
 
 const MyPosts = () => {
+  const userid = localStorage.getItem("SocialGramUserId");
+
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -46,26 +47,26 @@ const MyPosts = () => {
     },
   });
 
+  const getMyPost = (signal) => {
+    const id = localStorage.getItem("SocialGramUserId");
+    // console.log("jfkjfk");
+    apiPost.getSingle(`myposts/${id}`, signal).then((response) => {
+      console.log(response);
+      setPosts(response.message);
+      setLoading(false);
+    });
+  };
+
   useEffect(() => {
     const ac = new AbortController();
-
-    const getMyPost = () => {
-      const id = localStorage.getItem("SocialGramUserId");
-      apiPost.getSingle(`myposts/${id}`).then((response) => {
-        // console.log(response);
-        setPosts(response.message);
-        setLoading(false);
-      });
-    };
-
-    getMyPost();
+    getMyPost(ac.signal);
     return () => ac.abort();
   }, []);
 
   const fetchProfile = (signal) => {
     const userid = localStorage.getItem("SocialGramUserId");
     apiUser.getSingle(`${userid}`, signal).then((res) => {
-      console.log(res);
+      // console.log(res);
       setProfile(res.message);
       if (res.message?.avatar?.facialHair) {
         setImageUrl(
@@ -76,6 +77,7 @@ const MyPosts = () => {
           `style=${res.message?.avatar?.avatarStyle}&top=${res.message?.avatar?.top}&accessories=${res.message?.avatar?.accessories}&hairColor=${res.message?.avatar?.hairColor}&clothes=${res.message?.avatar?.clothes}&eyes=${res.message?.avatar?.eyes}&eyebrow=${res.message?.avatar?.eyebrow}&mouth=${res.message?.avatar?.mouth}&skin=${res.message?.avatar?.skin}`
         );
       }
+      setLoading(false);
     });
   };
 
@@ -155,7 +157,7 @@ const MyPosts = () => {
           )}
           <Box style={{ flexDirection: "column-reverse" }} className="d-flex">
             {posts?.map((post) => (
-              <Post post={post} key={post.id} />
+              <Post userId={userid} post={post} key={post.id} />
             ))}
           </Box>
         </>
@@ -166,35 +168,35 @@ const MyPosts = () => {
 
 export default MyPosts;
 
-const Post = ({ post }) => {
-  return (
-    <Box key={post.id} className="container bg-dark mt-3 mb-3 p-3 post rounded">
-      <Typography variant="h5" component="p">
-        {parse(post.title)}
-      </Typography>
-      {/* <div className="icon-container d-flex">
-        <div className="icons" title="like">
-          <FaThumbsUp className="pe-1" />
-          <span>{post.likes}</span>
-        </div>
-        <div className="icons" title="dislike">
-          <FaThumbsDown className="pe-1" />
-          <span>{post.dislikes}</span>
-        </div>
-        <div className="icons hearts" title="heart">
-          <FaHeart className="pe-1" />
-          <span>{post.hearts}</span>
-        </div>
-      </div> */}
+// const Post = ({ post }) => {
+//   return (
+//     <Box key={post.id} className="container bg-dark mt-3 mb-3 p-3 post rounded">
+//       <Typography variant="h5" component="p">
+//         {parse(post.title)}
+//       </Typography>
+//       {/* <div className="icon-container d-flex">
+//         <div className="icons" title="like">
+//           <FaThumbsUp className="pe-1" />
+//           <span>{post.likes}</span>
+//         </div>
+//         <div className="icons" title="dislike">
+//           <FaThumbsDown className="pe-1" />
+//           <span>{post.dislikes}</span>
+//         </div>
+//         <div className="icons hearts" title="heart">
+//           <FaHeart className="pe-1" />
+//           <span>{post.hearts}</span>
+//         </div>
+//       </div> */}
 
-      {post.comments.map((comment) => (
-        <Box
-          key={comment.id}
-          className="container p-3 mb-2 shadow-lg rounded-lg"
-        >
-          {parse(comment.comments)}
-        </Box>
-      ))}
-    </Box>
-  );
-};
+//       {post.comments.map((comment) => (
+//         <Box
+//           key={comment.id}
+//           className="container p-3 mb-2 shadow-lg rounded-lg"
+//         >
+//           {parse(comment.comments)}
+//         </Box>
+//       ))}
+//     </Box>
+//   );
+// };
