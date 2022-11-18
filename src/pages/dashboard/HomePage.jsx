@@ -91,12 +91,6 @@ const Feed = () => {
       userId: userid,
       comments: commentText,
     };
-    // const response = {
-    //   comments: value.concat({
-    //     id: commentId,
-    //     comments: commentText,
-    //   }),
-    // };
     setCommentText("");
     apiPost
       .put(response, `comments/${id}`)
@@ -107,7 +101,7 @@ const Feed = () => {
       .catch(() => toast.error('Oops! The comment couldn"t be added 🥺🥺!!'));
   };
 
-  const addFires = (id, value) => {
+  const handleFires = (id) => {
     addingNotif();
     const response = {
       userId: userid,
@@ -124,7 +118,7 @@ const Feed = () => {
   return (
     <React.Fragment>
       <InputForm addPost={addPost} setPost={setPost} />
-      <div style={{ flexDirection: "column" }} className="d-flex">
+      <Box sx={{ flexDirection: "column", display: "flex" }}>
         {isLoading ? (
           <Loading />
         ) : (
@@ -133,14 +127,14 @@ const Feed = () => {
               key={post.id}
               userid={userid}
               post={post}
-              addFires={addFires}
+              handleFires={handleFires}
               addComment={addComment}
               commentText={commentText}
               setCommentText={setCommentText}
             />
           ))
         )}
-      </div>
+      </Box>
     </React.Fragment>
   );
 };

@@ -18,23 +18,16 @@ export const AddComment = (newAllPost) => {
   };
 };
 
-export const AddLike = (newAllPost) => {
-  return {
-    type: `ADD_LIKE`,
-    result: newAllPost,
-  };
-};
-
-export const AddDislike = (newAllPost) => {
-  return {
-    type: `ADD_DISLIKE`,
-    result: newAllPost,
-  };
-};
-
 export const AddHearts = (newAllPost) => {
   return {
     type: `ADD_HEART`,
     result: newAllPost,
+  };
+};
+
+export const LoadProfile = (result) => {
+  return {
+    type: `LOAD_POST`,
+    result: result,
   };
 };

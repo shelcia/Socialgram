@@ -1,11 +1,11 @@
 import postReducer from "./postReducer";
-import dummyReducer from "./DummyReducer";
+import profileReducer from "./profileReducer";
 
 import { combineReducers } from "redux";
 
 const rootReducers = combineReducers({
   posts: postReducer,
-  dummy: dummyReducer,
+  profile: profileReducer,
 });
 
 export default rootReducers;

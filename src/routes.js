@@ -22,6 +22,9 @@ const MyPostsPage = Loadable(
 );
 const SettingsPage = Loadable(lazy(() => import("./pages/dashboard/Settings")));
 
+const PostPage = Loadable(lazy(() => import("./pages/dashboard/PostPage")));
+const UserPage = Loadable(lazy(() => import("./pages/dashboard/ProfilePage")));
+
 const routes = [
   {
     path: "",
@@ -70,6 +73,14 @@ const routes = [
       {
         path: "settings",
         element: <SettingsPage />,
+      },
+      {
+        path: "post/:id",
+        element: <PostPage />,
+      },
+      {
+        path: "user/:id",
+        element: <UserPage />,
       },
     ],
   },

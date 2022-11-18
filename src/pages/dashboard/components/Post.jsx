@@ -7,11 +7,11 @@ import {
   Divider,
   IconButton,
   Modal,
-  // IconButton,
   Stack,
-  // TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import { BiComment } from "react-icons/bi";
 import {
   AiOutlineFire,
@@ -28,11 +28,13 @@ import {
 import { apiPost } from "../../../services/models/postModel";
 import { customModalStyle } from "../../../components/CustomModal";
 import { CommentTextField } from "../../../components/CustomTextField";
+import { avatarGen } from "../../../helpers/avatarGenerator";
+import { orange } from "@mui/material/colors";
 
 const Post = ({
   userid,
   post,
-  addFires,
+  handleFires,
   addComment,
   commentText,
   setCommentText,
@@ -43,21 +45,30 @@ const Post = ({
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
-    if (post?.owner?.avatar?.facialHair) {
-      setImageUrl(
-        `style=${post?.owner?.avatar?.avatarStyle}&top=${post?.owner?.avatar?.top}&accessories=${post?.owner?.avatar?.accessories}&hairColor=${post?.owner?.avatar?.hairColor}&facialHair=${post?.owner?.avatar?.facialHair}&clothes=${post?.owner?.avatar?.clothes}&eyes=${post?.owner?.avatar?.eyes}&eyebrow=${post?.owner?.avatar?.eyebrow}&mouth=${post?.owner?.avatar?.mouth}&skin=${post?.owner?.avatar?.skin}`
-      );
-    } else {
-      setImageUrl(
-        `style=${post?.owner?.avatar?.avatarStyle}&top=${post?.owner?.avatar?.top}&accessories=${post?.owner?.avatar?.accessories}&hairColor=${post?.owner?.avatar?.hairColor}&clothes=${post?.owner?.avatar?.clothes}&eyes=${post?.owner?.avatar?.eyes}&eyebrow=${post?.owner?.avatar?.eyebrow}&mouth=${post?.owner?.avatar?.mouth}&skin=${post?.owner?.avatar?.skin}`
-      );
-    }
+    setImageUrl(avatarGen(post?.owner?.avatar));
   }, [post]);
+
+  const navigate = useNavigate();
+
+  // console.log(post);
 
   return (
     <React.Fragment>
-      <Box key={post.id} className="container mt-3 mb-3 p-3 post rounded w-100">
-        <Stack spacing={2} direction="row">
+      <Box
+        className="container mt-3 mb-3 p-3 post rounded w-100"
+        name="post"
+        onClick={(e) => {
+          if (e.target.name === "post") {
+            navigate(`/homepage/post/${post._id}`);
+          }
+        }}
+      >
+        <Stack
+          spacing={2}
+          direction="row"
+          component={Link}
+          to={`/homepage/user/${post.ownerId}`}
+        >
           <img
             src={`https://avatars.dicebear.com/api/avataaars/:seed.svg?${imageUrl}&r=10&size=50`}
             alt="avatar"
@@ -79,9 +90,7 @@ const Post = ({
           </Stack>
         </Stack>
 
-        {/* <Typography variant="h5" component="p"> */}
         {parse(post.title)}
-        {/* </Typography> */}
 
         <Divider />
         <IconButtons
@@ -89,7 +98,7 @@ const Post = ({
           post={post}
           showComment={showComment}
           setShowComment={setShowComment}
-          addFires={addFires}
+          handleFires={handleFires}
         />
 
         {showComment && (
@@ -116,7 +125,12 @@ const Post = ({
           </Stack>
         )}
         {post.comments.length !== 0 && (
-          <Button color="info" onClick={() => setOpen(true)} size="small">
+          <Button
+            color="info"
+            onClick={() => setOpen(true)}
+            size="small"
+            sx={{ zIndex: 3 }}
+          >
             Show Comments
             <Box
               sx={{
@@ -131,15 +145,6 @@ const Post = ({
             >
               {post.comments.length}
             </Box>
-            {/* <Chip
-              // label={post.comments.length}
-              color="primary"
-              size="small"
-              variant="contained"
-              sx={{ p: 0.3, height: "none", ml: 2 }}
-            >
-              {post.comments.length}
-            </Chip> */}
           </Button>
         )}
 
@@ -151,21 +156,8 @@ const Post = ({
           imageUrl={imageUrl}
           // showComment={showComment}
           // setShowComment={setShowComment}
-          addFires={addFires}
+          handleFires={handleFires}
         />
-        {/* <Box
-          style={{ maxHeight: "20vh", overflowY: "auto" }}
-          className="d-flex flex-column-reverse"
-        >
-          {post.comments.map((comment) => (
-            <Box
-              key={comment.commentId}
-              className="p-3 mb-2 shadow-lg rounded-lg w-100"
-            >
-              {parse(comment.comments)}
-            </Box>
-          ))}
-        </Box> */}
       </Box>
     </React.Fragment>
   );
@@ -178,7 +170,7 @@ const IconButtons = ({
   post,
   showComment,
   setShowComment = () => {},
-  addFires = () => {},
+  handleFires = () => {},
 }) => {
   const iconSize = "1.1rem";
   const iconBoxClass =
@@ -199,29 +191,36 @@ const IconButtons = ({
         </PurpleButton>
       </Box>
       <Box className={iconBoxClass}>
-        <OrangeButton
-          sx={{ borderRadius: "50ex" }}
-          disabled={post.fired.includes(userid)}
-        >
-          <AiOutlineFire size={iconSize} onClick={() => addFires(post._id)} />
+        <OrangeButton sx={{ borderRadius: "50ex" }}>
+          <AiOutlineFire
+            size={iconSize}
+            onClick={() => handleFires(post._id)}
+            style={post.fired.includes(userid) ? { color: orange[800] } : {}}
+          />
           <Typography
             variant="overline"
             component="p"
             sx={{ display: "inline", ml: 1.5, mt: 0.2 }}
+            style={post.fired.includes(userid) ? { color: orange[800] } : {}}
           >
             {post.fires}
           </Typography>
         </OrangeButton>
       </Box>
       <Box className={iconBoxClass}>
-        <GreenButton>
-          <AiOutlineRetweet size={iconSize} />
-        </GreenButton>
+        <Tooltip title="Not Implemented yet !">
+          <GreenButton>
+            <AiOutlineRetweet size={iconSize} />
+          </GreenButton>
+        </Tooltip>
       </Box>
+
       <Box className={iconBoxClass}>
-        <BlueButton>
-          <AiOutlineShareAlt size={iconSize} />
-        </BlueButton>
+        <Tooltip title="Not Implemented yet !">
+          <BlueButton>
+            <AiOutlineShareAlt size={iconSize} />
+          </BlueButton>
+        </Tooltip>
       </Box>
     </Stack>
   );
@@ -233,7 +232,7 @@ const PostModal = ({
   userid,
   post,
   imageUrl,
-  addFires = () => {},
+  handleFires = () => {},
 }) => {
   const [comments, setComments] = useState([]);
 
@@ -304,7 +303,7 @@ const PostModal = ({
 
           <Divider />
           {/* <IconButtons userid={userid} post={post} addFires={addFires} /> */}
-          <Divider />
+          {/* <Divider /> */}
 
           <Box
             style={{ maxHeight: "20vh", overflowY: "auto" }}
@@ -324,15 +323,7 @@ const CommentBox = ({ comment }) => {
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
-    if (comment?.avatar?.facialHair) {
-      setImageUrl(
-        `style=${comment?.avatar?.avatarStyle}&top=${comment?.avatar?.top}&accessories=${comment?.avatar?.accessories}&hairColor=${comment?.avatar?.hairColor}&facialHair=${comment?.avatar?.facialHair}&clothes=${comment?.avatar?.clothes}&eyes=${comment?.avatar?.eyes}&eyebrow=${comment?.avatar?.eyebrow}&mouth=${comment?.avatar?.mouth}&skin=${comment?.avatar?.skin}`
-      );
-    } else {
-      setImageUrl(
-        `style=${comment.avatar?.avatarStyle}&top=${comment?.avatar?.top}&accessories=${comment.avatar?.accessories}&hairColor=${comment?.avatar?.hairColor}&clothes=${comment?.avatar?.clothes}&eyes=${comment?.avatar?.eyes}&eyebrow=${comment?.avatar?.eyebrow}&mouth=${comment?.avatar?.mouth}&skin=${comment?.avatar?.skin}`
-      );
-    }
+    setImageUrl(avatarGen(comment?.avatar));
   }, [comment]);
 
   return (

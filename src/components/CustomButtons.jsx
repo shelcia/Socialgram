@@ -10,6 +10,7 @@ export const PurpleButton = styled(Button)(({ theme }) => ({
   padding: 8,
   "&:hover": {
     color: deepPurple[700],
+    padding: "8px 14px",
   },
 }));
 
@@ -21,6 +22,7 @@ export const BlueButton = styled(Button)(({ theme }) => ({
   padding: 8,
   "&:hover": {
     color: blue[700],
+    padding: "8px 14px",
   },
 }));
 
@@ -30,6 +32,7 @@ export const GreenButton = styled(Button)(({ theme }) => ({
   padding: 8,
   "&:hover": {
     color: green[700],
+    padding: "8px 14px",
   },
 }));
 
@@ -39,6 +42,8 @@ export const OrangeButton = styled(Button)(({ theme }) => ({
   padding: 8,
   "&:hover": {
     color: orange[800],
+    backgroundColor: "rgba(239, 108, 0, 0.08)",
+    padding: "8px 14px",
   },
   "&:disabled": {
     color: orange[800],

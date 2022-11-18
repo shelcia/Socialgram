@@ -15,8 +15,12 @@ import {
   Typography,
 } from "@mui/material";
 import { avatarLabels } from "../../context/data/Labels";
+import { avatarGen } from "../../helpers/avatarGenerator";
+import Loading from "../../components/CustomLoading";
 
 const MyProfile = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const [isEdit, setIsEdit] = useState(false);
 
   const [imageUrl, setImageUrl] = useState("");
@@ -64,15 +68,13 @@ const MyProfile = () => {
   const fetchProfile = (signal) => {
     const userid = localStorage.getItem("SocialGramUserId");
     apiUser.getSingle(`${userid}`, signal).then((res) => {
-      setProfile(res.message);
-      if (res.message?.avatar?.facialHair) {
-        setImageUrl(
-          `style=${res.message?.avatar?.avatarStyle}&top=${res.message?.avatar?.top}&accessories=${res.message?.avatar?.accessories}&hairColor=${res.message?.avatar?.hairColor}&facialHair=${res.message?.avatar?.facialHair}&clothes=${res.message?.avatar?.clothes}&eyes=${res.message?.avatar?.eyes}&eyebrow=${res.message?.avatar?.eyebrow}&mouth=${res.message?.avatar?.mouth}&skin=${res.message?.avatar?.skin}`
-        );
+      if (res.status === "200") {
+        setProfile(res.message);
+        setImageUrl(avatarGen(res?.message?.avatar));
+        setIsLoading(false);
       } else {
-        setImageUrl(
-          `style=${res.message?.avatar?.avatarStyle}&top=${res.message?.avatar?.top}&accessories=${res.message?.avatar?.accessories}&hairColor=${res.message?.avatar?.hairColor}&clothes=${res.message?.avatar?.clothes}&eyes=${res.message?.avatar?.eyes}&eyebrow=${res.message?.avatar?.eyebrow}&mouth=${res.message?.avatar?.mouth}&skin=${res.message?.avatar?.skin}`
-        );
+        toast.error("Error");
+        setIsLoading(false);
       }
     });
   };
@@ -102,13 +104,14 @@ const MyProfile = () => {
     });
   };
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <React.Fragment>
       <Typography variant="h3" component="h1" sx={{ mb: 2 }}>
         Profile
       </Typography>
       <Divider sx={{ mb: 1 }} />
-      {/* <hr /> */}
       <Box className="text-center">
         {!isEdit ? (
           <img
