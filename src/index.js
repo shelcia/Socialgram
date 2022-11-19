@@ -5,6 +5,7 @@ import rootReducers from "./data/reducers";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import "@fontsource/poppins";
 
 const store = createStore(
   rootReducers,
