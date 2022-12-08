@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
+  Modal,
   Table,
   TableBody,
   TableCell,
@@ -8,13 +9,58 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { apiUser } from "../../services/models/userModal";
+import toast from "react-hot-toast";
+import { Box } from "@mui/system";
+import { customModalStyle } from "../../components/CustomModal";
 
 const Settings = () => {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   const logout = () => {
     localStorage.clear();
     navigate("/");
+  };
+
+  const DeleteModal = ({ open, setOpen }) => {
+    const deleteUser = () => {
+      setOpen(false);
+      const userid = localStorage.getItem("SocialGramUserId");
+      apiUser.remove(`${userid}`, "").then((res) => {
+        if (res.status === "200") {
+          toast.success("Your account has been successfully deleted.");
+          logout();
+        } else {
+          toast.error("Error");
+        }
+      });
+    };
+
+    return (
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby='deleteUser-modal'
+        aria-describedby='use-this-to-deleteUser'>
+        <Box sx={{ ...customModalStyle, width: 400 }}>
+          <h2 id='parent-modal-title'>Important !!</h2>
+          <p id='parent-modal-description'>
+            Do you really want to delete your account ?
+          </p>
+          <Button onClick={deleteUser} variant='contained' color='error'>
+            Yes
+          </Button>
+          <Button
+            style={{ margin: "0 10%" }}
+            onClick={() => setOpen(false)}
+            variant='contained'
+            color='info'>
+            No
+          </Button>
+        </Box>
+      </Modal>
+    );
   };
 
   return (
@@ -48,23 +94,22 @@ const Settings = () => {
               </Typography>
               <Typography variant="p" component="p">
                 Your account will be deleted. You cannot retrieve your account
-                whatsoever. All your details will be deleted forever. (not
-                implemented yet)
+                whatsoever. All your details will be deleted forever.
               </Typography>
             </TableCell>
             <TableCell>
               <Button
                 variant="contained"
                 color="error"
-                onClick={() => logout()}
-                fullWidth
-              >
+                onClick={() => setOpen(true)}
+                fullWidth>
                 Delete Account
               </Button>
             </TableCell>
           </TableRow>
         </TableBody>
       </Table>
+      <DeleteModal open={open} setOpen={setOpen} />
     </React.Fragment>
   );
 };
