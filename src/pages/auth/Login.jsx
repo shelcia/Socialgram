@@ -8,6 +8,17 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/;
+  const emailInput = document.getElementById("email");
+  
+  useEffect(() => {
+    if (emailRegex.test(email)) {
+      emailInput?.setCustomValidity("");
+    } else {
+      emailInput?.setCustomValidity("Please enter a valid email address.");
+    }
+  }, [email]);
+
 
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -67,14 +78,16 @@ const Login = () => {
           <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
             Login
           </Typography>
-          <form>
+          <form onSubmit={onSubmit}>
             <TextField
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               label="Email"
+              id="email"
               fullWidth
               size="small"
               sx={{ mb: 2 }}
+              required
             />
             <TextField
               value={password}
@@ -83,9 +96,15 @@ const Login = () => {
               label="Password"
               fullWidth
               size="small"
+              InputProps={{
+                inputProps: {
+                  minLength: 6,
+                },
+              }}
+              required
             />
             <Box className="text-center mt-4">
-              <Button variant="contained" type="submit" onClick={onSubmit}>
+              <Button variant="contained" type="submit">
                 Login
               </Button>
             </Box>
