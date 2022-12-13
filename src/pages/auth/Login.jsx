@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { PartLoader } from "../../components/CustomLoading";
 import { apiAuth } from "../../services/models/authModel";
 import toast from "react-hot-toast";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import * as yup from "yup";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const emailValidation = yup.string().required().email();
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+
+    emailValidation
+      .validate(e.target.value)
+      .then(() =>  
+      e.target.setCustomValidity(""))
+      .catch(
+        (err) =>
+        e.target.setCustomValidity("Please enter a valid email address.")
+      )
+  };
+
 
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -67,14 +83,15 @@ const Login = () => {
           <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
             Login
           </Typography>
-          <form>
+          <form onSubmit={onSubmit}>
             <TextField
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmail}
               label="Email"
               fullWidth
               size="small"
               sx={{ mb: 2 }}
+              required
             />
             <TextField
               value={password}
@@ -83,9 +100,15 @@ const Login = () => {
               label="Password"
               fullWidth
               size="small"
+              InputProps={{
+                inputProps: {
+                  minLength: 6,
+                },
+              }}
+              required
             />
             <Box className="text-center mt-4">
-              <Button variant="contained" type="submit" onClick={onSubmit}>
+              <Button variant="contained" type="submit" >
                 Login
               </Button>
             </Box>

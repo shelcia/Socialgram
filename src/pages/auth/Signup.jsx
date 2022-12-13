@@ -1,30 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../components/CustomLoading";
 import { apiAuth } from "../../services/models/authModel";
 import toast from "react-hot-toast";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import * as yup from "yup";
 
 const Signup = () => {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const emailValidation = yup.string().required().email();
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    emailValidation
+      .validate(e.target.value)
+      .then(() =>  
+      e.target.setCustomValidity(""))
+      .catch(
+        (err) =>
+        e.target.setCustomValidity("Please enter a valid email address.")
+      )
+  };
 
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
   const PREFIX = "SocialGram";
-
-  const [warning, setWarning] = useState(true);
-
-  useEffect(() => {
-    if (password.length >= 6) {
-      setWarning(false);
-    } else {
-      setWarning(true);
-    }
-  }, [password]);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -84,6 +88,12 @@ const Signup = () => {
               size="small"
               fullWidth
               sx={{ mb: 2 }}
+              InputProps={{
+                inputProps: {
+                  minLength: 3,
+                },
+              }}
+              required
             />
             <TextField
               label="Last Name"
@@ -92,14 +102,21 @@ const Signup = () => {
               size="small"
               fullWidth
               sx={{ mb: 2 }}
+              InputProps={{
+                inputProps: {
+                  minLength: 3,
+                },
+              }}
+              required
             />
             <TextField
               label="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmail}
               size="small"
               fullWidth
               sx={{ mb: 2 }}
+              required
             />
             <TextField
               label="Password"
@@ -109,14 +126,16 @@ const Signup = () => {
               size="small"
               fullWidth
               sx={{ mb: 2 }}
+              InputProps={{
+                inputProps: {
+                  minLength: 6,
+                },
+              }}
+              required
             />
-            {warning && (
-              <p className="text-danger mt-4">
-                *Password should have atleast 6 characters
-              </p>
-            )}
+           
             <Box className="text-center mt-4">
-              <Button variant="contained" type="submit" onClick={onSubmit}>
+              <Button variant="contained" type="submit" >
                 Signup
               </Button>
             </Box>

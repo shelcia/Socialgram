@@ -23,7 +23,8 @@
     "react-share": "^4.4.1",
     "redux": "^4.1.2",
     "suneditor": "^2.44.3",
-    "suneditor-react": "^3.4.1"
+    "suneditor-react": "^3.4.1",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
