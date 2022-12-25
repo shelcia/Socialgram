@@ -25,6 +25,10 @@ const SettingsPage = Loadable(lazy(() => import("./pages/dashboard/Settings")));
 const PostPage = Loadable(lazy(() => import("./pages/dashboard/PostPage")));
 const UserPage = Loadable(lazy(() => import("./pages/dashboard/ProfilePage")));
 
+const Error404Page = Loadable(
+  lazy(() => import("./pages/others/Error404Page"))
+);
+
 const routes = [
   {
     path: "",
@@ -81,6 +85,16 @@ const routes = [
       {
         path: "user/:id",
         element: <UserPage />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <Outlet />,
+    children: [
+      {
+        path: "*",
+        element: <Error404Page />,
       },
     ],
   },

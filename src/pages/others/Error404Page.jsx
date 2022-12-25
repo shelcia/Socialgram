@@ -1,24 +1,24 @@
 import React from "react";
-import { useHistory } from "react-router";
-import Error from "../assets/undraw_page_not_found_su7k.svg";
+import { useNavigate } from "react-router";
+import { Box, Button, Typography } from "@mui/material";
+import Error from "../../assets/undraw_page_not_found_su7k.svg";
 
 const Error404 = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
-    <div
-      className="d-flex justify-content-center flex-column mx-auto aligm-items-center"
-      style={{ height: "60vh" }}
+    <Box
+      className="d-flex justify-content-center flex-column align-items-center"
+      sx={{ p: 4, height: "100vh" }}
     >
-      <img src={Error} alt="" style={{ height: "50vh" }} />
-      <h1>Oops ! Wrong Link</h1>
-      <button
-        onClick={() => history.push("/")}
-        className="btn btn-primary mt-4"
-      >
+      <img src={Error} alt="" style={{ height: "40vh" }} />
+      <Typography component="h1" variant="h3" sx={{ mt: 3 }}>
+        Oops ! Somthing went wrong
+      </Typography>
+      <Button onClick={() => navigate("/")} sx={{ mt: 4 }} variant="contained">
         Go home
-      </button>
-    </div>
+      </Button>
+    </Box>
   );
 };
 
