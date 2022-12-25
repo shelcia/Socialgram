@@ -16,7 +16,7 @@
 
 ## 📌 Introduction
 
-Clone of Facebook with limited features
+Noob Social website
 
 #### Demo Purpose:
 
@@ -59,11 +59,15 @@ https://discord.gg/TkKHAYVCza
 
 ### Frontend deployment
 
-https://socialgram.netlify.app/
+https://social--gram.vercel.app/
+
+<!-- [![Netlify Status](https://api.netlify.com/api/v1/badges/4f51119d-b46e-443a-a35e-44aef0805f8f/deploy-status)](https://app.netlify.com/sites/socialgram/deploys)
+
+https://socialgram.netlify.app/ -->
 
 ## Backend Code
 
-https://github.com/shelcia/fb-clone-backend
+https://github.com/shelcia/socialgram-backend
 
 ### To work with this repo
 
@@ -71,7 +75,7 @@ https://github.com/shelcia/fb-clone-backend
 
 - Run <code>npm install</code>
 
-- Then Run <code>npm start</code>
+- Then Run <code>npm run dev</code>
 
 ## 💼 Code of Conduct
 
