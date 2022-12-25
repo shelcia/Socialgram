@@ -18,7 +18,7 @@ import {
   ListItemText,
   Modal,
 } from "@mui/material";
-import { customModalStyle } from "../components/CustomModal";
+import { CustomModal } from "../components/CustomModal";
 
 const SideNav = () => {
   const links = [
@@ -91,13 +91,13 @@ export const LogoutModal = ({ open, setOpen }) => {
       aria-labelledby="logout-modal"
       aria-describedby="use-this-to-logout"
     >
-      <Box sx={{ ...customModalStyle, width: 400 }}>
+      <CustomModal>
         <h2 id="parent-modal-title">Important !!</h2>
         <p id="parent-modal-description">You sure want to logout ? </p>
         <Button onClick={logout} variant="contained" color="info">
           Logout
         </Button>
-      </Box>
+      </CustomModal>
     </Modal>
   );
 };

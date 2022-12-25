@@ -26,7 +26,7 @@ import {
   PurpleButton,
 } from "../../../components/CustomButtons";
 import { apiPost } from "../../../services/models/postModel";
-import { customModalStyle } from "../../../components/CustomModal";
+import { CustomModal } from "../../../components/CustomModal";
 import { CommentTextField } from "../../../components/CustomTextField";
 import { avatarGen } from "../../../helpers/avatarGenerator";
 import { orange } from "@mui/material/colors";
@@ -264,7 +264,8 @@ const PostModal = ({
         aria-labelledby="post-modal"
         aria-describedby="use-this-to-post"
       >
-        <Box sx={{ ...customModalStyle }}>
+        {/* <Box sx={{ ...modalStyles }}> */}
+        <CustomModal>
           <Box
             sx={{
               display: "flex",
@@ -313,7 +314,7 @@ const PostModal = ({
               <CommentBox comment={comment} key={comment.commentId} />
             ))}
           </Box>
-        </Box>
+        </CustomModal>
       </Modal>
     </React.Fragment>
   );

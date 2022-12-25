@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import AuthGuard from "./common/AuthGuard";
 import Loading from "./components/CustomLoading";

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Box,
   Button,
   Modal,
   Table,
@@ -11,8 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { apiUser } from "../../services/models/userModal";
 import toast from "react-hot-toast";
-import { Box } from "@mui/system";
-import { customModalStyle } from "../../components/CustomModal";
+import { CustomModal } from "../../components/CustomModal";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -41,24 +41,26 @@ const Settings = () => {
       <Modal
         open={open}
         onClose={() => setOpen(false)}
-        aria-labelledby='deleteUser-modal'
-        aria-describedby='use-this-to-deleteUser'>
-        <Box sx={{ ...customModalStyle, width: 400 }}>
-          <h2 id='parent-modal-title'>Important !!</h2>
-          <p id='parent-modal-description'>
+        aria-labelledby="deleteUser-modal"
+        aria-describedby="use-this-to-deleteUser"
+      >
+        <CustomModal>
+          <h2 id="parent-modal-title">Important !!</h2>
+          <p id="parent-modal-description">
             Do you really want to delete your account ?
           </p>
-          <Button onClick={deleteUser} variant='contained' color='error'>
+          <Button onClick={deleteUser} variant="contained" color="error">
             Yes
           </Button>
           <Button
             style={{ margin: "0 10%" }}
             onClick={() => setOpen(false)}
-            variant='contained'
-            color='info'>
+            variant="contained"
+            color="info"
+          >
             No
           </Button>
-        </Box>
+        </CustomModal>
       </Modal>
     );
   };
@@ -102,7 +104,8 @@ const Settings = () => {
                 variant="contained"
                 color="error"
                 onClick={() => setOpen(true)}
-                fullWidth>
+                fullWidth
+              >
                 Delete Account
               </Button>
             </TableCell>

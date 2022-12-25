@@ -27,7 +27,8 @@ a:any-link {
 }
 
 body {
-  background-color: $background;
+  // background-color: $background;
+  background-color: $background !important;
   color: $textColor !important;
 }
 
