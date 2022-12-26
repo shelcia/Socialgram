@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom"; // component props interface
-import Login from "../pages/auth/Login";
+//import Login from "../pages/auth/Login";
 
 const AuthGuard = ({ children }) => {
   function isAuthenticate() {
@@ -30,8 +30,8 @@ const AuthGuard = ({ children }) => {
       setRequestedLocation(pathname);
     }
 
-    navigate("/login");
-    return <Login />;
+   // navigate("/login");
+    window.location.href = "/login";
 
     // return <Login />;
   }
