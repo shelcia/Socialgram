@@ -67,64 +67,83 @@ const Signup = () => {
     <React.Fragment>
       {isLoading ? (
         <Loading>
-          <Typography variant="p" component="p" className="text-center">
+          <Typography variant='p' component='p' className='text-center'>
             Please wait while we create your account !!
           </Typography>
         </Loading>
       ) : (
         <>
-          <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
+          <Typography variant='h4' component='h1' sx={{ mb: 2 }}>
             Signup
           </Typography>
           <form onSubmit={onSubmit}>
             <TextField
-              label="First Name"
+              label='First Name'
               value={fname}
               onChange={(e) => setFname(e.target.value)}
-              size="small"
+              size='small'
               fullWidth
               sx={{ mb: 2 }}
+              InputProps={{
+                inputProps: {
+                  minLength: 3,
+                },
+              }}
+              required
             />
             <TextField
-              label="Last Name"
+              label='Last Name'
               value={lname}
               onChange={(e) => setLname(e.target.value)}
-              size="small"
+              size='small'
               fullWidth
               sx={{ mb: 2 }}
+              InputProps={{
+                inputProps: {
+                  minLength: 3,
+                },
+              }}
+              required
             />
             <TextField
-              label="Email"
+              label='Email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              size="small"
+              size='small'
               fullWidth
               sx={{ mb: 2 }}
+              required
             />
             <TextField
-              label="Password"
+              label='Password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              size="small"
+              type='password'
+              size='small'
               fullWidth
               sx={{ mb: 2 }}
+              InputProps={{
+                inputProps: {
+                  minLength: 6,
+                },
+              }}
+              required
             />
             {warning && (
-              <p className="text-danger mt-4">
+              <p className='text-danger mt-4'>
                 *Password should have atleast 6 characters
               </p>
             )}
-            <Box className="text-center mt-4">
-              <Button variant="contained" type="submit" onClick={onSubmit}>
+            <Box className='text-center mt-4'>
+              <Button variant='contained' type='submit'>
                 Signup
               </Button>
             </Box>
-            <div className="text-center mt-4">
-              <Typography variant="p" component="p">
+            <div className='text-center mt-4'>
+              <Typography variant='p' component='p'>
                 Already have an account? then{" "}
                 <em>
-                  <Link to={"/login"} className="formlink">
+                  <Link to={"/login"} className='formlink'>
                     Login
                   </Link>
                 </em>
