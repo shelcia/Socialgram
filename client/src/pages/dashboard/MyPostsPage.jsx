@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Box, Divider, Typography } from "@mui/material";
 import Loading from "../../components/CustomLoading";
 import { apiPost } from "../../services/models/postModel";
-import { Box, Divider, Typography } from "@mui/material";
 import { apiUser } from "../../services/models/userModal";
+// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import Post from "./components/Post";
 import ProfileDisplay from "./components/ProfileDisplay";
 import { avatarGen } from "../../helpers/avatarGenerator";
@@ -56,7 +57,7 @@ const MyPosts = () => {
   }, []);
 
   const fetchProfile = (signal) => {
-    const userid = localStorage.getItem("SocialGramUserId");
+    // const userid = localStorage.getItem("SocialGramUserId");
     apiUser.getSingle(`${userid}`, signal).then((res) => {
       // console.log(res);
       setProfile(res.message);
@@ -71,29 +72,25 @@ const MyPosts = () => {
     return () => ac.abort();
   }, []);
 
-  return (
-    <React.Fragment>
-      {loading ? (
-        <Loading></Loading>
-      ) : (
-        <>
-          <ProfileDisplay profile={profile} imageUrl={imageUrl} />
-          <Divider sx={{ my: 3 }} />
-          {posts?.length === 0 && (
-            <Box className="text-center">
-              <Typography variant="h5" component="p" sx={{ mb: 2 }}>
-                No Post yet !!
-              </Typography>
-            </Box>
-          )}
-          <Box style={{ flexDirection: "column-reverse" }} className="d-flex">
-            {posts?.map((post) => (
-              <Post userId={userid} post={post} key={post.id} />
-            ))}
-          </Box>
-        </>
+  return loading ? (
+    <Loading />
+  ) : (
+    <>
+      <ProfileDisplay profile={profile} imageUrl={imageUrl} />
+      <Divider sx={{ my: 3 }} />
+      {posts?.length === 0 && (
+        <Box className="text-center">
+          <Typography variant="h5" component="p" sx={{ mb: 2 }}>
+            No Post yet !!
+          </Typography>
+        </Box>
       )}
-    </React.Fragment>
+      <Box style={{ flexDirection: "column-reverse" }} className="d-flex">
+        {posts?.map((post) => (
+          <Post userId={userid} post={post} key={post.id} />
+        ))}
+      </Box>
+    </>
   );
 };
 

@@ -1,14 +1,15 @@
 import React from "react";
 import { Toaster } from "react-hot-toast";
 import { useRoutes } from "react-router-dom";
+import { StyledEngineProvider } from "@mui/material/styles";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import routes from "./routes";
 import { customTheme } from "./theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { StyledEngineProvider } from "@mui/material/styles";
 import "./styles/bootstrap/bootstrap-utils.css";
 import "./styles/style.css";
 
-function App() {
+const App = () => {
   const allPages = useRoutes(routes);
 
   const toasterOptions = {
@@ -33,6 +34,6 @@ function App() {
       </ThemeProvider>
     </StyledEngineProvider>
   );
-}
+};
 
 export default App;
