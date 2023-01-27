@@ -2,8 +2,8 @@
 
 import axios from "axios";
 import { handleResponse, handleError } from "./response";
-// import { CYCLIC_BASE_URL } from "../api";
-import { LOCALHOST_URL } from "../api";
+import { CYCLIC_BASE_URL } from "../api";
+// import { LOCALHOST_URL } from "../api";
 
 // Define your api url from any source.
 // Pulling from your .env file when on the server or from localhost when locally
