@@ -23,7 +23,7 @@
     "react-loader-spinner": "^5.1.5",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
-    "react-share": "^4.4.1",
+    "react-web-share": "^2.0.2",
     "redux": "^4.1.2",
     "suneditor": "^2.44.3",
     "suneditor-react": "^3.4.1"
