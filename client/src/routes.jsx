@@ -53,6 +53,22 @@ const routes = [
     ],
   },
   {
+    path: "post",
+    element: (
+      <AuthGuard>
+        <DashboardLayout>
+          <Outlet />
+        </DashboardLayout>
+      </AuthGuard>
+    ),
+    children: [
+      {
+        path: ":id",
+        element: <PostPage />,
+      },
+    ],
+  },
+  {
     path: "homepage",
     element: (
       <AuthGuard>
@@ -77,10 +93,6 @@ const routes = [
       {
         path: "settings",
         element: <SettingsPage />,
-      },
-      {
-        path: "post/:id",
-        element: <PostPage />,
       },
       {
         path: "user/:id",

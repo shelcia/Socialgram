@@ -8,7 +8,7 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import "./styles/bootstrap/bootstrap-utils.css";
 import "./styles/style.css";
 
-const App = () => {
+function App() {
   const allPages = useRoutes(routes);
 
   const toasterOptions = {
@@ -25,16 +25,14 @@ const App = () => {
   }); // toaster options
 
   return (
-    <React.Fragment>
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={appTheme}>
-          <CssBaseline />
-          <Toaster toastOptions={toasterOptions} />
-          {allPages}
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </React.Fragment>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={appTheme}>
+        <CssBaseline />
+        <Toaster toastOptions={toasterOptions} />
+        {allPages}
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
-};
+}
 
 export default App;

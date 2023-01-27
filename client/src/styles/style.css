@@ -77,6 +77,15 @@
   background-color: rgba(165, 165, 165, 0.4235294118) !important;
 }
 
+.rws-container {
+  background-color: rgb(10, 20, 28) !important;
+}
+
+.rws-close {
+  background-color: rgb(10, 20, 28) !important;
+  color: #fff !important;
+}
+
 * {
   font-family: "Poppins", sans-serif;
 }

@@ -30,6 +30,8 @@ import { CustomModal } from "../../../components/CustomModal";
 import { CommentTextField } from "../../../components/CustomTextField";
 import { avatarGen } from "../../../helpers/avatarGenerator";
 import { orange } from "@mui/material/colors";
+import { RWebShare } from "react-web-share";
+import { toast } from "react-hot-toast";
 
 const Post = ({
   userid,
@@ -124,29 +126,35 @@ const Post = ({
             </Button>
           </Stack>
         )}
-        {post.comments.length !== 0 && (
-          <Button
-            color="info"
-            onClick={() => setOpen(true)}
-            size="small"
-            sx={{ zIndex: 3 }}
-          >
-            Show Comments
-            <Box
-              sx={{
-                py: 0.1,
-                px: 1.2,
-                height: "none",
-                ml: 2,
-                background:
-                  "linear-gradient(to right,#7f00ff,#bf00ff,#d900ff,#e100ff)",
-                borderRadius: "50ex",
-              }}
+        <Stack direction="row" sx={{ mt: 2, justifyContent: "space-between" }}>
+          {post.comments.length !== 0 && (
+            <Button
+              color="info"
+              onClick={() => setOpen(true)}
+              size="small"
+              sx={{ zIndex: 3 }}
             >
-              {post.comments.length}
-            </Box>
-          </Button>
-        )}
+              Show Comments
+              <Box
+                sx={{
+                  py: 0.1,
+                  px: 1.2,
+                  height: "none",
+                  ml: 2,
+                  background:
+                    "linear-gradient(to right,#7f00ff,#bf00ff,#d900ff,#e100ff)",
+                  borderRadius: "50ex",
+                }}
+              >
+                {post.comments.length}
+              </Box>
+            </Button>
+          )}
+
+          <Link to={`/post/${post._id}`}>
+            <Button>View Post</Button>
+          </Link>
+        </Stack>
 
         <PostModal
           open={open}
@@ -216,11 +224,26 @@ const IconButtons = ({
       </Box>
 
       <Box className={iconBoxClass}>
-        <Tooltip title="Not Implemented yet !">
+        <RWebShare
+          data={{
+            text: "Check out my post on socialgram !",
+            url: `https://social--gram.vercel.app/post/${post._id}`,
+            title: "Share",
+          }}
+          onClick={() => {
+            console.log("shared successfully!");
+            toast.success("Shared Succesfully");
+          }}
+        >
           <BlueButton>
             <AiOutlineShareAlt size={iconSize} />
           </BlueButton>
-        </Tooltip>
+        </RWebShare>
+        {/* <Tooltip title="Not Implemented yet !">
+          <BlueButton>
+            <AiOutlineShareAlt size={iconSize} />
+          </BlueButton>
+        </Tooltip> */}
       </Box>
     </Stack>
   );
@@ -307,7 +330,7 @@ const PostModal = ({
           {/* <Divider /> */}
 
           <Box
-            style={{ maxHeight: "20vh", overflowY: "auto" }}
+            style={{ maxHeight: "30vh", overflowY: "auto" }}
             className="d-flex flex-column-reverse"
           >
             {comments.map((comment) => (
