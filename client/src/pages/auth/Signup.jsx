@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Loading from "../../components/CustomLoading";
-import { apiAuth } from "../../services/models/authModel";
-import toast from "react-hot-toast";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import toast from "react-hot-toast";
+import { PartLoader } from "../../components/CustomLoading";
+import { apiAuth } from "../../services/models/authModel";
 
 const Signup = () => {
   const [fname, setFname] = useState("");
@@ -33,10 +33,10 @@ const Signup = () => {
     localStorage.setItem(`${PREFIX}Email`, email);
 
     const body = {
-      fname: fname,
-      lname: lname,
-      email: email,
-      password: password,
+      fname,
+      lname,
+      email,
+      password,
     };
 
     apiAuth
@@ -57,102 +57,100 @@ const Signup = () => {
           setIsLoading(false);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Incorrect Credentials");
         setIsLoading(false);
       });
   };
 
-  return (
-    <React.Fragment>
-      {isLoading ? (
-        <Loading>
-          <Typography variant='p' component='p' className='text-center'>
-            Please wait while we create your account !!
-          </Typography>
-        </Loading>
-      ) : (
-        <>
-          <Typography variant='h4' component='h1' sx={{ mb: 2 }}>
+  return isLoading ? (
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <PartLoader>
+        <Typography variant="p" component="p" className="text-center">
+          Please wait while we create your account !!
+        </Typography>
+      </PartLoader>
+    </Box>
+  ) : (
+    <>
+      <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
+        Signup
+      </Typography>
+      <form onSubmit={onSubmit}>
+        <TextField
+          label="First Name"
+          value={fname}
+          onChange={(e) => setFname(e.target.value)}
+          size="small"
+          fullWidth
+          sx={{ mb: 2 }}
+          InputProps={{
+            inputProps: {
+              minLength: 3,
+            },
+          }}
+          required
+        />
+        <TextField
+          label="Last Name"
+          value={lname}
+          onChange={(e) => setLname(e.target.value)}
+          size="small"
+          fullWidth
+          sx={{ mb: 2 }}
+          InputProps={{
+            inputProps: {
+              minLength: 3,
+            },
+          }}
+          required
+        />
+        <TextField
+          label="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          size="small"
+          fullWidth
+          sx={{ mb: 2 }}
+          required
+        />
+        <TextField
+          label="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          size="small"
+          fullWidth
+          sx={{ mb: 2 }}
+          InputProps={{
+            inputProps: {
+              minLength: 6,
+            },
+          }}
+          required
+        />
+        {warning && (
+          <p className="text-danger mt-4">
+            *Password should have atleast 6 characters
+          </p>
+        )}
+        <Box className="text-center mt-4">
+          <Button variant="contained" type="submit">
             Signup
+          </Button>
+        </Box>
+        <div className="text-center mt-4">
+          <Typography variant="p" component="p">
+            Already have an account? then{" "}
+            <em>
+              <Link to="/login" className="formlink">
+                Login
+              </Link>
+            </em>
           </Typography>
-          <form onSubmit={onSubmit}>
-            <TextField
-              label='First Name'
-              value={fname}
-              onChange={(e) => setFname(e.target.value)}
-              size='small'
-              fullWidth
-              sx={{ mb: 2 }}
-              InputProps={{
-                inputProps: {
-                  minLength: 3,
-                },
-              }}
-              required
-            />
-            <TextField
-              label='Last Name'
-              value={lname}
-              onChange={(e) => setLname(e.target.value)}
-              size='small'
-              fullWidth
-              sx={{ mb: 2 }}
-              InputProps={{
-                inputProps: {
-                  minLength: 3,
-                },
-              }}
-              required
-            />
-            <TextField
-              label='Email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              size='small'
-              fullWidth
-              sx={{ mb: 2 }}
-              required
-            />
-            <TextField
-              label='Password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type='password'
-              size='small'
-              fullWidth
-              sx={{ mb: 2 }}
-              InputProps={{
-                inputProps: {
-                  minLength: 6,
-                },
-              }}
-              required
-            />
-            {warning && (
-              <p className='text-danger mt-4'>
-                *Password should have atleast 6 characters
-              </p>
-            )}
-            <Box className='text-center mt-4'>
-              <Button variant='contained' type='submit'>
-                Signup
-              </Button>
-            </Box>
-            <div className='text-center mt-4'>
-              <Typography variant='p' component='p'>
-                Already have an account? then{" "}
-                <em>
-                  <Link to={"/login"} className='formlink'>
-                    Login
-                  </Link>
-                </em>
-              </Typography>
-            </div>
-          </form>
-        </>
-      )}
-    </React.Fragment>
+        </div>
+      </form>
+    </>
   );
 };
 

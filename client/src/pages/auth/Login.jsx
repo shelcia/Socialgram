@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { PartLoader } from "../../components/CustomLoading";
-import { apiAuth } from "../../services/models/authModel";
 import toast from "react-hot-toast";
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { PartLoader } from "../../components/CustomLoading";
+import { apiAuth } from "../../services/models/authModel";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,8 +19,8 @@ const Login = () => {
     localStorage.setItem(`${PREFIX}Email`, email);
 
     const body = {
-      email: email,
-      password: password,
+      email,
+      password,
     };
 
     apiAuth
@@ -48,69 +48,68 @@ const Login = () => {
           setIsLoading(false);
         }
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Incorrect Credentials");
         setIsLoading(false);
       });
   };
 
-  return (
-    <React.Fragment>
-      {isLoading ? (
-        <Box>
-          <PartLoader className='text-center'>
-            <p className='text-center'>Logging you in !!</p>
-          </PartLoader>
-        </Box>
-      ) : (
-        <>
-          <Typography variant='h4' component='h1' sx={{ mb: 2 }}>
+  return isLoading ? (
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <PartLoader>
+        <Typography variant="p" component="p" className="text-center">
+          Logging you in !!
+        </Typography>
+      </PartLoader>
+    </Box>
+  ) : (
+    <>
+      <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
+        Login
+      </Typography>
+      <form onSubmit={onSubmit}>
+        <TextField
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          label="Email"
+          fullWidth
+          size="small"
+          sx={{ mb: 2 }}
+          required
+        />
+        <TextField
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          label="Password"
+          fullWidth
+          size="small"
+          InputProps={{
+            inputProps: {
+              minLength: 6,
+            },
+          }}
+          required
+        />
+        <Box className="text-center mt-4">
+          <Button variant="contained" type="submit">
             Login
+          </Button>
+        </Box>
+        <Box className="text-center mt-4">
+          <Typography variant="p" component="p">
+            {/*  eslint-disable-next-line react/no-unescaped-entities */}
+            Don't have an account? then{" "}
+            <em>
+              <Link to="/signup" className="formlink">
+                Signup
+              </Link>
+            </em>
           </Typography>
-          <form onSubmit={onSubmit}>
-            <TextField
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type='email'
-              label='Email'
-              fullWidth
-              size='small'
-              sx={{ mb: 2 }}
-              required
-            />
-            <TextField
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type='password'
-              label='Password'
-              fullWidth
-              size='small'
-              InputProps={{
-                inputProps: {
-                  minLength: 6,
-                },
-              }}
-              required
-            />
-            <Box className='text-center mt-4'>
-              <Button variant='contained' type='submit'>
-                Login
-              </Button>
-            </Box>
-            <Box className='text-center mt-4'>
-              <Typography variant='p' component='p'>
-                Don't have an account? then{" "}
-                <em>
-                  <Link to={"/signup"} className='formlink'>
-                    Signup
-                  </Link>
-                </em>
-              </Typography>
-            </Box>
-          </form>
-        </>
-      )}
-    </React.Fragment>
+        </Box>
+      </form>
+    </>
   );
 };
 

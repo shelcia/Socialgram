@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
-import Error from "../../assets/undraw_page_not_found_su7k.svg";
+import Error from "../../assets/error/undraw_page_not_found_su7k.svg";
 
 const Error404 = () => {
   const navigate = useNavigate();

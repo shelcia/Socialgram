@@ -28,7 +28,8 @@
           ],
           "react/prop-types": 0,
           "no-underscore-dangle": 0,
-          "react/jsx-one-expression-per-line": 0
+          "react/jsx-one-expression-per-line": 0,
+          "object-curly-newline": 0
         // "prefer-function-component":0
     }
 }

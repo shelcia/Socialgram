@@ -90,10 +90,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-a:-webkit-any-link {
-  text-decoration: none;
-}
-
 a:-moz-any-link {
   text-decoration: none;
 }
@@ -128,22 +124,12 @@ hr {
   transition: all 0.4s ease-in-out;
   background-image: linear-gradient(to right, #7f00ff, #bf00ff, #d900ff, #e100ff);
   border-radius: 3px;
-  -webkit-animation: hue infinite alternate 0 ease-in;
-          animation: hue infinite alternate 0 ease-in;
+  animation: hue infinite alternate 0 ease-in;
   background-size: 100% 100%;
 }
 .sidenav .active li div {
   background-color: #161b22;
   color: #fff;
-}
-
-@-webkit-keyframes hue {
-  from {
-    background-size: 100% 100%;
-  }
-  to {
-    background-size: 300% 100%;
-  }
 }
 
 @keyframes hue {
@@ -184,6 +170,10 @@ hr {
   .col-md-4 {
     flex: 0 0 auto;
     width: 33.3333333333%;
+  }
+  .col-md-6 {
+    flex: 0 0 auto;
+    width: 50%;
   }
   .col-md-7 {
     flex: 0 0 auto;
