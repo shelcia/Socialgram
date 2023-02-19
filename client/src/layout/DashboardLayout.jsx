@@ -8,9 +8,13 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import { HiMenuAlt3 } from "react-icons/hi";
+import Fab from "@mui/material/Fab";
+import { HiMenuAlt3, HiChevronUp } from "react-icons/hi";
 import Adds from "../common/Add";
 import SideNav from "../common/SideNav";
+import Img1 from "../assets/home/gradient-left-dark.svg";
+import Img2 from "../assets/home/gradient-right-dark.svg";
+import ScrollTop from "../components/CustomScrollToTop";
 
 const drawerWidth = 240;
 
@@ -32,11 +36,14 @@ const DashboardLayout = ({ children }, props) => {
     </Box>
   );
 
+  // eslint-disable-next-line operator-linebreak
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: "flex" }}>
+      <img src={Img1} alt="" style={{ position: "fixed", zIndex: -1 }} />
+      <img src={Img2} alt="" style={{ position: "fixed", zIndex: -1 }} />
       <AppBar
         component="nav"
         sx={{
@@ -45,7 +52,7 @@ const DashboardLayout = ({ children }, props) => {
           boxShadow: "inset 0 -1px 0 0 hsla(0,0%,100%,.1)",
         }}
       >
-        <Toolbar>
+        <Toolbar id="back-to-top-anchor">
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             SocialGram
           </Typography>
@@ -83,10 +90,7 @@ const DashboardLayout = ({ children }, props) => {
           {drawer}
         </Drawer>
       </Box>
-      <Box
-        component="main"
-        // sx={{ p: 3 }}
-      >
+      <Box component="main">
         <Toolbar />
         <Box className="row" sx={{ px: 2, pt: 2 }}>
           <Box
@@ -101,6 +105,11 @@ const DashboardLayout = ({ children }, props) => {
           </Box>
         </Box>
       </Box>
+      <ScrollTop>
+        <Fab aria-label="scroll back to top" color="info">
+          <HiChevronUp size="1.5rem" />
+        </Fab>
+      </ScrollTop>
     </Box>
   );
 };

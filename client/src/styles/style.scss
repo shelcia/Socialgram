@@ -18,6 +18,7 @@ $hover: #007bff4c;
 
 * {
   font-family: $font;
+  scroll-behavior: smooth;
 }
 
 a,
@@ -130,6 +131,10 @@ hr {
   // border: $border;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
   word-break: break-all;
+
+  img {
+    max-width: 100%;
+  }
 }
 
 iframe {
