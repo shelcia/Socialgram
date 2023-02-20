@@ -92,5 +92,9 @@ Thanks to all the contributors who worked for this project to stay alive! 😊�
 
 
 ---
+<div align="center">
+    <h3><b>Take a moment to star ⭐ the project if you like it</b></h3>
+    <h3>Do checkout the other repos 💫</h3> 
+</div>
 
 
