@@ -88,6 +88,11 @@ https://github.com/shelcia/socialgram-backend
 |<a href="https://github.com/shelcia"><img src="https://avatars.githubusercontent.com/shelcia" width=150px height=150px /></a><br>shelcia<br> |
 <br>
 
+ ## Contributing 💻
+
+- Contributions make the open source community such an amazing place to learn, inspire, and create.
+- Any contributions you make are greatly appreciated.
+- Check out our [contribution guidelines](/CONTRIBUTING.md) for more information.
 
 ## 💼 Code of Conduct
 
@@ -101,6 +106,7 @@ Thanks to all the contributors who worked for this project to stay alive! 😊�
 <a align="center" href="https://github.com/shelcia/Socialgram/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=shelcia/Socialgram&&max=817" />  
 </a>
+
 
 
 ---
