@@ -77,6 +77,18 @@ https://github.com/shelcia/socialgram-backend
 
 - Then Run <code>npm run dev</code>
 
+
+
+# <h1 align=center>CONTRIBUTION 👏</h1>
+
+## 🧑‍💻 About the Admin
+
+| Admin   | 
+| :----------: | 
+|<a href="https://github.com/shelcia"><img src="https://avatars.githubusercontent.com/shelcia" width=150px height=150px /></a><br>shelcia<br> |
+<br>
+
+
 ## 💼 Code of Conduct
 
 We want to facilitate a healthy and constructive community behavior by adopting and enforcing our code of conduct.
