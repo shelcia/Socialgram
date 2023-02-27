@@ -77,7 +77,9 @@ https://github.com/shelcia/socialgram-backend
 
 - Then Run <code>npm run dev</code>
 
+## How to use this App?
 
+[Read Flow of Control](FlowOfControl.md)
 
 # <h1 align=center>CONTRIBUTION 👏</h1>
 
