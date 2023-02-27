@@ -101,6 +101,15 @@ https://github.com/shelcia/socialgram-backend
 We want to facilitate a healthy and constructive community behavior by adopting and enforcing our code of conduct.
 Please adhere toward our [Code-of-Conduct](code-of-conduct.md).
 
+## 🙏🏽 Support
+
+This project needs a star️ from you. Don't forget to leave a star✨
+Follow my Github for content
+<br>
+<br>
+<hr>
+<h6 align="center">© shelcia
+<br>
 
 ## Our Amazing Contributors 👨‍👨‍👦‍👦❤️
 Thanks to all the contributors who worked for this project to stay alive! 😊😎
