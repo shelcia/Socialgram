@@ -87,7 +87,7 @@ https://github.com/shelcia/socialgram-backend
 
 | Admin   | 
 | :----------: | 
-|<a href="https://github.com/shelcia"><img src="https://avatars.githubusercontent.com/shelcia" width=150px height=150px /></a><br>shelcia<br> |
+|<center><a href="https://github.com/shelcia"><img src="https://avatars.githubusercontent.com/shelcia" width=150px height=150px /></a><br>shelcia<br></center> |
 <br>
 
  ## Contributing 💻
