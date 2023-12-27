@@ -1,4 +1,5 @@
 ![Socialgram](https://socialify.git.ci/shelcia/Socialgram/image?description=1&font=KoHo&forks=1&issues=1&language=1&owner=1&pattern=Brick%20Wall&pulls=1&stargazers=1&theme=Dark)
+![Socialgram](/assets/imgs/banner.svg)
 
 <p align="center">
 <img src="https://img.shields.io/badge/language-React-blue?style=for-the-badge">
