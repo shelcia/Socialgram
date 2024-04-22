@@ -111,7 +111,7 @@ const Feed = () => {
     };
     apiPost
       .put(response, `fires/${id}`)
-      .then((res) => {
+      .then(() => {
         // console.log(res);
         getPost(dispatch, undefined);
       })
@@ -164,7 +164,7 @@ const InputForm = ({ post, addPost, setPost }) => {
       </Typography>
       <Box className="input-group-lg">
         <Editor
-          apiKey={import.meta.env.TINYEDITOR}
+          apiKey={import.meta.env.VITE_TINYEDITOR}
           init={{
             height: 200,
             menubar: false,
