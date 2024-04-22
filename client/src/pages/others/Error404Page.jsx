@@ -8,8 +8,14 @@ const Error404 = () => {
 
   return (
     <Box
-      className="d-flex justify-content-center flex-column align-items-center"
-      sx={{ p: 4, height: "100vh" }}
+      sx={{
+        p: 4,
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
     >
       <img src={Error} alt="" style={{ height: "40vh" }} />
       <Typography component="h1" variant="h3" sx={{ mt: 3 }}>

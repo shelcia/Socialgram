@@ -18,7 +18,7 @@ import {
   AiOutlineShareAlt,
   AiOutlineClose,
 } from "react-icons/ai";
-import { orange } from "@mui/material/colors";
+import { grey, orange } from "@mui/material/colors";
 import { RWebShare } from "react-web-share";
 import { toast } from "react-hot-toast";
 import {
@@ -56,7 +56,14 @@ const Post = ({
 
   return (
     <Box
-      className="container mt-3 mb-3 p-3 post rounded w-100"
+      // className="container mt-3 mb-3 p-3 post rounded w-100"
+      className="post"
+      sx={{
+        marginY: 2,
+        padding: 2,
+        borderRadius: 1,
+        width: "100%",
+      }}
       name="post"
       onClick={(e) => {
         if (e.target.name === "post") {
@@ -70,12 +77,6 @@ const Post = ({
         component={Link}
         to={`/homepage/user/${post.ownerId}`}
       >
-        <img
-          src={`https://avatars.dicebear.com/api/avataaars/:seed.svg?${imageUrl}&r=10&size=50`}
-          alt="avatar"
-          height={40}
-          width={40}
-        />
         <Stack spacing={0}>
           <Typography variant="h6" component="h2">
             {post?.owner?.fname} {post?.owner?.lname}
@@ -83,8 +84,8 @@ const Post = ({
           <Typography
             variant="overline"
             component="p"
-            className="text-muted small"
-            sx={{ lineHeight: 1.5 }}
+            // className="text-muted small"
+            sx={{ lineHeight: 1.5, color: grey[300] }}
           >
             {post.date ? convertSimpleDate(post.date) : "Just now"}
           </Typography>
@@ -109,7 +110,7 @@ const Post = ({
             size="small"
             value={commentText}
             onChange={(event) => setCommentText(event.target.value)}
-            className="w-75"
+            sx={{ width: "75%" }}
           />
           <Button
             variant="contained"
@@ -119,7 +120,7 @@ const Post = ({
             }}
             size="small"
             color="info"
-            className="w-25"
+            sx={{ width: "25%" }}
           >
             Add Comment
           </Button>
@@ -179,13 +180,18 @@ const IconButtons = ({
   handleFires = () => {},
 }) => {
   const iconSize = "1.1rem";
-  // eslint-disable-next-line operator-linebreak
-  const iconBoxClass =
-    "w-25 text-center d-flex justify-content-center align-items-center";
+
+  const iconStyle = {
+    width: "25%",
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
 
   return (
     <Stack direction="row" sx={{ mt: 1 }}>
-      <Box className={iconBoxClass}>
+      <Box sx={iconStyle}>
         <PurpleButton onClick={() => setShowComment(!showComment)}>
           <BiComment size={iconSize} />
           <Typography
@@ -197,7 +203,7 @@ const IconButtons = ({
           </Typography>
         </PurpleButton>
       </Box>
-      <Box className={iconBoxClass}>
+      <Box sx={iconStyle}>
         <OrangeButton sx={{ borderRadius: "50ex" }}>
           <AiOutlineFire
             size={iconSize}
@@ -214,7 +220,7 @@ const IconButtons = ({
           </Typography>
         </OrangeButton>
       </Box>
-      <Box className={iconBoxClass}>
+      <Box sx={iconStyle}>
         <Tooltip title="Not Implemented yet !">
           <GreenButton>
             <AiOutlineRetweet size={iconSize} />
@@ -222,7 +228,7 @@ const IconButtons = ({
         </Tooltip>
       </Box>
 
-      <Box className={iconBoxClass}>
+      <Box sx={iconStyle}>
         <RWebShare
           data={{
             text: "Check out my post on socialgram !",
@@ -301,12 +307,6 @@ const PostModal = ({
         </Box>
 
         <Stack spacing={2} direction="row">
-          <img
-            src={`https://avatars.dicebear.com/api/avataaars/:seed.svg?${imageUrl}&r=10&size=50`}
-            alt="avatar"
-            height={40}
-            width={40}
-          />
           <Stack spacing={0}>
             <Typography variant="h6" component="h2">
               {post?.owner?.fname} {post?.owner?.lname}
@@ -314,8 +314,7 @@ const PostModal = ({
             <Typography
               variant="overline"
               component="p"
-              className="text-muted small"
-              sx={{ lineHeight: 1.5 }}
+              sx={{ lineHeight: 1.5, color: grey[300] }}
             >
               {post.date ? convertSimpleDate(post.date) : "Just now"}
             </Typography>
@@ -325,12 +324,14 @@ const PostModal = ({
         {parse(post.title)}
 
         <Divider />
-        {/* <IconButtons userid={userid} post={post} addFires={addFires} /> */}
-        {/* <Divider /> */}
 
         <Box
-          style={{ maxHeight: "30vh", overflowY: "auto" }}
-          className="d-flex flex-column-reverse"
+          sx={{
+            maxHeight: "30vh",
+            overflowY: "auto",
+            display: "flex",
+            flexDirection: "column-reverse",
+          }}
         >
           {comments.map((comment) => (
             <CommentBox comment={comment} key={comment.commentId} />
@@ -342,34 +343,20 @@ const PostModal = ({
 };
 
 const CommentBox = ({ comment }) => {
-  const [imageUrl, setImageUrl] = useState("");
-
-  useEffect(() => {
-    setImageUrl(avatarGen(comment?.avatar));
-  }, [comment]);
-
   return (
     <Box
-      key={comment.commentId}
-      className="p-3 mb-2 shadow-lg rounded-lg w-100"
+      // className="p-3 mb-2 shadow-lg rounded-lg w-100"
+      sx={{ padding: 1, marginBotton: 2, width: "100%" }}
     >
-      {/* {parse(comment.comments)} */}
       <Stack spacing={0}>
         <Stack spacing={1} direction="row">
-          <img
-            src={`https://avatars.dicebear.com/api/avataaars/:seed.svg?${imageUrl}&r=15&size=30`}
-            alt="avatar"
-            height={25}
-            width={25}
-          />
           <Typography variant="h6" component="h2">
             {comment?.fname} {comment.lname}
           </Typography>
           <Typography
             variant="overline"
             component="p"
-            className="text-muted small"
-            sx={{ lineHeight: 2 }}
+            sx={{ lineHeight: 2, color: grey[300] }}
           >
             {comment.commentId ? convertDateObj(comment.commentId) : "Just now"}
           </Typography>

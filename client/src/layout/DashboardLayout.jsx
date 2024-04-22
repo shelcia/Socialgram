@@ -7,6 +7,7 @@ import {
   Toolbar,
   Typography,
   Divider,
+  Grid,
 } from "@mui/material";
 import Fab from "@mui/material/Fab";
 import { HiMenuAlt3, HiChevronUp } from "react-icons/hi";
@@ -92,24 +93,38 @@ const DashboardLayout = ({ children }, props) => {
       </Box>
       <Box component="main">
         <Toolbar />
-        <Box className="row" sx={{ px: 2, pt: 2 }}>
-          <Box
-            className="col-md-2"
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            px: 2,
+            pt: 2,
+            overflowY: "hidden",
+            height: "calc(100vh - 64px)",
+          }}
+        >
+          <Grid
+            item
+            md={2}
+            xs={12}
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             <SideNav />
-          </Box>
-          <Box className="col-md-7">{children}</Box>
-          <Box className="col-md-3">
+          </Grid>
+          <Grid item md={7} xs={12} sx={{ overflowY: "auto", height: "100%" }}>
+            <ScrollTop>
+              <Fab aria-label="scroll back to top" color="info">
+                <HiChevronUp size="1.5rem" />
+              </Fab>
+            </ScrollTop>
+            {children}
+          </Grid>
+          <Grid item md={3} xs={12} sx={{ height: "100%", overflowY: "auto" }}>
             <Adds />
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
       </Box>
-      <ScrollTop>
-        <Fab aria-label="scroll back to top" color="info">
-          <HiChevronUp size="1.5rem" />
-        </Fab>
-      </ScrollTop>
+      {/*  */}
     </Box>
   );
 };

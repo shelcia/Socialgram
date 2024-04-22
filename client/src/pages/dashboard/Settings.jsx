@@ -71,7 +71,9 @@ const Settings = () => {
         Settings
       </Typography>
       <hr />
-      <Table className="table table-dark table-borderless">
+      <Table
+      // className="table table-dark table-borderless"
+      >
         <TableBody>
           <TableRow>
             <TableCell>

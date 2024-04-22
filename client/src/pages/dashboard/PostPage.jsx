@@ -56,7 +56,7 @@ const PostPage = () => {
 
   return (
     <React.Fragment>
-      <Box style={{ flexDirection: "column-reverse" }} className="d-flex">
+      <Box sx={{ flexDirection: "column-reverse", display: "flex" }}>
         {isLoading ? (
           <Loading />
         ) : (

@@ -1,27 +1,23 @@
 import React from "react";
-import {
-  Box,
-  Card,
-  CardContent,
-  Container,
-  Link,
-  Typography,
-} from "@mui/material";
+import { Box, Card, CardContent, Grid, Link, Typography } from "@mui/material";
 import Img1 from "../assets/home/gradient-left-dark.svg";
 import Img2 from "../assets/home/gradient-right-dark.svg";
 
 const AuthLayout = ({ children }) => (
-  <Container className="row" sx={{ height: "100vh" }}>
+  <Grid container sx={{ height: "100vh" }}>
     <img src={Img1} alt="" style={{ position: "fixed", zIndex: -1 }} />
     <img src={Img2} alt="" style={{ position: "fixed", zIndex: -1 }} />
-    <Box
-      className="col-md-6"
+    <Grid
+      item
+      md={6}
+      xs={12}
       sx={{
         justifyContent: "center",
         height: "100vh",
         alignItems: "left",
         display: "flex",
         flexDirection: "column",
+        paddingX: { xs: 2, md: 6 },
       }}
     >
       <Typography component="h1" variant="h1">
@@ -59,9 +55,11 @@ const AuthLayout = ({ children }) => (
           Github
         </Typography>
       </Box>
-    </Box>
-    <Box
-      className="col-md-6"
+    </Grid>
+    <Grid
+      item
+      md={6}
+      xs={12}
       sx={{
         justifyContent: "center",
         height: "100vh",
@@ -81,8 +79,8 @@ const AuthLayout = ({ children }) => (
       >
         <CardContent>{children}</CardContent>
       </Card>
-    </Box>
-  </Container>
+    </Grid>
+  </Grid>
 );
 
 export default AuthLayout;

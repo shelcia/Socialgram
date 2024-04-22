@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { AddPost, LoadPost } from "../../data/actions";
@@ -7,20 +7,16 @@ import Loading from "../../components/CustomLoading";
 
 import { Box, Button, Typography } from "@mui/material";
 import { apiPost } from "../../services/models/postModel";
-
-import SunEditor from "suneditor-react";
-import "suneditor/dist/css/suneditor.min.css"; // I
+import { Editor } from "@tinymce/tinymce-react";
 
 const Feed = () => {
   const userid = localStorage.getItem("SocialGramUserId");
 
-  // const postText = useRef("");
   const [isLoading, setIsLoading] = useState(true);
   const [post, setPost] = useState("");
   const [commentText, setCommentText] = useState("");
 
   const allPost = useSelector((state) => state.posts);
-  // console.table(allPost);
   const dispatch = useDispatch();
 
   const getPost = async (dispatch, signal) => {
@@ -70,11 +66,18 @@ const Feed = () => {
 
     // console.log(body);
 
-    apiPost.post(body, "").then(() => {
-      dispatch(AddPost(body));
-    });
-
-    setPost("");
+    apiPost
+      .post(body, "")
+      .then((res) => {
+        console.log(res);
+        dispatch(AddPost(body));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setPost("");
+      });
   };
 
   const addComment = (id, value) => {
@@ -117,14 +120,19 @@ const Feed = () => {
 
   return (
     <React.Fragment>
-      <InputForm addPost={addPost} setPost={setPost} />
-      <Box sx={{ flexDirection: "column", display: "flex" }}>
+      <InputForm post={post} addPost={addPost} setPost={setPost} />
+      <Box
+        sx={{
+          flexDirection: "column",
+          display: "flex",
+        }}
+      >
         {isLoading ? (
           <Loading />
         ) : (
-          allPost?.map((post) => (
+          allPost?.map((post, idx) => (
             <Post
-              key={post.id}
+              key={idx}
               userid={userid}
               post={post}
               handleFires={handleFires}
@@ -141,16 +149,13 @@ const Feed = () => {
 
 export default Feed;
 
-const InputForm = ({ addPost, setPost }) => {
-  const BUTTONLIST = [
-    ["undo"],
-    ["fontSize", "formatBlock"],
-    ["bold", "underline", "italic", "strike"],
-    ["removeFormat"],
-    ["fontColor", "hiliteColor"],
-    ["align", "list"],
-    ["link", "image"],
-  ];
+const InputForm = ({ post, addPost, setPost }) => {
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+    }
+  };
 
   return (
     <React.Fragment>
@@ -158,13 +163,26 @@ const InputForm = ({ addPost, setPost }) => {
         How about a thought ?
       </Typography>
       <Box className="input-group-lg">
-        <SunEditor
-          onChange={(content) => setPost(content)}
-          placeholder="share your thoughts"
-          setOptions={{
-            buttonList: BUTTONLIST,
+        <Editor
+          apiKey={import.meta.env.TINYEDITOR}
+          init={{
+            height: 200,
+            menubar: false,
+            plugins:
+              "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate tableofcontents footnotes autocorrect typography inlinecss markdown",
+            toolbar:
+              "undo redo | blocks fontsize forecolor | bold italic underline strikethrough emoticons | link image media table | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | charmap | removeformat",
+            ai_request: (request, respondWith) =>
+              respondWith.string(() =>
+                Promise.reject("See docs to implement AI Assistant")
+              ),
+            content_style:
+              'html{font-family: "Poppins", sans-serif;} body { font-size:16px; color: white;}',
           }}
-          autoFocus={true}
+          initialValue="Weather was good today"
+          contentCss="dark"
+          value={post}
+          onEditorChange={(newValue, editor) => setPost(newValue)}
         />
       </Box>
       <Button
@@ -175,7 +193,7 @@ const InputForm = ({ addPost, setPost }) => {
         }}
         fullWidth
         size="small"
-        className="my-3"
+        sx={{ marginY: 2 }}
       >
         Add Post
       </Button>

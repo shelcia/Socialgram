@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Grid,
   IconButton,
   Link,
   Stack,
@@ -12,14 +13,8 @@ import { FiGlobe, FiNavigation } from "react-icons/fi";
 
 const ProfileDisplay = ({ profile, imageUrl }) => {
   return (
-    <Box className="row">
-      <Box className="col-md-4">
-        <img
-          src={`https://avatars.dicebear.com/api/avataaars/:seed.svg?${imageUrl}&r=50&size=200`}
-          alt="avatar"
-        />
-      </Box>
-      <Box className="col-md-8">
+    <Grid container>
+      <Box item md={12} xs={12}>
         <Typography variant="h4" component="h1" sx={{ mb: 1 }}>
           {profile?.fname} {profile?.lname}
         </Typography>
@@ -46,12 +41,14 @@ const ProfileDisplay = ({ profile, imageUrl }) => {
               <IconButton aria-label="website" size="small" color="info">
                 <FiGlobe size={"0.8rem"} />
               </IconButton>
-              <Link target="_blank">{profile?.website}</Link>
+              <Link target="_blank" href={profile?.website}>
+                {profile?.website}
+              </Link>
             </Typography>
           )}
         </Stack>
 
-        <Stack direction="row" spacing={3}>
+        <Stack direction="row" spacing={3} marginTop={2}>
           <Stack direction="row" spacing={0}>
             <Tooltip title="Not Implemented yet !">
               <Button variant="contained" color="info">
@@ -68,7 +65,7 @@ const ProfileDisplay = ({ profile, imageUrl }) => {
           </Stack>
         </Stack>
       </Box>
-    </Box>
+    </Grid>
   );
 };
 

@@ -3,18 +3,14 @@ import { Box, Divider, Typography } from "@mui/material";
 import Loading from "../../components/CustomLoading";
 import { apiPost } from "../../services/models/postModel";
 import { apiUser } from "../../services/models/userModal";
-// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member
 import Post from "./components/Post";
 import ProfileDisplay from "./components/ProfileDisplay";
-import { avatarGen } from "../../helpers/avatarGenerator";
 
 const MyPosts = () => {
-  const userid = localStorage.getItem("SocialGramUserId");
+  const userId = localStorage.getItem("SocialGramUserId");
 
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [imageUrl, setImageUrl] = useState("");
 
   const [profile, setProfile] = useState({
     fname: "",
@@ -57,11 +53,9 @@ const MyPosts = () => {
   }, []);
 
   const fetchProfile = (signal) => {
-    // const userid = localStorage.getItem("SocialGramUserId");
-    apiUser.getSingle(`${userid}`, signal).then((res) => {
+    apiUser.getSingle(`${userId}`, signal).then((res) => {
       // console.log(res);
       setProfile(res.message);
-      setImageUrl(avatarGen(res.message?.avatar));
       setLoading(false);
     });
   };
@@ -76,18 +70,18 @@ const MyPosts = () => {
     <Loading />
   ) : (
     <>
-      <ProfileDisplay profile={profile} imageUrl={imageUrl} />
+      <ProfileDisplay profile={profile} />
       <Divider sx={{ my: 3 }} />
       {posts?.length === 0 && (
-        <Box className="text-center">
+        <Box sx={{ textAlign: "center" }}>
           <Typography variant="h5" component="p" sx={{ mb: 2 }}>
             No Post yet !!
           </Typography>
         </Box>
       )}
-      <Box style={{ flexDirection: "column-reverse" }} className="d-flex">
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         {posts?.map((post) => (
-          <Post userId={userid} post={post} key={post.id} />
+          <Post userId={userId} post={post} key={post.id} />
         ))}
       </Box>
     </>

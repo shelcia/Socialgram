@@ -109,7 +109,7 @@ const post = async (
   isAuthorized = false
 ) => {
   // console.log({ model });
-  const token = localStorage.getItem("Socialgram-Token");
+  const token = localStorage.getItem("SocialGramToken");
   const headers = isAuthorized ? { "auth-token": token } : {};
 
   try {

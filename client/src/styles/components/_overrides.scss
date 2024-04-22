@@ -1,59 +1,9 @@
-.se-container,
-.sun-editor .se-list-layer {
-  background-color: $background !important;
-  border: $border !important;
-  color: $textColor !important;
-}
-.sun-editor {
-  border: $border !important;
-  background-color: $borderColor !important;
-  border-radius: 0.3rem;
-}
-
-.sun-editor .se-toolbar {
-  background-color: $background !important;
-  // outline: $border !important;
-  outline: none !important;
-  color: $textColor !important;
-}
-.sun-editor button {
-  color: $textColor !important;
-  // outline: $border !important;
-  outline: none !important;
-}
-.sun-editor .se-wrapper .se-wrapper-inner,
-.se-resizing-bar .sun-editor-common,
-.sun-editor .se-resizing-bar {
-  background-color: $background !important;
-  // outline: $border !important;
-  outline: none !important;
-}
-
-.sun-editor .se-btn-module-border {
-  // border: $border !important;
-  border: none !important;
-}
-
-.sun-editor-editable,
-.se-btn-list {
-  color: $textColor !important;
-}
-
-.sun-editor .se-resizing-bar {
-  display: none !important;
-}
-
 .dropstart .dropdown-toggle::before {
   display: none;
 }
 
 .btn.btn-secondary.dropdown-toggle {
   background-color: transparent;
-}
-
-.sun-editor .se-btn:enabled:focus,
-.sun-editor .se-btn:enabled:hover {
-  background-color: #a5a5a56c !important;
 }
 
 .rws-container {
@@ -63,4 +13,36 @@
 .rws-close {
   background-color: $background !important;
   color: $textColor !important;
+}
+
+.tox:not(.tox-tinymce-inline) .tox-editor-header,
+.tox .tox-toolbar,
+.tox .tox-toolbar__overflow,
+.tox .tox-toolbar__primary,
+.tox .tox-tbtn,
+.tox .tox-edit-area__iframe,
+.tox-statusbar {
+  background-color: $background !important;
+}
+
+.tox .tox-tbtn,
+.tox .tox-tbtn svg,
+.tox .tox-statusbar__path-item,
+.tox .tox-statusbar__wordcount,
+.tox .tox-statusbar__branding svg {
+  color: $textColor !important;
+  fill: $textColor !important;
+}
+
+.tox-tinymce {
+  border: $border !important;
+}
+
+.tox .tox-statusbar {
+  border-top: none !important;
+  color: $textColor !important;
+}
+
+.tox-collection__item-label > * {
+  color: $background !important;
 }

@@ -4,6 +4,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import toast from "react-hot-toast";
 import { PartLoader } from "../../components/CustomLoading";
 import { apiAuth } from "../../services/models/authModel";
+import { error } from "../../theme/themeColors";
 
 const Signup = () => {
   const [fname, setFname] = useState("");
@@ -66,7 +67,7 @@ const Signup = () => {
   return isLoading ? (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <PartLoader>
-        <Typography variant="p" component="p" className="text-center">
+        <Typography variant="p" component="p" sx={{ textAlign: "center" }}>
           Please wait while we create your account !!
         </Typography>
       </PartLoader>
@@ -130,16 +131,16 @@ const Signup = () => {
           required
         />
         {warning && (
-          <p className="text-danger mt-4">
+          <p sx={{ color: error.main, marginTop: 2 }}>
             *Password should have atleast 6 characters
           </p>
         )}
-        <Box className="text-center mt-4">
+        <Box sx={{ textAlign: "center", marginTop: 2 }}>
           <Button variant="contained" type="submit">
             Signup
           </Button>
         </Box>
-        <div className="text-center mt-4">
+        <div sx={{ textAlign: "center", marginTop: 2 }}>
           <Typography variant="p" component="p">
             Already have an account? then{" "}
             <em>

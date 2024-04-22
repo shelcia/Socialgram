@@ -4,8 +4,13 @@ import { Rings } from "react-loader-spinner";
 const Loading = ({ children }) => {
   return (
     <div
-      className="w-100 h-100 d-flex"
-      style={{ alignItems: "center", justifyContent: "center" }}
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+      }}
     >
       <Rings type="TailSpin" color="#7F00FF" height={150} width={150} />
       {children}

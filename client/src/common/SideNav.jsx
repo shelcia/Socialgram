@@ -69,7 +69,9 @@ const SideNav = () => {
           </ListItemButton>
         </ListItem>
       </List>
-      <Alert severity="info">Please keep this safe and welcome!</Alert>
+      <Alert severity="info">
+        Please keep this safe and welcoming!. Content is moderated.
+      </Alert>
       <LogoutModal open={open} setOpen={setOpen} />
     </React.Fragment>
   );

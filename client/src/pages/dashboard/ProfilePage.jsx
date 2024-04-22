@@ -84,13 +84,13 @@ const ProfilePage = () => {
         <Divider sx={{ my: 1 }} />
 
         {posts?.length === 0 ? (
-          <Box className="text-center">
+          <Box sx={{ textAlign: "center" }}>
             <Typography variant="h5" component="p" sx={{ mb: 2 }}>
               No Post yet !!
             </Typography>
           </Box>
         ) : (
-          <Box style={{ flexDirection: "column-reverse" }} className="d-flex">
+          <Box sx={{ flexDirection: "column-reverse", display: "flex" }}>
             {posts?.map((post) => (
               <Post userId={id} post={post} key={post.id} />
             ))}

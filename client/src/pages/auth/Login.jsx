@@ -57,7 +57,7 @@ const Login = () => {
   return isLoading ? (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <PartLoader>
-        <Typography variant="p" component="p" className="text-center">
+        <Typography variant="p" component="p" sx={{ textAlign: "center" }}>
           Logging you in !!
         </Typography>
       </PartLoader>
@@ -92,12 +92,12 @@ const Login = () => {
           }}
           required
         />
-        <Box className="text-center mt-4">
+        <Box sx={{ textAlign: "center", marginTop: 2 }}>
           <Button variant="contained" type="submit">
             Login
           </Button>
         </Box>
-        <Box className="text-center mt-4">
+        <Box sx={{ textAlign: "center", marginTop: 2 }}>
           <Typography variant="p" component="p">
             {/*  eslint-disable-next-line react/no-unescaped-entities */}
             Don't have an account? then{" "}

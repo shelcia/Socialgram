@@ -2,28 +2,13 @@ import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import ProfileTable from "./components/ProfileTable";
 import { apiUser } from "../../services/models/userModal";
-import {
-  Box,
-  Button,
-  Divider,
-  MenuItem,
-  Select,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography,
-} from "@mui/material";
-import { avatarLabels } from "../../context/data/Labels";
-import { avatarGen } from "../../helpers/avatarGenerator";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import Loading from "../../components/CustomLoading";
 
 const MyProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [isEdit, setIsEdit] = useState(false);
-
-  const [imageUrl, setImageUrl] = useState("");
 
   const [profile, setProfile] = useState({
     fname: "",
@@ -55,22 +40,11 @@ const MyProfile = () => {
     });
   };
 
-  const handleAvatarInput = (event) => {
-    setProfile({
-      ...profile,
-      avatar: {
-        ...profile.avatar,
-        [event.target.name]: event.target.value,
-      },
-    });
-  };
-
   const fetchProfile = (signal) => {
     const userid = localStorage.getItem("SocialGramUserId");
     apiUser.getSingle(`${userid}`, signal).then((res) => {
       if (res.status === "200") {
         setProfile(res.message);
-        setImageUrl(avatarGen(res?.message?.avatar));
         setIsLoading(false);
       } else {
         toast.error("Error");
@@ -112,49 +86,12 @@ const MyProfile = () => {
         Profile
       </Typography>
       <Divider sx={{ mb: 1 }} />
-      <Box className="text-center">
-        {!isEdit ? (
-          <img
-            src={`https://avatars.dicebear.com/api/avataaars/:seed.svg?${imageUrl}&r=50&size=200`}
-            alt="avatar"
-          />
-        ) : (
-          <>
-            <Table aria-label="profile table">
-              <TableBody>
-                {avatarLabels.map((prof, idx) => (
-                  <TableRow key={idx}>
-                    <TableCell>{prof.label}</TableCell>
-                    <TableCell>
-                      <Select
-                        label={prof.label}
-                        name={prof.name}
-                        value={profile?.avatar?.[prof.name]}
-                        onChange={(event) => handleAvatarInput(event)}
-                        size="small"
-                        fullWidth
-                      >
-                        {prof?.values?.map((val, idx) => (
-                          <MenuItem value={val} key={val}>
-                            {val}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </>
-        )}
-      </Box>
-
       <ProfileTable
         profile={profile}
         isEdit={isEdit}
         handleInput={handleInput}
       />
-      <Box className="text-center" sx={{ mt: 3 }}>
+      <Box sx={{ mt: 3, textAlign: "center" }}>
         {!isEdit ? (
           <Button
             variant="contained"

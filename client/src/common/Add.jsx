@@ -5,9 +5,7 @@ const Adds = () => {
   return (
     <React.Fragment>
       <Box
-        style={{
-          // height: "86vh",
-          overflowY: "auto",
+        sx={{
           wordWrap: "wrap",
         }}
       >
@@ -17,7 +15,7 @@ const Adds = () => {
         <img
           src="https://socialify.git.ci/shelcia/Socialgram/image?font=Rokkitt&forks=1&issues=1&language=1&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Dark"
           alt="Socialgram"
-          className="w-100 mb-4"
+          style={{ width: "100%", marginBottom: 2 }}
         />
         <Link
           href="https://github.com/shelcia/Socialgram"
@@ -37,7 +35,7 @@ const Adds = () => {
               href="https://github.com/shelcia/Socialgram/issues"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-2"
+              sx={{ paddingX: 1 }}
             >
               Issues
             </Link>
@@ -57,7 +55,7 @@ const Adds = () => {
               href="https://github.com/shelcia/CRM/blob/master/CODE_OF_CONDUCT.md"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-2"
+              sx={{ paddingX: 1 }}
             >
               Code of Conduct
             </Link>
